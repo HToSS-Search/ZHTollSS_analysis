@@ -1,0 +1,13 @@
+colour: '#ffffff'
+histogram: data
+label: Data
+locations:
+- /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/CRAB3_Data_SingleMuon_Run2017C_NoCuts/231003_163215
+luminosity: 9572.498263748
+mc: false
+name: mumuRun2017C
+plot_type: p
+skim_location:
+- /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/postNTupleSkims/2017/data/mumuRun2017C/
+sum_weights: -1
+trigger_flag: mCt

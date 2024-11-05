@@ -1,0 +1,10 @@
+colour: '#ff9933'
+cross_section: 9.119
+histogram: VV
+label: VV
+locations: /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/WZTo1L1Nu2Q_4f_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9-v2_MCUL2017_HToSS/231106_114026
+mc: true
+name: WZ_lnu2q
+plot_type: f
+sum_weights: 110858039.00594586
+total_events: -1

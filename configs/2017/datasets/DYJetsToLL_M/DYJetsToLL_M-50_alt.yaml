@@ -1,0 +1,13 @@
+colour: '#006699'
+cross_section: 5398
+histogram: Zjets
+label: Z+jets
+locations:
+- /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/CRAB3_MC_DYJetsToLL_M-50_2017_ChargedKaons/230922_150605
+mc: true
+name: DYJetsToLL_M-50
+plot_type: f
+skim_location:
+- /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/postNTupleSkims/2017/ToBeUpdated
+sum_weights: 103344974
+total_events: 103344974

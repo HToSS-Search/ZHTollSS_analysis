@@ -1,0 +1,12 @@
+colour: '#ff99cc'
+cross_section: 32.51
+histogram: SingleTop
+label: Single top
+locations: /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9-v2_MCUL2017_HToSS/231030_222212
+mc: true
+name: tbarW
+plot_type: f
+skim_location:
+- /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/postNTupleSkims/2017/singleTop/tbarW/
+sum_weights: 184446313.29866186
+total_events: 5674000

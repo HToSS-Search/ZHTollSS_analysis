@@ -1,0 +1,12 @@
+colour: '#ff9933'
+cross_section: 11.09
+histogram: VV
+label: VV
+locations: /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/WWTo2L2Nu_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9-v2_MCUL2017_HToSS/231106_101002
+mc: true
+name: WW_2l2nu
+plot_type: f
+skim_location:
+- /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/postNTupleSkims/2017/VV/WW_2l2nu/
+sum_weights: 78687950.41692783
+total_events: 7098000

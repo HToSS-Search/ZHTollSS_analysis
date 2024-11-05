@@ -1,0 +1,12 @@
+colour: '#ff99cc'
+cross_section: 0.07561
+histogram: SingleTop
+label: Single top
+locations: /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/tZq_ll_4f_ckm_NLO_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9-v1_MCUL2017_HToSS/231030_213854
+mc: true
+name: tZq
+plot_type: f
+skim_location:
+- /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/postNTupleSkims/2017/singleTop/tZq/
+sum_weights: 737624.2674412669
+total_events: 9530000

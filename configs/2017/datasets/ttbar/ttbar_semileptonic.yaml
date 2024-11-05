@@ -1,0 +1,12 @@
+colour: '#8aefff'
+cross_section: 366.91
+histogram: ttbar
+label: t#bar{t}
+locations: /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9-v1_MCUL2017_HToSS/231014_183904
+mc: true
+name: ttbar_semileptonic
+plot_type: f
+skim_location:
+- /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/postNTupleSkims/2017/ttbar/ttbar_semileptonic/
+sum_weights: 106871790553.23837
+total_events: 355332000

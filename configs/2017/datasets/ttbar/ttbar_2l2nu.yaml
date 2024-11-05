@@ -1,0 +1,12 @@
+colour: '#8aefff'
+cross_section: 89.05
+histogram: ttbar
+label: t#bar{t}
+locations: /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9-v1_MCUL2017_HToSS/231014_185224
+mc: true
+name: ttbar_2l2nu
+plot_type: f
+skim_location:
+- /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/postNTupleSkims/2017/ttbar/ttbar_2l2nu/
+sum_weights: 7695841311.0328245
+total_events: 106724000

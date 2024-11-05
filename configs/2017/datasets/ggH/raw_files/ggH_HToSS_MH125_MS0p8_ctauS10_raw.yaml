@@ -1,0 +1,10 @@
+name: "ggH_HToSS_MS0p8_ctauS10_raw"
+locations:
+    - "/pnfs/iihe/cms/store/user/almorton/MC/skims2017_v5/ggH_noCuts/NLO_ggH_HToSS_SmuonHadronFiltered_M125_MS0p8_ctauS10/"
+cross_section: 0.6307257992
+mc: true
+histogram: "ggH_HToSS_MS0p8_ctauS10_raw"
+colour: "#fc0303"
+label: "H#rightarrowaa m_{a}=0.8 c_{#tau}=10"
+plot_type: "l"
+

@@ -1,0 +1,9 @@
+name: "ggH_HToSS_MS1p6_ctauS1_raw"
+locations:
+    - "/pnfs/iihe/cms/store/user/almorton/MC/skims2017_v5/ggH_noCuts/NLO_ggH_HToSS_SmuonHadronFiltered_M125_MS1p6_ctauS1/"
+cross_section: 0.109674208
+mc: true
+histogram: "ggH_HToSS_MS1p6_ctauS1_raw"
+colour: "#fc0303"
+label: "H#rightarrowaa m_{a}=1.6 c_{#tau}=1"
+plot_type: "l"

@@ -1,0 +1,11 @@
+colour: '#006699'
+cross_section: 3.67
+histogram: Zjets
+label: Z+jets
+locations: /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/DYJetsToLL_LHEFilterPtZ-250To400_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9-v2_MCUL2017_HToSS/231030_175018
+mc: true
+name: DYJetsToLL_Pt-250To400
+plot_type: f
+skim_location:
+- /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/postNTupleSkims/2017/DYJetsToLL_Pt/DYJetsToLL_Pt-250To400/
+sum_weights: 371330606.2296413

@@ -1,0 +1,12 @@
+colour: '#ffffff'
+histogram: data
+label: Data
+locations: /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017B-UL2017_MiniAODv2-v1_DataUL2017B_HToSS/231016_084831
+luminosity: 4803.363110233
+mc: false
+name: mumuRun2017B
+plot_type: p
+skim_location:
+- /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/postNTupleSkims/2017/data/mumuRun2017B/
+sum_weights: -1
+trigger_flag: mCt

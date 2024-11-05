@@ -1,0 +1,10 @@
+name: "ggH_HToSS_MS2_ctauS0"
+locations:
+    - "/user/sdansana/CMSSW_10_6_27/src/HToSS_analysis/temp_file_dump/NLO_ggH_HToSS_SmuonHadronFiltered_M125_MS2_ctauS0_skims2017v5/"
+cross_section: 16.7 #cross-section x BR; value taken from XSDB
+mc: true
+histogram: "ggH_HToSS_MS2_ctauS0"
+colour: "#fc0303"
+label: "H#rightarrowaa m_{a}=2 c_{#tau}=0"
+plot_type: "l"
+

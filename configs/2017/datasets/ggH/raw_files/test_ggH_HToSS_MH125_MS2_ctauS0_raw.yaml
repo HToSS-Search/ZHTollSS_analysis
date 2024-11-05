@@ -1,0 +1,10 @@
+name: "ggH_HToSS_MS2_ctauS0_raw"
+locations:
+    - "/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/HToSSTo2Mu2Hadrons_MH125_MS2_ctauS0_TuneCP2_13TeV-powheg-pythia8"
+cross_section: 2.9251796028
+mc: true
+histogram: "ggH_HToSS_MS2_ctauS0_raw"
+colour: "#fc0303"
+label: "H#rightarrowaa m_{a}=2 c_{#tau}=0"
+plot_type: "l"
+

@@ -1,0 +1,10 @@
+colour: '#339933'
+cross_section: 0.2163
+histogram: ttV
+label: t#bar{t}V
+locations: /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9-v1_MCUL2017_HToSS/231106_135720
+mc: true
+name: ttW_lnu
+plot_type: f
+sum_weights: 2365499.751796387
+total_events: -1

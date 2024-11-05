@@ -1,0 +1,12 @@
+colour: '#ff9933'
+cross_section: 411.2
+histogram: VV
+label: VV
+locations: /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9-v1_MCUL2017_HToSS/231106_092642
+mc: true
+name: WG_lnug
+plot_type: f
+skim_location:
+- /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/postNTupleSkims/2017/VV/WG_lnug/
+sum_weights: 10302104.0
+total_events: 10302104

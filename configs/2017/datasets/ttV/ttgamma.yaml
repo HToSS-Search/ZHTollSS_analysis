@@ -1,0 +1,12 @@
+colour: '#339933'
+cross_section: 1.501
+histogram: ttV
+label: t#bar{t}V
+locations: /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/TTGamma_Dilept_TuneCP5_13TeV-madgraph-pythia8/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9-v1_MCUL2017_HToSS/231103_000219
+mc: true
+name: ttgamma
+plot_type: f
+skim_location:
+- /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/postNTupleSkims/2017/ttV/ttgamma/
+sum_weights: 10018000.0
+total_events: 10018000

@@ -1,0 +1,12 @@
+colour: '#8aefff'
+cross_section: 377.96
+histogram: ttbar
+label: t#bar{t}
+locations: /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/TTToHadronic_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9-v2_MCUL2017_HToSS/231014_182544
+mc: true
+name: ttbar_hadronic
+plot_type: f
+skim_location:
+- /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/postNTupleSkims/2017/ttbar/ttbar_hadronic/
+sum_weights: 73994629756.03406
+total_events: 235719999

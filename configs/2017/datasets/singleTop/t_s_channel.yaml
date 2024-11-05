@@ -1,0 +1,12 @@
+colour: '#ff99cc'
+cross_section: 3.549
+histogram: SingleTop
+label: Single top
+locations: /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ST_s-channel_4f_leptonDecays_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9-v1_MCUL2017_HToSS/231030_215330
+mc: true
+name: t_s_channel
+plot_type: f
+skim_location:
+- /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/postNTupleSkims/2017/singleTop/t_s_channel/
+sum_weights: 49292567.7647641
+total_events: 13882000

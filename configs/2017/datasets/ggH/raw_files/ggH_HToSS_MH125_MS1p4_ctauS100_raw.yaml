@@ -1,0 +1,11 @@
+name: "ggH_HToSS_MS1p4_ctauS100_raw"
+locations:
+    - "/pnfs/iihe/cms/store/user/almorton/MC/skims2017_v5/ggH_noCuts/NLO_ggH_HToSS_SmuonHadronFiltered_M125_MS1p4_ctauS100/"
+cross_section: 0.109674208
+mc: true
+histogram: "ggH_HToSS_MS1p4_ctauS100_raw"
+colour: "#fc0303"
+label: "H#rightarrowaa m_{a}=1.4 c_{#tau}=100"
+plot_type: "l"
+
+

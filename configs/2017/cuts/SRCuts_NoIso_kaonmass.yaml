@@ -1,0 +1,76 @@
+cuts:
+  dihadron:
+    category:
+      displaced:
+        reliso: 1.6
+        relisoLeading: 1
+      displacedhh:
+        reliso: 1.6
+        relisoLeading: 1
+      displacedmumu:
+        reliso: 1.6
+        relisoLeading: 1
+      prompt:
+        reliso: 0.8
+        relisoLeading: 0.6
+    charge: OS
+    dR: 0.4
+    flag: false
+    pt: 20
+  dimuon:
+    category:
+      displaced:
+        reliso: 0.8
+        relisoLeading: 0.5
+      displacedhh:
+        reliso: 0.8
+        relisoLeading: 0.5
+      displacedmumu:
+        reliso: 0.8
+        relisoLeading: 0.5
+      prompt:
+        reliso: 0.6
+        relisoLeading: 0.3
+    charge: OS
+    dR: 0.4
+    flag: false
+    pt: 0
+  hadrons:
+    eta: 2.4
+    flag: true
+    id: None
+    number: 2
+    pt: 5
+  muons:
+    eta: 2.4
+    flag: true
+    id: Loose
+    number: 2
+    pt:
+      double: -1
+      single: 5
+    ptLeading:
+      double: -1
+      single: 29
+  recohiggs:
+    flag: true
+    massHigh: 127.5
+    massLow: 122.5
+    sideband: 2.5
+    unblind: true
+  recoscalar:
+    flag: true
+    higherbound:
+    - 0.020128417950532475
+    - 1.0322676912746693
+    lowerbound:
+    - -0.019435206113441062
+    - 0.9689663832382576
+  scalarmass:
+  - configs/2017/cuts/bounds_avgmass.txt
+hadronType: kaon
+metfilters: true
+regions:
+  hhlxysign: 30
+  mumulxysign: 40
+trig: single

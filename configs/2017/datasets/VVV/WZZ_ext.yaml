@@ -1,0 +1,13 @@
+colour: '#999999'
+cross_section: 0.05709
+histogram: VVV
+label: VVV
+locations:
+- /pnfs/iihe/cms/store/user/almorton/MC/skims2017_v5/VVV/WZZ_ext/
+mc: true
+name: WZZ_ext
+plot_type: f
+skim_location:
+- /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/postNTupleSkims/2017/VVV/WZZ_ext/
+sum_weights: 28725.315250051728
+total_events: 9898000

@@ -1,0 +1,12 @@
+colour: '#339933'
+cross_section: 0.2439
+histogram: ttV
+label: t#bar{t}V
+locations: /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9-v1_MCUL2017_HToSS/231106_141259
+mc: true
+name: ttZ_ll
+plot_type: f
+skim_location:
+- /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/postNTupleSkims/2017/ttV/ttZToll/
+sum_weights: 3464156.467300508
+total_events: 14196000

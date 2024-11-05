@@ -1,0 +1,12 @@
+colour: '#e8e8e8'
+cross_section: 377800.0
+histogram: QCD_50to80
+label: QCD_50to80
+locations: /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/QCD_Pt-50To80_MuEnrichedPt5_TuneCP5_13TeV-pythia8/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9-v2_MCUL2017_HToSS/231016_204620
+mc: true
+name: QCD_Pt-50to80_MuEnrichedPt5
+plot_type: f
+skim_location:
+- /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/postNTupleSkims/2017/QCD/QCD_Pt-50to80_MuEnrichedPt5/
+sum_weights: 39800651.0
+total_events: -1
