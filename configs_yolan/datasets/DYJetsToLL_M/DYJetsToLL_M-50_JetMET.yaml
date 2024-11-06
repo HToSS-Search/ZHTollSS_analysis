@@ -1,0 +1,14 @@
+colour: '#006699'
+cross_section: 5398
+histogram: Zjets
+label: Z+jets
+locations:
+- /pnfs/iihe/cms/store/user/sdansana/JetMETStudies/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/TOTAL_UL2017.root
+mc: true
+name: DYJetsToLL_M-50_JetMET
+plot_type: f
+skim_location:
+- /path/here
+sum_weights: 103344974
+total_events: 103344974
+
