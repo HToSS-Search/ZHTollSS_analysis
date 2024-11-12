@@ -5,7 +5,7 @@ import numpy as np
 outFile = ROOT.TFile("plots/UL2017/MC.root", "READ")
 
 i = 0
-canvasNameList = ["canvas_turnon_HLT_IsoMu27", "canvas_turnon_HLT_IsoMu24", "canvas_turnon_HLT_IsoTkMu24", "canvas_pt", "canvas_mu_eta", "canvas_mu_phi"]
+canvasNameList = ["canvas_turnon_HLT_IsoMu27", "canvas_turnon_HLT_IsoMu24", "canvas_turnon_HLT_IsoTkMu24", "canvas_pt", "canvas_mu_eta", "canvas_mu_phi", "canvas_deltaR", "canvas_invmass"]
 print("Following canvasses will be displayed")
 print(canvasNameList)
 canvasList = []

@@ -16,6 +16,7 @@ import yaml
 
 cpp = R"""
 
+using FourVector = ROOT::Math::PxPyPzMVector;
 using RVecFloat = ROOT::RVec<Float_t>;
 
 float getLeading(RVecFloat vec){
@@ -27,7 +28,37 @@ float getLeading(RVecFloat vec){
 float getTrailing(RVecFloat vec){
 	auto idxmin = ROOT::VecOps::ArgMin(vec);
 	return vec[idxmin];
-}	
+}
+auto myInvariantMass(RVecFloat& pt, RVecFloat& eta, RVecFloat& phi, float mass){
+        Float_t px1 = pt[0]*cos(phi[0]);Float_t py1 = pt[0]*sin(phi[0]);Float_t pz1 = pt[0]*cos(eta[0]);
+	Float_t px2 = pt[1]*cos(phi[1]);Float_t py2 = pt[1]*sin(phi[1]);Float_t pz2 = pt[1]*cos(eta[1]);
+	FourVector P1 {px1, py1, pz1, mass};
+	FourVector P2 {px2, py2, pz2, mass};
+	FourVector dilep = P1 + P2;
+	auto mass_ = dilep.M();
+	return mass_;
+}
+
+RVecFloat getDeltaR(RVecFloat& eta, RVecFloat& phi){
+/** Get all DeltaR from all possible pairs in the data
+ * Input should be the relevant eta and phi columns respectively
+ * Returns Vec with length equal to amount of combinations where each entry is the DeltaR for a pair
+ */
+	if (eta.size() != phi.size()) {
+		std::cout << "Eta and phi are not the same size!" << std::endl;
+		return RVecFloat();
+	} else {
+		auto idx = ROOT::VecOps::Combinations(eta, 2);
+		RVecFloat deltaR(idx[0].size()); // Initialize deltaR with the correct size
+					           
+		auto phi1 = Take(phi, idx[0]); auto phi2 = Take(phi, idx[1]);
+		auto eta1 = Take(eta, idx[0]); auto eta2 = Take(eta, idx[1]);
+
+		deltaR = ROOT::VecOps::DeltaR(eta1, eta2, phi1, phi2);
+		return deltaR;
+	}
+
+}
 """
 
 
@@ -143,6 +174,18 @@ def genXPlot(df, varName, mmin, mmax, bins):
 	hist.Draw()
 	
 	canvas.Write('canvas_' + varName)
+
+def genInvMassPlot(df, mmin, mmax, bins):
+	canvas = ROOT.TCanvas('canvas_invmass', 'Invariant Z Mass', 800, 600)
+
+	hist = df.Histo1D(('hist_invmass', 'Invariant mass distribution of Z', bins, mmin, mmax), 'dimuon_mass')
+	hist.GetXaxis().SetTitle('m#_{\mu\mu} (GeV)')
+	hist.GetYaxis().SetTitle('Events')
+
+	hist.Draw()
+
+	canvas.Write('canvas_invmass')
+
 #########################################################################################
 # Loading in the Tree and performing selection on Dataframe
 #########################################################################################
@@ -179,19 +222,34 @@ displayList2 = ['mu_eta', 'mu_phi', 'mu_ch', 'mu_pt', '_lPt', 'HLT_IsoMu27']
 df_muons_aftercutselection.Describe().Print()
 df_muons_aftercutselection.Display(displayList2).Print()
 
+#get the dimuon mass and put into a df
+llim_zmass = 70
+ulim_zmass = 130
+muon_massVal = 0.105 #GeV
 
-needGeneratePlots = False
+dimuon_masscut = 'dimuon_mass > ' + str(llim_zmass) + ' &&  dimuon_mass < '+ str(ulim_zmass)
+
+df_dimuon = df_muons_aftercutselection.Define('mu_mass', str(muon_massVal))\
+		.Define('dimuon_mass', 'myInvariantMass(mu_pt, mu_eta, mu_phi, mu_mass)')\
+		.Filter(dimuon_masscut)
+df_dimuon = df_dimuon.Define('deltaR', 'getDeltaR(mu_eta, mu_phi)')
+df_dimuon.Display(['mu_pt', 'dimuon_mass', 'deltaR']).Print()
+
+
+needGeneratePlots = True
 if(needGeneratePlots):
 
 	#generate the plots and save to output file
-	outFile = ROOT.TFile(args.output, "RECREATE")
+	outFile = ROOT.TFile(args.output, "UPDATE")
 
-	genTurnOn(df, 'HLT_IsoMu27', 0, 80, 0.1)
-	genTurnOn(df, 'HLT_IsoMu24', 0, 80, 0.1) 
-	genTurnOn(df, 'HLT_IsoTkMu24', 0, 80, 0.1)
-	genPtPlot(df_muons_aftercutselection, 0, 80, 320)
-	genXPlot(df_muons_aftercutselection, 'mu_eta', -4, 4, 320)
-	genXPlot(df_muons_aftercutselection, 'mu_phi', -4, 4, 320)
+	#genTurnOn(df, 'HLT_IsoMu27', 0, 80, 0.1)
+	#genTurnOn(df, 'HLT_IsoMu24', 0, 80, 0.1) 
+	#genTurnOn(df, 'HLT_IsoTkMu24', 0, 80, 0.1)
+	#genPtPlot(df_muons_aftercutselection, 0, 80, 320)
+	#genXPlot(df_muons_aftercutselection, 'mu_eta', -4, 4, 320)
+	#genXPlot(df_muons_aftercutselection, 'mu_phi', -4, 4, 320)
+	genXPlot(df_dimuon, 'deltaR', 0, 7, 320)
+	genInvMassPlot(df_dimuon, llim_zmass, ulim_zmass, 320)
 
 	outFile.Close()
 
