@@ -130,6 +130,15 @@ def genTurnOn(df, triggerName, mmin, mmax, steps):
 	turnon.SetTitle("Turn on curve " + triggerName + ";Muon pT (GeV);Efficiency")
 	turnon.Draw("AP")
 	
+	#Print the maximum reached efficiency
+	max_efficiency = 0
+	for i in range(1, turnon.GetTotalHistogram().GetNbinsX() + 1):
+	    if turnon.GetEfficiency(i) > max_efficiency:
+	            max_efficiency = turnon.GetEfficiency(i)
+	print("HERE")
+	print(triggerName + " Maximum Efficiency:" + str(max_efficiency))
+	
+	#Generate a vertical line at the trigger threshold
 	xpos = 0
 	if triggerName[-2:].isdigit():
 		xpos = int(triggerName[-2:])
@@ -178,7 +187,7 @@ def genXPlot(df, varName, mmin, mmax, bins):
 def genInvMassPlot(df, mmin, mmax, bins):
 	canvas = ROOT.TCanvas('canvas_invmass', 'Invariant Z Mass', 800, 600)
 
-	hist = df.Histo1D(('hist_invmass', 'Invariant mass distribution of Z', bins, mmin, mmax), 'dimuon_mass')
+	hist = df.Histo1D(('hist_invmass', 'Invariant mass distribution of Z', bins, mmin, mmax), 'dimuon_mass', 'evt_weight')
 	hist.GetXaxis().SetTitle('m#_{\mu\mu} (GeV)')
 	hist.GetYaxis().SetTitle('Events')
 
@@ -197,7 +206,7 @@ df = ROOT.RDataFrame(treeName, fname)
 print('\nTree loaded in succesfully')
 
 displayList = ['_lEta', '_lPhi', '_lPt', '_nEles', '_nMus', '_lPassTightID', 'HLT_IsoMu27']
-df.Display(displayList).Print()
+df.Display(displayList, 10).Print()
 
 totalEntries = df.Count().GetValue()
 print(totalEntries)
@@ -214,7 +223,7 @@ df_muons_aftercut = df_muontrigger.Define('mu_pt', f'_lPt[{muon_cuts}]')\
 			.Define('mu_ch',f'_lpdgId[{muon_cuts}]/13')
 
 #perform a selection
-muon_sel = "mu_pt.size() == 2 && mu_ch[0]*mu_ch[1] < 0 && Max(mu_pt) > 20"
+muon_sel = "mu_pt.size() == 2 && mu_ch[0]*mu_ch[1] < 0 && Max(mu_pt) > 30"
 df_muons_aftercutselection = df_muons_aftercut.Filter(muon_sel)
 
 #display the new columns made from cut and selection
@@ -233,22 +242,63 @@ df_dimuon = df_muons_aftercutselection.Define('mu_mass', str(muon_massVal))\
 		.Define('dimuon_mass', 'myInvariantMass(mu_pt, mu_eta, mu_phi, mu_mass)')\
 		.Filter(dimuon_masscut)
 df_dimuon = df_dimuon.Define('deltaR', 'getDeltaR(mu_eta, mu_phi)')
+
 df_dimuon.Display(['mu_pt', 'dimuon_mass', 'deltaR']).Print()
 
+#Setup the weights
+df_dimuon = df_dimuon.Define("evt_weight", f'({crossSection}*{luminosity}/{sumWeights})*_weight')
 
-needGeneratePlots = True
+
+if False:
+	#Print out the efficiencies for each step:
+	totalMuEntries = df_muons.Count().GetValue()
+	eff_triggercut = df_muontrigger.Count().GetValue()/totalMuEntries
+	eff_cuts = df_muons_aftercut.Count().GetValue()/totalMuEntries
+	eff_sel = df_muons_aftercutselection.Count().GetValue()/totalMuEntries
+	eff_dimuon = df_dimuon.Count().GetValue()/totalMuEntries
+	print("\nTotal events with only muons in dataset: " + str(totalMuEntries))
+	print("\nEfficiency after HLTIsoMu27: " + str(eff_triggercut))
+	print("\nEfficiency after cuts: " + str(eff_cuts))
+	print("\nEfficiency after cuts and selection: " + str(eff_sel))
+	print("\nEfficiency after dimuon mass selection: " + str(eff_dimuon))
+
+if (False):
+	c1 = ROOT.TCanvas('c1', 'mu_pT before HLT/Cuts/Selections', 800, 600)
+	h1 = df_muons.Histo1D(('hist_ptmuons', 'mu_pT before HLT/Cuts/Selections', 320, 0, 80), '_lPt')
+	h1.Draw()
+
+	c2 = ROOT.TCanvas('c2', 'mu_eta before HLT/Cuts/Selectiosn', 800, 600)
+	h2 = df_muons.Histo1D(('hist_etamuons', 'mu_eta before HLT/Cuts/Selections', 320, -4,4), '_lEta')
+	h2.Draw()
+
+	c3 = ROOT.TCanvas('c3', 'mu_phi before HLT/Cuts/Selectiosn', 800, 600)
+	h3 = df_muons.Histo1D(('hist_phimuons', 'mu_phi before HLT/Cuts/Selections', 320, -4, 4), '_lPhi')
+	h3.Draw()
+
+	c1.Draw()
+	c1.Update()
+	c2.Draw()
+	c2.Update()
+	c3.Draw()
+	c3.Update()
+
+#print(df.Filter('HLT_IsoTkMu24').Count().GetValue())
+#print(df_muons.Filter('HLT_IsoTkMu24').Count().GetValue())
+
+
+needGeneratePlots = False
 if(needGeneratePlots):
 
 	#generate the plots and save to output file
-	outFile = ROOT.TFile(args.output, "UPDATE")
+	outFile = ROOT.TFile(args.output, "RECREATE")
 
-	#genTurnOn(df, 'HLT_IsoMu27', 0, 80, 0.1)
-	#genTurnOn(df, 'HLT_IsoMu24', 0, 80, 0.1) 
-	#genTurnOn(df, 'HLT_IsoTkMu24', 0, 80, 0.1)
-	#genPtPlot(df_muons_aftercutselection, 0, 80, 320)
-	#genXPlot(df_muons_aftercutselection, 'mu_eta', -4, 4, 320)
-	#genXPlot(df_muons_aftercutselection, 'mu_phi', -4, 4, 320)
-	genXPlot(df_dimuon, 'deltaR', 0, 7, 320)
+	genTurnOn(df, 'HLT_IsoMu27', 0, 80, 0.1)
+	genTurnOn(df, 'HLT_IsoMu24', 0, 80, 0.1) 
+	genTurnOn(df, 'HLT_IsoTkMu24', 0, 80, 0.1)
+	genPtPlot(df_muons_aftercutselection, 0, 80, 320)
+	genXPlot(df_muons_aftercutselection, 'mu_eta', -4, 4, 320)
+	genXPlot(df_muons_aftercutselection, 'mu_phi', -4, 4, 320)
+	genXPlot(df_dimuon, 'deltaR', 0, 5, 320)
 	genInvMassPlot(df_dimuon, llim_zmass, ulim_zmass, 320)
 
 	outFile.Close()
