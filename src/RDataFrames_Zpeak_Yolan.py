@@ -67,9 +67,9 @@ RVecFloat getDeltaR(RVecFloat& eta, RVecFloat& phi){
 #########################################################################################
 
 ROOT.gInterpreter.Declare(cpp)
-
+start_time = time.time()
 cpu_count = 16 # give the same for request_cpus on condor script
-#ROOT.ROOT.EnableImplicitMT(cpu_count)
+ROOT.ROOT.EnableImplicitMT(cpu_count)
 
 #Setting up the loading in of the appropriate dataset along with the right cuts, weights, etc...
 parser = argparse.ArgumentParser(description='Analysis of Zpeak using Z to muons')
@@ -187,8 +187,9 @@ treeName = "jmeanalyzer/tree"
 df = ROOT.RDataFrame(treeName, fname)
 print('\nTree loaded in succesfully')
 
-displayList = ['_lEta', '_lPhi', '_lPt', '_nEles', '_nMus', '_lPassTightID', 'HLT_IsoMu27']
-df.Display(displayList, 10).Print()
+displayList = ['_lEta', '_lPhi', '_lPt', '_nEles', '_nMus', 'HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ', 'HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL', 'HLT_IsoMu27']
+displayList2 = ['_lPt', 'HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL', 'HLT_IsoMu27']
+#df.Display(displayList2, 10).Print()
 
 totalEntries = df.Count().GetValue()
 print(totalEntries)
@@ -196,7 +197,8 @@ print(totalEntries)
 #note that _lpt of muons passing the trigger is not necessarily > 27 GeV.
 df_muons = df.Filter('_nEles == 0', 'Filter out electrons')
 df_muontrigger = df_muons.Filter('HLT_IsoMu27', 'MuonTriggerCut')
-
+df_muontrigger2 = df_muons.Filter('HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL')
+df_muontrigger3 = df_muons.Filter('HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ')
 #SKIM INCLUDES:
 #pT > 20, _lPassTightId, events only 2 leptons, m_ll < 110 GeV
 
@@ -204,7 +206,7 @@ df_muontrigger = df_muons.Filter('HLT_IsoMu27', 'MuonTriggerCut')
 #eta < 2.4
 #_lPassTightID
 muon_cuts = 'abs(_lEta) < 2.4 && _lPassTightID'
-df_muons_aftercut = df_muontrigger.Define('mu_pt', f'_lPt[{muon_cuts}]')\
+df_muons_aftercut = df_muontrigger2.Define('mu_pt', f'_lPt[{muon_cuts}]')\
             .Define('mu_eta', f'_lEta[{muon_cuts}]')\
             .Define('mu_phi', f'_lPhi[{muon_cuts}]')\
             .Define('mu_ch',f'_lpdgId[{muon_cuts}]/13')
@@ -216,8 +218,8 @@ df_muons_aftercutselection = df_muons_aftercut.Filter(muon_sel)
 
 #display the new columns made from cut and selection
 displayList2 = ['mu_eta', 'mu_phi', 'mu_ch', 'mu_pt', '_lPt', 'HLT_IsoMu27']
-df_muons_aftercutselection.Describe().Print()
-df_muons_aftercutselection.Display(displayList2).Print()
+#df_muons_aftercutselection.Describe().Print()
+#df_muons_aftercutselection.Display(displayList2).Print()
 
 #get the dimuon mass and put into a df, mass window need be symmetric around ~90GeV
 llim_zmass = 70
@@ -232,59 +234,28 @@ df_dimuon = df_muons_aftercutselection.Define('mu_mass', str(muon_massVal))\
 df_dimuon = df_dimuon.Define('deltaR', 'getDeltaR(mu_eta, mu_phi)')
 
 
-df_dimuon.Display(['mu_pt', 'dimuon_mass', 'deltaR']).Print()
+#df_dimuon.Display(['mu_pt', 'dimuon_mass', 'deltaR']).Print()
 
 #Setup the weights
 df_dimuon = df_dimuon.Define("evt_weight", f'({crossSection}*{luminosity}/{sumWeights})*_weight')
 
-#Lets check the skim
-#print("Plotting the skim inv mass distr")
-#df_dimuon_raw = df_muons.Define('mu_mass', str(muon_massVal))\
-#       .Define('dimuon_mass_skim', 'myInvariantMass(_lPt, _lEta, _lPhi, mu_mass)')
-#cinv = ROOT.TCanvas('cinv', "canvas_invSkim", 800, 600)
-#hinv= df_dimuon_raw.Histo1D(('hinv', "Hist invSkim", 320, 30, 130), 'dimuon_mass_skim')
-#hinv.Draw()
-#cinv.Draw()
-#cinv.Update()
-
-
-
-
-if False:
+if True:
     #Print out the efficiencies for each step:
     totalMuEntries = df_muons.Count().GetValue()
     eff_triggercut = df_muontrigger.Count().GetValue()/totalMuEntries
-    eff_cuts = df_muons_aftercut.Count().GetValue()/totalMuEntries
-    eff_sel = df_muons_aftercutselection.Count().GetValue()/totalMuEntries
-    eff_dimuon = df_dimuon.Count().GetValue()/totalMuEntries
+    eff_triggercut2 = df_muontrigger2.Count().GetValue()/totalMuEntries
+    eff_triggercut3 = df_muontrigger3.Count().GetValue()/totalMuEntries
+    #eff_cuts = df_muons_aftercut.Count().GetValue()/totalMuEntries
+    #eff_sel = df_muons_aftercutselection.Count().GetValue()/totalMuEntries
+    #eff_dimuon = df_dimuon.Count().GetValue()/totalMuEntries
     print("\nTotal events with only muons in dataset: " + str(totalMuEntries))
     print("\nEfficiency after HLTIsoMu27: " + str(eff_triggercut))
-    print("\nEfficiency after cuts: " + str(eff_cuts))
-    print("\nEfficiency after cuts and selection: " + str(eff_sel))
-    print("\nEfficiency after dimuon mass selection: " + str(eff_dimuon))
+    print("\nEfficiency after HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL: " + str(eff_triggercut2))
+    print("\nEfficiency after HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ: " + str(eff_triggercut3))
+    #print("\nEfficiency after cuts: " + str(eff_cuts))
+    #print("\nEfficiency after cuts and selection: " + str(eff_sel))
+    #print("\nEfficiency after dimuon mass selection: " + str(eff_dimuon))
 
-if (False):
-    c1 = ROOT.TCanvas('c1', 'mu_pT before HLT/Cuts/Selections', 800, 600)
-    h1 = df_muons.Histo1D(('hist_ptmuons', 'mu_pT before HLT/Cuts/Selections', 320, 0, 80), '_lPt')
-    h1.Draw()
-
-    c2 = ROOT.TCanvas('c2', 'mu_eta before HLT/Cuts/Selectiosn', 800, 600)
-    h2 = df_muons.Histo1D(('hist_etamuons', 'mu_eta before HLT/Cuts/Selections', 320, -4,4), '_lEta')
-    h2.Draw()
-
-    c3 = ROOT.TCanvas('c3', 'mu_phi before HLT/Cuts/Selectiosn', 800, 600)
-    h3 = df_muons.Histo1D(('hist_phimuons', 'mu_phi before HLT/Cuts/Selections', 320, -4, 4), '_lPhi')
-    h3.Draw()
-
-    c1.Draw()
-    c1.Update()
-    c2.Draw()
-    c2.Update()
-    c3.Draw()
-    c3.Update()
-
-#print(df.Filter('HLT_IsoTkMu24').Count().GetValue())
-#print(df_muons.Filter('HLT_IsoTkMu24').Count().GetValue())
 
 #Generate Histograms and put them into a Dictonary
 
@@ -293,10 +264,11 @@ if(needGeneratePlots):
 
     #generate the plots and save to output file
     outFile = ROOT.TFile(args.output, "RECREATE")
-
-    genTurnOn(df, 'HLT_IsoMu27', 0, 80, 0.1)
-    genTurnOn(df, 'HLT_IsoMu24', 0, 80, 0.1) 
-    genTurnOn(df, 'HLT_IsoTkMu24', 0, 80, 0.1)
+    print("\n Generating TurnOn curves...")
+    genTurnOn(df, 'HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL', 0, 80, 0.1)
+    genTurnOn(df, 'HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ', 0, 80, 0.1)
+    genTurnOn(df, 'HLT_IsoMu27', 0, 80, 0.1) 
+    genTurnOn(df, 'HLT_IsoMu24', 0, 80, 0.1)
     print("\n Generating Pt Plot...")
     genPtPlot(df_muons_aftercutselection, 0, 80, 320)
     print("\n Generating Eta Plot...")
@@ -309,6 +281,8 @@ if(needGeneratePlots):
     genInvMassPlot(df_dimuon, llim_zmass, ulim_zmass, 320)
 
     outFile.Close()
+
+sys.stderr.write("Time taken: --- %s seconds ---" % (time.time() - start_time))
 
 print("\n Program running... Press Enter to stop.")
 input()  # Waits for the Enter key to be pressed
