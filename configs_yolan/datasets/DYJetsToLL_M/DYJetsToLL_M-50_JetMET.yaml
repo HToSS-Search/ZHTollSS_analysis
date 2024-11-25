@@ -4,11 +4,22 @@ histogram: Zjets
 label: Z+jets
 locations:
 - /pnfs/iihe/cms/store/user/sdansana/JetMETStudies/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/TOTAL_UL2017.root
-mc: true
+- /pnfs/iihe/cms/store/user/sdansana/JetMETStudies/DoubleMuon/Run2017B_UL2017_MiniAODv2_v1_DataUL2017B_ZJetsResiduals_May2023/TOTAL.root
+- /pnfs/iihe/cms/store/user/sdansana/JetMETStudies/DoubleMuon/Run2017C_UL2017_MiniAODv2_v1_DataUL2017C_ZJetsResiduals_May2023/TOTAL.root
+- /pnfs/iihe/cms/store/user/sdansana/JetMETStudies/DoubleMuon/Run2017D_UL2017_MiniAODv2_v1_DataUL2017D_ZJetsResiduals_May2023/TOTAL.root
+- /pnfs/iihe/cms/store/user/sdansana/JetMETStudies/DoubleMuon/Run2017E_UL2017_MiniAODv2_v2_DataUL2017E_ZJetsResiduals_May2023/TOTAL.root
+- /pnfs/iihe/cms/store/user/sdansana/JetMETStudies/DoubleMuon/Run2017F_UL2017_MiniAODv2_v1_DataUL2017F_ZJetsResiduals_May2023/TOTAL.root
 name: DYJetsToLL_M-50_JetMET
 plot_type: f
 skim_location:
 - /path/here
+cuts: /ada_mnt/ada/user/yvekemans/MasterThesis/ZHTollSS_analysis/configs_yolan/cuts/DYJetsToLL_M/DYJetsToLL_M-50_cuts.yaml
 sum_weights: 103344974
 total_events: 103344974
-
+luminosity:
+    '2017B': 0
+    '2017C': 0
+    '2017D': 4247.682053046
+    '2017E': 0
+    '2017F': 0
+    '2017': 41474

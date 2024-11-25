@@ -1,0 +1,6 @@
+muon:
+    eta: 2.4
+    leadingPt: 30
+    subLeadingPt: 0
+    massLower: 70
+    massUpper: 110
