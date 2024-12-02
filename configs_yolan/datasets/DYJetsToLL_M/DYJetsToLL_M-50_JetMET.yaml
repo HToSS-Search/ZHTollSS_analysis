@@ -17,9 +17,9 @@ cuts: /ada_mnt/ada/user/yvekemans/MasterThesis/ZHTollSS_analysis/configs_yolan/c
 sum_weights: 103344974
 total_events: 103344974
 luminosity:
-    '2017B': 0
-    '2017C': 0
-    '2017D': 4247.682053046
-    '2017E': 0
-    '2017F': 0
+    '2017B': 4823
+    '2017C': 9664
+    '2017D': 4252
+    '2017E': 9278
+    '2017F': 13540
     '2017': 41474

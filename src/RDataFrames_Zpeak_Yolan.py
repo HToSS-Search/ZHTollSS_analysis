@@ -98,12 +98,12 @@ dataFile = ROOT.TFile(fname)
 
 #This is the  luminosity for the total 2017UL run (see file name).
 #These values can be found in the config file and are idealy taken from here in an automated way dependent on which sampleset is called in the commandline to analyze.
-givenLuminosity = conf_pars['luminosity'][args.year]
+#givenLuminosity = conf_pars['luminosity'][args.year]
 
 #Get the weights, cross section, and luminosity from MonteCarlo. Set to 1 if Data is not MC (Non_MC will always contain 'Run' in name?)
 sumWeights = 1 if 'Run' in fname else conf_pars['sum_weights']
 crossSection = 1 if 'Run' in fname  else conf_pars['cross_section']
-luminosity = 1 if 'Run' in fname else givenLuminosity
+luminosity = 1 if 'Run' in fname else 1
 
 #Lets perform a check
 if not 'Run' in fname:
@@ -158,39 +158,61 @@ def genPtPlot(df, datatag, mmin, mmax, bins):
     df_leading_subleading = df.Define('leadingPt', 'getLeading(mu_pt)')\
         .Define('subleadingPt', 'getTrailing(mu_pt)')
     # Histograms
-    mu_leadingPt_hist = df_leading_subleading.Histo1D(('hist_mu_pT_leading_' + dataStr, 'Leading Muon PTs ' + dataStr, bins, mmin, mmax), 'leadingPt')
-    mu_subleadingPt_hist = df_leading_subleading.Histo1D(('hist_mu_pT_subleading_' + dataStr, 'Subleading Muon PT ' + dataStr, bins, mmin, mmax), 'subleadingPt')
+    if dataTag:
 
-    mu_leadingPt_hist.GetXaxis().SetTitle("Muon pT (GeV)")  # X-axis label
-    mu_leadingPt_hist.GetYaxis().SetTitle("Events")         # Y-axis label
+        mu_leadingPt_hist = df_leading_subleading.Histo1D(('hist_mu_pT_leading_' + dataStr, 'Leading Muon PTs ' + dataStr, bins, mmin, mmax), 'leadingPt')
+        mu_subleadingPt_hist = df_leading_subleading.Histo1D(('hist_mu_pT_subleading_' + dataStr, 'Subleading Muon PT ' + dataStr, bins, mmin, mmax), 'subleadingPt')
 
-    mu_leadingPt_hist.SetLineColor(ROOT.kBlue)  # Set color for the leading pt histogram
-    mu_subleadingPt_hist.SetLineColor(ROOT.kRed)  # Set color for the subleading pt histogram
+        mu_leadingPt_hist.GetXaxis().SetTitle("Muon pT (GeV)")  # X-axis label
+        mu_leadingPt_hist.GetYaxis().SetTitle("Events")         # Y-axis label
+        mu_leadingPt_hist.SetLineColor(ROOT.kBlue)  # Set color for the leading pt histogram
+        mu_subleadingPt_hist.SetLineColor(ROOT.kRed)  # Set color for the subleading pt histogram
 
-    mu_leadingPt_hist.Write()
-    mu_subleadingPt_hist.Write()
+        mu_leadingPt_hist.Write()
+        mu_subleadingPt_hist.Write()
+    else:
+        for year in years:
+            mu_leadingPt_hist = df_leading_subleading.Histo1D(('hist_mu_pT_leading_' + dataStr + '_scaled' + year, 'Leading Muon PTs ' + dataStr, bins, mmin, mmax), 'leadingPt', 'evt_weight_' + year)
+            mu_subleadingPt_hist = df_leading_subleading.Histo1D(('hist_mu_pT_subleading_' + dataStr + '_scaled' + year, 'Subleading Muon PT ' + dataStr, bins, mmin, mmax), 'subleadingPt', 'evt_weight_' + year)
+
+            mu_leadingPt_hist.GetXaxis().SetTitle("Muon pT (GeV)")  # X-axis label
+            mu_leadingPt_hist.GetYaxis().SetTitle("Events")         # Y-axis label
+            mu_leadingPt_hist.SetLineColor(ROOT.kBlue)  # Set color for the leading pt histogram
+            mu_subleadingPt_hist.SetLineColor(ROOT.kRed)  # Set color for the subleading pt histogram
+
+            mu_leadingPt_hist.Write()
+            mu_subleadingPt_hist.Write()
 
 
 def genXPlot(df, dataTag, varName, mmin, mmax, bins):
     dataStr = 'Data'+ args.year if dataTag else 'MC'
-    hist = df.Histo1D(('hist_' + varName + '_' + dataStr, varName + dataStr , bins, mmin, mmax), varName)
-    hist.GetXaxis().SetTitle(varName)
-    hist.GetYaxis().SetTitle("Events")
+    if dataTag:
+        hist = df.Histo1D(('hist_' + varName + '_' + dataStr, varName + dataStr , bins, mmin, mmax), varName)
+        hist.GetXaxis().SetTitle(varName)
+        hist.GetYaxis().SetTitle("Events")
+        hist.Write()
+    else:
+        for year in years:
+            hist = df.Histo1D(('hist_' + varName + '_' + dataStr + '_scaled' + year, varName + dataStr , bins, mmin, mmax), varName, 'evt_weight_' + year)
+            hist.GetXaxis().SetTitle(varName)
+            hist.GetYaxis().SetTitle("Events")
+            hist.Write()
 
-    hist.Write()
-    
 
 def genInvMassPlot(df, dataTag, mmin, mmax, bins):
-    weights = 1
     dataStr = 'Data' + args.year if dataTag else 'MC'
     if dataTag:
         hist = df.Histo1D(('hist_mu_invmass_' + dataStr, 'Invariant mass distribution of Z', bins, mmin, mmax), 'dimuon_mass')
-    else:
-        hist = df.Histo1D(('hist_mu_invmass_' + dataStr, 'Invariant mass distribution of Z', bins, mmin, mmax), 'dimuon_mass', 'evt_weight')
-    hist.GetXaxis().SetTitle('m#_{\mu\mu} (GeV)')
-    hist.GetYaxis().SetTitle('Events')
+        hist.GetXaxis().SetTitle('m#_{\mu\mu} (GeV)')
+        hist.GetYaxis().SetTitle('Events')
+        hist.Write()
 
-    hist.Write()
+    else:
+        for year in years:
+            hist = df.Histo1D(('hist_mu_invmass_' + dataStr + '_scaled' + year, 'Invariant mass distribution of Z', bins, mmin, mmax), 'dimuon_mass', 'evt_weight_' + year)
+            hist.GetXaxis().SetTitle('m#_{\mu\mu} (GeV)')
+            hist.GetYaxis().SetTitle('Events')
+            hist.Write()
 
 
 #########################################################################################
@@ -210,7 +232,7 @@ print(f"\nTotal Entries : {totalEntries}")
 df_muons = df.Filter('_nEles == 0', 'Filter out electrons')
 df_muontrigger = df_muons.Filter('HLT_IsoMu27', 'MuonTriggerCut')
 df_muontrigger2 = df_muons.Filter('HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL')
-df_muontrigger3 = df_muons.Filter('HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ')
+df_muontrigger3 = df_muons.Filter('HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8')
 
 #SKIM INCLUDES:
 #pT > 20, _lPassTightId, events only 2 leptons, m_ll < 110 GeV
@@ -240,12 +262,17 @@ dimuon_masscut = 'dimuon_mass > ' + str(llim_zmass) + ' &&  dimuon_mass < '+ str
 df_dimuon = df_muons_aftercutselection.Define('mu_mass', str(muon_massVal))\
         .Define('dimuon_mass', 'myInvariantMass(mu_pt, mu_eta, mu_phi, mu_mass)')\
         .Filter(dimuon_masscut)
-df_dimuon = df_dimuon.Define('deltaR', 'getDeltaR(mu_eta, mu_phi)')
+df_dimuon = df_dimuon.Define('mu_deltaR', 'getDeltaR(mu_eta, mu_phi)')
 
 
 #Setup the weights
+years = []
 if not 'Run' in fname:
-    df_dimuon = df_dimuon.Define("evt_weight", f'({crossSection}*{luminosity}/{sumWeights})*_weight')
+    luminosity_ = conf_pars.get("luminosity", {})
+    for year, lumi in luminosity_.items():
+        year = str(year)
+        df_dimuon = df_dimuon.Define("evt_weight_" + year, f'({crossSection}*{lumi}/{sumWeights})*_weight')
+        years.append(year)
 
 
 #########################################################################################
@@ -273,9 +300,8 @@ if True:
 #Generate Histograms and put them into a Dictonary
 dataTag = True if 'Run' in fname else False
 
-needGeneratePlots = False
+needGeneratePlots = True
 if(needGeneratePlots):
-
     #generate the plots and save to output file
     outFile = ROOT.TFile(args.output, "UPDATE")
     print("\n Generating TurnOn curves...")
@@ -284,15 +310,15 @@ if(needGeneratePlots):
     genTurnOn(df, dataTag, 'HLT_IsoMu27', 0, 80, 0.1) 
     genTurnOn(df, dataTag, 'HLT_IsoMu24', 0, 80, 0.1)
     print("\n Generating Pt Plot...")
-    genPtPlot(df_muons_aftercutselection, dataTag, 0, 80, 320)
+    genPtPlot(df_dimuon, dataTag, 0, 80, 160)
     print("\n Generating Eta Plot...")
-    genXPlot(df_muons_aftercutselection, dataTag, 'mu_eta', -4, 4, 320)
+    genXPlot(df_dimuon, dataTag, 'mu_eta', -4, 4, 160)
     print("\n Generating Phi Plot...")
-    genXPlot(df_muons_aftercutselection, dataTag, 'mu_phi', -4, 4, 320)
+    genXPlot(df_dimuon, dataTag, 'mu_phi', -4, 4, 160)
     print("\n Generating DeltaR Plot...")
-    genXPlot(df_dimuon, dataTag, 'deltaR', 0, 5, 320)
+    genXPlot(df_dimuon, dataTag, 'mu_deltaR', 0, 5, 160)
     print("\n Generating InvMass Plot...")
-    genInvMassPlot(df_dimuon, dataTag, llim_zmass, ulim_zmass, 320)
+    genInvMassPlot(df_dimuon, dataTag, llim_zmass, ulim_zmass, 160)
 
     outFile.Close()
 
