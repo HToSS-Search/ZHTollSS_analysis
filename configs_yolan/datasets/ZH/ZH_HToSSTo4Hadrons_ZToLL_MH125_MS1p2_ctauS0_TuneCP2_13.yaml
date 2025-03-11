@@ -1,0 +1,15 @@
+colour: '#006699'
+cross_section: 5398
+locations: /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ZH_HToSSTo4Hadrons_ZToLL_MH125_MS1p2_ctauS0_TuneCP2_13TeV-powheg-pythia8/RunIIUL17/241208/new
+plot_type: f
+skim_location:
+- /path/here
+cuts: /ada_mnt/ada/user/yvekemans/MasterThesis/ZHTollSS_analysis/configs_yolan/cuts/ZH/ZH_cuts.yaml
+sum_weights: 103344974
+total_events: 103344974
+luminosity:
+    '2017B': 4823
+    '2017C': 9664
+    '2017D': 4252
+    '2017E': 9278
+    '2017F': 13540

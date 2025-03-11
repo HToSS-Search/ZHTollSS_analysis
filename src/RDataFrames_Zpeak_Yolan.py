@@ -27,14 +27,13 @@ float getTrailing(RVecFloat vec){
     auto idxmin = ROOT::VecOps::ArgMin(vec);
     return vec[idxmin];
 }
-auto myInvariantMass(RVecFloat& pt, RVecFloat& eta, RVecFloat& phi, float mass){
+auto myDiLep(RVecFloat& pt, RVecFloat& eta, RVecFloat& phi, float mass){
         Float_t px1 = pt[0]*cos(phi[0]);Float_t py1 = pt[0]*sin(phi[0]);Float_t pz1 = pt[0]*cos(eta[0]);
     Float_t px2 = pt[1]*cos(phi[1]);Float_t py2 = pt[1]*sin(phi[1]);Float_t pz2 = pt[1]*cos(eta[1]);
     FourVector P1 {px1, py1, pz1, mass};
     FourVector P2 {px2, py2, pz2, mass};
     FourVector dilep = P1 + P2;
-    auto mass_ = dilep.M();
-    return mass_;
+    return dilep;
 }
 
 RVecFloat getDeltaR(RVecFloat& eta, RVecFloat& phi){
@@ -96,7 +95,7 @@ for location in locations_list:
         break
 dataFile = ROOT.TFile(fname)
 
-#This is the  luminosity for the total 2017UL run (see file name).
+#This is the  luminosity for the total 2017UL run (see file name). 41474
 #These values can be found in the config file and are idealy taken from here in an automated way dependent on which sampleset is called in the commandline to analyze.
 #givenLuminosity = conf_pars['luminosity'][args.year]
 
@@ -122,7 +121,7 @@ if not 'Run' in fname:
 #########################################################################################
 
 def genTurnOn(df, dataTag, triggerName, mmin, mmax, steps):
-    dataStr = 'Data' + args.year if dataTag else 'MC'
+    dataStr = 'Data_' + args.year if dataTag else 'MC'
     #Filter out the muons from the dataset before applying trigger to get a better gauge on trigger efficiency
     #If this is not done, max efficiency plateau at 50% due to presence of electrons
     df_muons = df.Filter('_nEles == 0')
@@ -153,7 +152,7 @@ def genTurnOn(df, dataTag, triggerName, mmin, mmax, steps):
     turnon.Write()
 
 def genPtPlot(df, datatag, mmin, mmax, bins):
-    dataStr = 'Data' + args.year if dataTag else 'MC'
+    dataStr = 'Data_' + args.year if dataTag else 'MC_'
 
     df_leading_subleading = df.Define('leadingPt', 'getLeading(mu_pt)')\
         .Define('subleadingPt', 'getTrailing(mu_pt)')
@@ -172,8 +171,8 @@ def genPtPlot(df, datatag, mmin, mmax, bins):
         mu_subleadingPt_hist.Write()
     else:
         for year in years:
-            mu_leadingPt_hist = df_leading_subleading.Histo1D(('hist_mu_pT_leading_' + dataStr + '_scaled' + year, 'Leading Muon PTs ' + dataStr, bins, mmin, mmax), 'leadingPt', 'evt_weight_' + year)
-            mu_subleadingPt_hist = df_leading_subleading.Histo1D(('hist_mu_pT_subleading_' + dataStr + '_scaled' + year, 'Subleading Muon PT ' + dataStr, bins, mmin, mmax), 'subleadingPt', 'evt_weight_' + year)
+            mu_leadingPt_hist = df_leading_subleading.Histo1D(('hist_mu_pT_leading_' + dataStr + year, 'Leading Muon PTs ' + dataStr, bins, mmin, mmax), 'leadingPt', 'evt_weight_' + year)
+            mu_subleadingPt_hist = df_leading_subleading.Histo1D(('hist_mu_pT_subleading_' + dataStr + year, 'Subleading Muon PT ' + dataStr, bins, mmin, mmax), 'subleadingPt', 'evt_weight_' + year)
 
             mu_leadingPt_hist.GetXaxis().SetTitle("Muon pT (GeV)")  # X-axis label
             mu_leadingPt_hist.GetYaxis().SetTitle("Events")         # Y-axis label
@@ -185,7 +184,7 @@ def genPtPlot(df, datatag, mmin, mmax, bins):
 
 
 def genXPlot(df, dataTag, varName, mmin, mmax, bins):
-    dataStr = 'Data'+ args.year if dataTag else 'MC'
+    dataStr = 'Data_'+ args.year if dataTag else 'MC_'
     if dataTag:
         hist = df.Histo1D(('hist_' + varName + '_' + dataStr, varName + dataStr , bins, mmin, mmax), varName)
         hist.GetXaxis().SetTitle(varName)
@@ -193,14 +192,14 @@ def genXPlot(df, dataTag, varName, mmin, mmax, bins):
         hist.Write()
     else:
         for year in years:
-            hist = df.Histo1D(('hist_' + varName + '_' + dataStr + '_scaled' + year, varName + dataStr , bins, mmin, mmax), varName, 'evt_weight_' + year)
+            hist = df.Histo1D(('hist_' + varName + '_' + dataStr + year, varName + dataStr , bins, mmin, mmax), varName, 'evt_weight_' + year)
             hist.GetXaxis().SetTitle(varName)
             hist.GetYaxis().SetTitle("Events")
             hist.Write()
 
 
 def genInvMassPlot(df, dataTag, mmin, mmax, bins):
-    dataStr = 'Data' + args.year if dataTag else 'MC'
+    dataStr = 'Data_' + args.year if dataTag else 'MC_'
     if dataTag:
         hist = df.Histo1D(('hist_mu_invmass_' + dataStr, 'Invariant mass distribution of Z', bins, mmin, mmax), 'dimuon_mass')
         hist.GetXaxis().SetTitle('m#_{\mu\mu} (GeV)')
@@ -209,7 +208,7 @@ def genInvMassPlot(df, dataTag, mmin, mmax, bins):
 
     else:
         for year in years:
-            hist = df.Histo1D(('hist_mu_invmass_' + dataStr + '_scaled' + year, 'Invariant mass distribution of Z', bins, mmin, mmax), 'dimuon_mass', 'evt_weight_' + year)
+            hist = df.Histo1D(('hist_mu_invmass_' + dataStr + year, 'Invariant mass distribution of Z', bins, mmin, mmax), 'dimuon_mass', 'evt_weight_' + year)
             hist.GetXaxis().SetTitle('m#_{\mu\mu} (GeV)')
             hist.GetYaxis().SetTitle('Events')
             hist.Write()
@@ -260,7 +259,8 @@ muon_massVal = 0.105 #GeV
 dimuon_masscut = 'dimuon_mass > ' + str(llim_zmass) + ' &&  dimuon_mass < '+ str(ulim_zmass)
 
 df_dimuon = df_muons_aftercutselection.Define('mu_mass', str(muon_massVal))\
-        .Define('dimuon_mass', 'myInvariantMass(mu_pt, mu_eta, mu_phi, mu_mass)')\
+        .Define('dimuon_mass', 'myDiLep(mu_pt, mu_eta, mu_phi, mu_mass).M()')\
+        .Define('dimuon_pt', 'myDiLep(mu_pt, mu_eta, mu_phi, mu_mass).Pt()')\
         .Filter(dimuon_masscut)
 df_dimuon = df_dimuon.Define('mu_deltaR', 'getDeltaR(mu_eta, mu_phi)')
 
@@ -268,12 +268,16 @@ df_dimuon = df_dimuon.Define('mu_deltaR', 'getDeltaR(mu_eta, mu_phi)')
 #Setup the weights
 years = []
 if not 'Run' in fname:
+    totalLumi = 0
     luminosity_ = conf_pars.get("luminosity", {})
     for year, lumi in luminosity_.items():
         year = str(year)
+        totalLumi += lumi
         df_dimuon = df_dimuon.Define("evt_weight_" + year, f'({crossSection}*{lumi}/{sumWeights})*_weight')
         years.append(year)
-
+    print(totalLumi) 
+    df_dimuon = df_dimuon.Define("evt_weight_TOTAL", f'({crossSection}*{totalLumi}/{sumWeights})*_weight')
+    years.append('TOTAL')
 
 #########################################################################################
 # Extracting information and distributions
@@ -304,22 +308,23 @@ needGeneratePlots = True
 if(needGeneratePlots):
     #generate the plots and save to output file
     outFile = ROOT.TFile(args.output, "UPDATE")
-    print("\n Generating TurnOn curves...")
-    genTurnOn(df, dataTag, 'HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL', 0, 80, 0.1)
-    genTurnOn(df, dataTag, 'HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ', 0, 80, 0.1)
-    genTurnOn(df, dataTag, 'HLT_IsoMu27', 0, 80, 0.1) 
-    genTurnOn(df, dataTag, 'HLT_IsoMu24', 0, 80, 0.1)
-    print("\n Generating Pt Plot...")
-    genPtPlot(df_dimuon, dataTag, 0, 80, 160)
-    print("\n Generating Eta Plot...")
-    genXPlot(df_dimuon, dataTag, 'mu_eta', -4, 4, 160)
-    print("\n Generating Phi Plot...")
-    genXPlot(df_dimuon, dataTag, 'mu_phi', -4, 4, 160)
-    print("\n Generating DeltaR Plot...")
-    genXPlot(df_dimuon, dataTag, 'mu_deltaR', 0, 5, 160)
-    print("\n Generating InvMass Plot...")
-    genInvMassPlot(df_dimuon, dataTag, llim_zmass, ulim_zmass, 160)
-
+    #print("\n Generating TurnOn curves...")
+    #genTurnOn(df, dataTag, 'HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL', 0, 80, 0.1)
+    #genTurnOn(df, dataTag, 'HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ', 0, 80, 0.1)
+    #genTurnOn(df, dataTag, 'HLT_IsoMu27', 0, 80, 0.1) 
+    #genTurnOn(df, dataTag, 'HLT_IsoMu24', 0, 80, 0.1)
+    #print("\n Generating Pt Plot...")
+    #genPtPlot(df_dimuon, dataTag, 0, 80, 160)
+    #print("\n Generating Eta Plot...")
+    #genXPlot(df_dimuon, dataTag, 'mu_eta', -4, 4, 160)
+    #print("\n Generating Phi Plot...")
+    #genXPlot(df_dimuon, dataTag, 'mu_phi', -4, 4, 160)
+    #print("\n Generating DeltaR Plot...")
+    #genXPlot(df_dimuon, dataTag, 'mu_deltaR', 0, 5, 160)
+    #print("\n Generating InvMass Plot...")
+    #genInvMassPlot(df_dimuon, dataTag, llim_zmass, ulim_zmass, 160)
+    print("\n Generating pT Z Plot...")
+    genXPlot(df_dimuon, dataTag, 'dimuon_pt', -10, 80, 160)
     outFile.Close()
 
 sys.stderr.write("\nTime taken: --- %s seconds ---" % (time.time() - start_time))

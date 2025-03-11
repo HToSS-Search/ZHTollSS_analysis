@@ -1,0 +1,13 @@
+muons:
+    pt: 5
+    eta: 2.4
+    leadingPt: 29
+    subLeadingPt: 0
+    massLower: 70
+    massUpper: 110
+hadrons:
+    pt: 5
+    eta: 2.4
+dihadrons:
+    pt: 20 
+    dR: 0.4
