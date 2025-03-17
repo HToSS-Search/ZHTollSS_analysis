@@ -23,11 +23,22 @@ def gInterpreter_lv():
 			else
 				return P2;
 		}
+		ROOT::VecOps::RVec<ROOT::Math::PxPyPzMVector> makeLVs(ROOT::VecOps::RVec<Int_t>& packedCandsPdgId,ROOT::VecOps::RVec<Int_t>& packedCandsCharge,ROOT::VecOps::RVec<Int_t>& packedCandsHasTrackDetails,ROOT::VecOps::RVec<Float_t>& packedCandsPx,ROOT::VecOps::RVec<Float_t>& packedCandsPy,ROOT::VecOps::RVec<Float_t>& packedCandsPz, double chsMass_, bool flag = true) {
+    		ROOT::VecOps::RVec<ROOT::Math::PxPyPzMVector> lvs;
+    		// std::cout<<"check sizes:"<<packedCandsPdgId.size()<<","<<packedCandsCharge.size()<<","<<packedCandsHasTrackDetails.size()<<","<<packedCandsPx.size()<<","<<packedCandsPy.size()<<","<<packedCandsPz.size()<<std::endl;
+    		for (Int_t k = 0; k < packedCandsPx.size(); k++) {
+        		ROOT::Math::PxPyPzMVector lVec {packedCandsPx[k], packedCandsPy[k], packedCandsPz[k], chsMass_};
+        		lvs.push_back(lVec);
+    		}
+    		// std::cout<<"Gets out"<<std::endl;
+    		return lvs;
+		}
 	'''
-	ROOT.gInterpeter.Declare(lvCode)	
+	ROOT.gInterpreter.Declare(lvCode)	
 
 def gInterpreter_getIndices():
 	getIndicesCode = '''
+		using namespace ROOT::VecOps;
 		RVec<unsigned long> getIndices(const int num) {
     		RVec<unsigned long> idx;
     		for (int i = 0;i<num;i++) idx.emplace_back(i);
@@ -319,6 +330,7 @@ def gInterpreter_matching():
 
 def gInterpreter_getKinematics():
 	getLeadingTrailingCode = '''
+		using namespace ROOT::VecOps;
 		using RVecFloat = ROOT::RVec<Float_t>;
 		float getLeading(RVecFloat vec){
     		auto idxmax = ROOT::VecOps::ArgMax(vec);
@@ -332,6 +344,7 @@ def gInterpreter_getKinematics():
 		}
 	'''
 	getDeltaRCode = '''
+		using namespace ROOT::VecOps;
 		using RVecFloat = ROOT::RVec<Float_t>;
 		RVecFloat getDeltaR(RVecFloat& eta, RVecFloat& phi){
 			/** Get all DeltaR from all possible pairs in the data
@@ -355,6 +368,7 @@ def gInterpreter_getKinematics():
 		}
 	'''
 	getKinematicsCode = '''
+		using namespace ROOT::VecOps;
 		using FourVector = ROOT::Math::PxPyPzMVector;
 		using RVecFloat = ROOT::RVec<Float_t>;
 		RVec<Float_t> getKinematics(const RVec<FourVector> &tracks, TString var = "pt"){

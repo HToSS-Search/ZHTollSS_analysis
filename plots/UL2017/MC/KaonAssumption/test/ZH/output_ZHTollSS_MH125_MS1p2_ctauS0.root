@@ -1,0 +1,9 @@
+=========================================
+First arg: configs_ZH/2017/datasets/ZH/ZHTollSS_MH125_MS1p2_ctauS0.yaml
+Second arg: configs_ZH/2017/cuts/SRCuts_kaonmass.yaml
+Third arg: plots/UL2017/MC/KaonAssumption/test/ZH/output_ZHTollSS_MH125_MS1p2_ctauS0.root
+Fourth arg: 1
+Fifth arg: 28
+Sixth arg: ZHTollSS_MH125_MS1p2_ctauS0
+/user/yvekemans/MasterThesis/ZHTollSS_analysis
+CMSSW intialized to 
