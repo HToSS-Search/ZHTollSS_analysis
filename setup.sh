@@ -12,6 +12,6 @@
 # modify maybe the condor script to reflect and select same architecture
 # source /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-slc6-gcc8-opt/setup.sh 
 #source /cvmfs/sft.cern.ch/lcg/views/LCG_102/x86_64-centos7-gcc11-opt/setup.sh 
-source /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-centos7-gcc11-opt/setup.sh 
+source /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/setup.sh 
 #### LCG_105 needed for RDataFrames full functionality - ROOT 6.30
 #source /cvmfs/sft.cern.ch/lcg/views/LCG_102rc1/x86_64-centos7-gcc11-opt/setup.sh 

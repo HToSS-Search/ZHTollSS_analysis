@@ -1,0 +1,31 @@
+cuts:
+  dihadron:
+    charge: OS
+    dR: 0.4
+    flag: true
+    pt: 20
+  hadrons:
+    eta: 2.4
+    flag: true
+    id: None
+    number: 2
+    pt: 5
+  muons:
+    eta: 2.4
+    flag: true
+    id: Loose
+    number: 2
+    pt: 5
+    ptLeading: 29
+  recoZ:
+    massLower: 70
+    massUpper: 110
+  recohiggs:
+    flag: true
+    massHigh: 127.5
+    massLow: 122.5
+    sideband: 2.5
+    unblind: true
+hadronType: kaon
+metfilters: true
+trig: single

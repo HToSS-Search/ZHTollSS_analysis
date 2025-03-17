@@ -8,14 +8,20 @@ year_off=$4
 #cd $dirname
 #sh merge_script_lv0.sh
 #cd $CMSSW_BASE/src/HToSS_analysis
-python3 generate_fnos_expansion.py -c configs/$year/all_SM_samples.yaml --cuts configs/$year/cuts/CRCuts_$fcuts_suf.yaml -n 50 -o $dirname -f "params_sm_"$year_off".txt" -y $year_off
-python3 generate_fnos_expansion.py -c configs/$year/mumu_data$year".yaml" --cuts configs/$year/cuts/CRCuts_$fcuts_suf.yaml -n 50 -o $dirname -f "params_data_"$year_off".txt" -y $year_off
-### add code here to switch between kaon signal and pion signal
+
+#For the MC background (Not used in ZH analysis currently, hence commented out)
+#python3 generate_fnos_expansion.py -c configs_ZH/$year/all_SM_samples.yaml --cuts configs_ZH/$year/cuts/CRCuts_$fcuts_suf.yaml -n 50 -o $dirname -f "params_sm_"$year_off".txt" -y $year_off
+
+#For the Data (Uncomment when data is ready)
+#python3 generate_fnos_expansion.py -c configs_ZH/$year/mumu_data$year".yaml" --cuts configs_ZH/$year/cuts/CRCuts_$fcuts_suf.yaml -n 50 -o $dirname -f "params_data_"$year_off".txt" -y $year_off
+
+#For the signal, Kaon or Pion
 if [[ $fcuts_suf == *"kaon"* ]]; then
-	python3 generate_fnos_expansion.py -c configs/$year/all_signal_kaon.yaml --cuts configs/$year/cuts/SRCuts_$fcuts_suf.yaml -n 50 -o $dirname -f "params_signal_kaon_"$year_off".txt" -y $year_off
+	python3 generate_fnos_expansion.py -c configs_ZH/$year/all_signal_kaon.yaml --cuts configs_ZH/$year/cuts/SRCuts_$fcuts_suf.yaml -n 50 -o $dirname -f "params_signal_kaon_"$year_off".txt" -y $year_off
 else	
-	python3 generate_fnos_expansion.py -c configs/$year/all_signal_pion.yaml --cuts configs/$year/cuts/SRCuts_$fcuts_suf.yaml -n 50 -o $dirname -f "params_signal_pion_"$year_off".txt" -y $year_off
+	python3 generate_fnos_expansion.py -c configs_ZH/$year/all_signal_pion.yaml --cuts configs_ZH/$year/cuts/SRCuts_$fcuts_suf.yaml -n 50 -o $dirname -f "params_signal_pion_"$year_off".txt" -y $year_off
 fi
+
 #### modify condor_script.sub ####
 #condor_submit condor_script.sub
 #cd $dirname

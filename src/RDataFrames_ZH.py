@@ -648,6 +648,7 @@ genDisplayList3 = ['genZ_invmass', 'genZ_pT']
 
 ####################################
 #######Generated Scalar to hh#######
+import ROOT
 ####################################
 
 isScalar = 'abs(genParId) == 9000006'
