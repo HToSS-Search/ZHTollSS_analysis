@@ -1,1 +1,1 @@
-configs_ZH/2017/datasets/ZH/ZHTollSS_MH125_MS1p2_ctauS0.yaml,configs_ZH/2017/cuts/SRCuts_kaonmass.yaml,plots/UL2017/MC/KaonAssumption/test/ZH/output_ZHTollSS_MH125_MS1p2_ctauS0.root,1,28,ZHTollSS_MH125_MS1p2_ctauS0,UL2017
+configs_ZH/2017/datasets/ZH/ZHTollSS_MH125_MS1p2_ctauS0.yaml,configs_ZH/2017/cuts/SRCuts_kaonmass.yaml,plots/UL2017/Data/KaonAssumption/test/ZH/output_ZHTollSS_MH125_MS1p2_ctauS0.root,1,28,ZHTollSS_MH125_MS1p2_ctauS0,UL2017

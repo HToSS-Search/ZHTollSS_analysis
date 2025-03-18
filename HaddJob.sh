@@ -3,8 +3,8 @@ echo "========================================="
 fout=$1
 fin=$2
 
-wd="/user/sdansana"
-rel="CMSSW_10_6_27/src/HToSS_analysis"
+wd="/user/yvekemans"
+rel="MasterThesis/ZHTollSS_analysis"
 reldir=$wd/$rel
 cd $reldir
 echo ""$reldir

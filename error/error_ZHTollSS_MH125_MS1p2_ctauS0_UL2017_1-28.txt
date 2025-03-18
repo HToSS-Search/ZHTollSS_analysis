@@ -18,6 +18,9 @@ PfRelIsoLoose pass: 945PfRelIsoTight pass: 882Events after quality cuts: 1106
 Events after leadingPt, opposite charge cut: 1068
 Events after Zmass cut: 731
 
+
+Reconstructed hadrons
+
 Gen matching of the reco chs pairs...
 Amount of events passing muon cuts (no invmass cut): 1068
 Amount of events with >= 4 ch, events passed muon selection: 1068
@@ -50,5 +53,12 @@ Amount of matched events with >= 4 ch after quality cuts (pT & Eta): 594
 num of matched events after quality cut  with 1 or more svVertexChi2: 418
 num of matched events after quality cut with 2 or more svVertexChi2: 206
 
+Reconstructed Scalar and Higgs
 
-Time taken: --- 87.94901132583618 seconds ---
+No scalar cuts currently
+Amount of Events after scalar selection/cuts: 653
+Amount of Events with m(s1s2)/m(higgs) in ]110, 140[: 529
+Amount of Events with m(s1s2)/m(higgs) in [-inf, 110] U [140, +inf[: 124
+
+
+Time taken: --- 67.18683791160583 seconds ---

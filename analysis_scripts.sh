@@ -13,7 +13,7 @@ year_off=$4
 #python3 generate_fnos_expansion.py -c configs_ZH/$year/all_SM_samples.yaml --cuts configs_ZH/$year/cuts/CRCuts_$fcuts_suf.yaml -n 50 -o $dirname -f "params_sm_"$year_off".txt" -y $year_off
 
 #For the Data (Uncomment when data is ready)
-#python3 generate_fnos_expansion.py -c configs_ZH/$year/mumu_data$year".yaml" --cuts configs_ZH/$year/cuts/CRCuts_$fcuts_suf.yaml -n 50 -o $dirname -f "params_data_"$year_off".txt" -y $year_off
+python3 generate_fnos_expansion.py -c configs_ZH/$year/SingleMuon_data$year".yaml" --cuts configs_ZH/$year/cuts/CRCuts_$fcuts_suf.yaml -n 50 -o $dirname -f "params_data_"$year_off".txt" -y $year_off
 
 #For the signal, Kaon or Pion
 if [[ $fcuts_suf == *"kaon"* ]]; then

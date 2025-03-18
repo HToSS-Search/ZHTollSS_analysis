@@ -1,0 +1,47 @@
+cuts:
+  dihadron:
+    category:
+      displaced:
+        reliso: 1.6
+        relisoLeading: 1
+      displacedhh:
+        reliso: 1.6
+        relisoLeading: 1
+      displacedmumu:
+        reliso: 1.6
+        relisoLeading: 1
+      prompt:
+        reliso: 0.8
+        relisoLeading: 0.6
+    charge: OS
+    dR: 0.4
+    flag: true
+    pt: 20
+  hadrons:
+    eta: 2.4
+    flag: true
+    id: None
+    number: 2
+    pt: 5
+  muons:
+    eta: 2.4
+    flag: true
+    id: Loose
+    number: 2
+    pt: 5
+    ptLeading: 29
+  recoZ:
+    massLower: 70
+    massUpper: 110
+  recohiggs:
+    flag: true
+    massHigh: 127.5
+    massLow: 122.5
+    sideband: 2.5
+    unblind: false
+hadronType: kaon
+regions:
+  s1lxysign: 30
+  s2lxysign: 30
+metfilters: true
+trig: single

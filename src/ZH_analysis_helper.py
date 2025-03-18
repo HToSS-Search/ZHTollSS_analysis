@@ -1,5 +1,145 @@
 import ROOT
 
+def gInterpreter_diObjectLxy():
+    getLxy_code = '''
+        using namespace ROOT::VecOps;
+        RVec<double> getLxy(double pvCov00, double pvCov01,double pvCov02, double pvCov10, double pvCov11, double pvCov12, double pvCov20, double pvCov21, double pvCov22, double pvX, double pvY,
+                            double svCov00, double svCov01,double svCov02, double svCov10, double svCov11, double svCov12, double svCov20, double svCov21, double svCov22, double svX, double svY) {
+            double pvCov_arr[9] = {pvCov00, pvCov01, pvCov02, pvCov10, pvCov11, pvCov12, pvCov20, pvCov21, pvCov22};
+            double svCov_arr[9] = {svCov00, svCov01, svCov02, svCov10, svCov11, svCov12, svCov20, svCov21, svCov22};
+            ROOT::Math::SVector<double, 3>  distVecXY(svX - pvX, svY - pvY, 0.);
+            ROOT::Math::SMatrix<double,3> svCov(svCov_arr,9); // Asymmetric!!! Esp. in 10 & 01
+            ROOT::Math::SMatrix<double,3> pvCov(pvCov_arr,9);
+            ROOT::Math::SMatrix<double,3> totalCov = pvCov + svCov;
+            double distMagXY = ROOT::Math::Mag(distVecXY);
+            double similarity_val_orig = ROOT::Math::Similarity(totalCov, distVecXY/distMagXY); //square root to be taken below
+            double similarity_val = similarity_val_orig; //square root to be taken below
+            double ij_elem, ji_elem;
+            double dummy;
+            int numberoftries = 6;
+            int ctr=0;
+            bool flag = true;
+            bool use_ij = true;
+            
+            // std::cout<<"New event"<<std::endl;
+            // checking if symmetric or not
+            for (int i=0;i<3;i++) {
+                for (int j=i+1;j<3;j++){
+                    ij_elem = totalCov(i,j);
+                    ji_elem = totalCov(j,i);
+                    if (abs(ij_elem-ji_elem) > 1e-8) {
+                        //std::cout<<"not symmetric(i,j):"<<i<<","<<j<<std::endl;
+                        flag=false;
+                        break;
+                    }
+                }
+            if (!flag) break;
+            }
+            //if (!flag) std::cout<<"not symmetric"<<std::endl;
+            // if ((flag)&&(similarity_val_orig<0)) std::cout<<"Comes from positive semi-definite"<<std::endl;
+            // std::cout<<"Stuck in loop?"<<std::endl;
+            
+            ROOT::Math::SMatrix<double,3> totalCov_dummy, totalCov_dummy1, totalCov_dummy2;
+            double similarity_val1, similarity_val2;
+            totalCov_dummy = totalCov;
+            while ((ctr < 3) && (!flag)) {
+                totalCov_dummy1 = totalCov_dummy;
+                totalCov_dummy2 = totalCov_dummy;
+                // std::cout<<"Stuck in loop?"<<std::endl;
+
+                for (int i=ctr;i<3;i++) {
+                    for (int j=i+1;j<3;j++){
+                        ij_elem = totalCov_dummy(i,j);
+                        ji_elem = totalCov_dummy(j,i);
+                        if (abs(ij_elem-ji_elem) > 1e-8) {
+                            totalCov_dummy1(i,j) = totalCov_dummy(j,i);
+                            totalCov_dummy2(j,i) = totalCov_dummy(i,j);
+                            similarity_val1 = ROOT::Math::Similarity(totalCov_dummy1, distVecXY/distMagXY);
+                            similarity_val2 = ROOT::Math::Similarity(totalCov_dummy2, distVecXY/distMagXY);
+                            if (similarity_val1 > similarity_val2)
+                                use_ij = true;
+                            else
+                                use_ij = false;
+                        }
+                    }
+                    if (use_ij) totalCov_dummy = totalCov_dummy1;
+                    else totalCov_dummy = totalCov_dummy2;
+                }
+                similarity_val = ROOT::Math::Similarity(totalCov_dummy, distVecXY/distMagXY);
+                ctr++;
+            }
+            // flag=true;
+            if (!flag) {
+                for (int i=0;i<3;i++) {
+                    for (int j=i+1;j<3;j++){
+                        ij_elem = totalCov_dummy(i,j);
+                        ji_elem = totalCov_dummy(j,i);
+                        if (abs(ij_elem-ji_elem) > 1e-8) {
+                            std::cout<<"After procedure, not symmetric(i,j):"<<i<<","<<j<<std::endl;
+                            flag=false;
+                            // break;
+                        }
+                    }
+                // if (!flag) break;
+                }
+            }
+            /*if (!flag){    
+                std::cout<<"Before"<<std::endl;
+                std::cout<<totalCov<<std::endl;
+                std::cout<<pvCov<<std::endl;
+                std::cout<<svCov<<std::endl;
+                std::cout<<"similarity value original:"<<similarity_val_orig<<std::endl;
+                std::cout<<"After"<<std::endl;
+                std::cout<<totalCov_dummy<<std::endl;
+                std::cout<<"similarity value:"<<similarity_val<<std::endl;
+            }*/
+
+            // if (flag) std::cout<<"Comes from positive semi-definite"<<std::endl;
+            // std::cout<<"Stuck in loop?"<<std::endl;
+            /*if (similarity_val<0) {
+                // std::cout<<"Covariance Matrix PV:"<<std::endl;
+                // std::cout<<pvCov<<std::endl;
+                //std::cout<<"Covariance Matrix SV:"<<std::endl;
+                //std::cout<<svCov<<std::endl;
+                std::cout<<"Similarity value:"<<similarity_val_orig<<std::endl;
+                std::cout<<"Covariance Matrix Original:"<<std::endl;
+                std::cout<<totalCov<<std::endl;
+                std::cout<<"Covariance Matrix New:"<<std::endl;
+                std::cout<<totalCov_dummy<<std::endl;
+                std::cout<<"Similarity value New:"<<similarity_val<<std::endl;
+            }*/
+            
+            totalCov = totalCov_dummy;
+            // all similarity value become zero (most) -> follow up on this later -> still weird events exist -> Either every element is negative 
+            // Or all diagonals are negative
+            similarity_val = ROOT::Math::Similarity(totalCov, distVecXY/distMagXY); //calculate again with modified matrix
+            double sigmaDistMagXY = sqrt(similarity_val);
+            double significance = distMagXY/sigmaDistMagXY;
+            
+            
+            /*if (similarity_val < 0) {
+                std::cout<<"Covariance Matrix:"<<std::endl;
+                std::cout<<totalCov<<std::endl;
+                //bool ret = totalCov.Det2(dummy) ;
+                if (totalCov.Det2(dummy))
+                    std::cout<<"Determinant:"<<dummy<<std::endl;
+                else
+                    std::cout<<"Determinant cannot be calculated"<<std::endl;
+                std::cout<<"Displacement Vector(svX-pvX,svY-pvY,0):"<<distVecXY<<std::endl;
+                std::cout<<"Lxy:"<< distMagXY<<std::endl;
+                std::cout<<"distVecXY^T * totalCov * distVecXY (similarity value):"<< similarity_val<<std::endl;
+            }*/
+
+            RVec<double> lxy_vec(4);
+            lxy_vec[0]=distMagXY;
+            lxy_vec[1]=sigmaDistMagXY;
+            lxy_vec[2]=significance;
+            lxy_vec[3]=similarity_val;
+            return lxy_vec;
+        }
+        '''
+    ROOT.gInterpreter.Declare(getLxy_code)
+
 def gInterpreter_lv():
 	lvCode = '''
 		using FourVector = ROOT::Math::PxPyPzMVector;

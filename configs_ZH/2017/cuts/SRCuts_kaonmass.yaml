@@ -1,5 +1,18 @@
 cuts:
   dihadron:
+    category:
+      displaced:
+        reliso: 1.6
+        relisoLeading: 1
+      displacedhh:
+        reliso: 1.6
+        relisoLeading: 1
+      displacedmumu:
+        reliso: 1.6
+        relisoLeading: 1
+      prompt:
+        reliso: 0.8
+        relisoLeading: 0.6
     charge: OS
     dR: 0.4
     flag: true
@@ -27,5 +40,8 @@ cuts:
     sideband: 2.5
     unblind: true
 hadronType: kaon
+regions:
+  s1lxysign: 30
+  s2lxysign: 30
 metfilters: true
 trig: single

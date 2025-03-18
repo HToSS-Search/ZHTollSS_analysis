@@ -1,12 +1,12 @@
-executable = /user/sdansana/CMSSW_10_6_27/src/HToSS_analysis/HaddJob.sh
+executable = /user/yvekemans/MasterThesis/ZHTollSS_analysis/HaddJob.sh
 arguments = $(out) $(in) $(proc) 
 
 should_transfer_files = no
 
-error = /user/sdansana/CMSSW_10_6_27/src/HToSS_analysis/error/error_$(proc).txt
-output = /user/sdansana/CMSSW_10_6_27/src/HToSS_analysis/out/out_$(proc).txt
-log = /user/sdansana/CMSSW_10_6_27/src/HToSS_analysis/log/log_$(proc).txt
+error = /user/yvekemans/MasterThesis/ZHTollSS_analysis/error/error_$(proc).txt
+output = /user/yvekemans/MasterThesis/ZHTollSS_analysis/out/out_$(proc).txt
+log = /user/yvekemans/MasterThesis/ZHTollSS_analysis/log/log_$(proc).txt
 
 #request_cpus=4
 +JobFlavour = "longlunch"
-queue out,in,proc from hadd_params_lv2.txt
+queue out,in,proc from hadd_params_lv1.txt
