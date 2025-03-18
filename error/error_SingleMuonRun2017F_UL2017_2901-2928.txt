@@ -1,33 +1,33 @@
 /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/['/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2901.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2902.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2903.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2904.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2905.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2906.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2907.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2908.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2909.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2910.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2911.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2912.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2913.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2914.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2915.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2916.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2917.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2918.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2919.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2920.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2921.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2922.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2923.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2924.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2925.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2926.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2927.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2928.root']
 Tree loaded in succesfully
-Total Entries : 2903
+Total Entries : 51866
 ISDATA TRUE
 
 Reconstructed Muons
-Total Events to start from before muon selection: 2903
-Events after numMuonPF2PAT >= 2 cut: 2903
-PfRelIsoLoose pass: 826
-PfRelIsoTight pass: 745
-Events after quality cuts: 1331
-Events after leadingPt, opposite charge cut: 1044
-Events after Zmass cut: 628
+Total Events to start from before muon selection: 51866
+Events after numMuonPF2PAT >= 2 cut: 51866
+PfRelIsoLoose pass: 14302
+PfRelIsoTight pass: 12913
+Events after quality cuts: 24065
+Events after leadingPt, opposite charge cut: 18873
+Events after Zmass cut: 11053
 
 
 Reconstructed hadrons
-Amount of events passing muon cuts (no invmass cut): 1044
-Amount of events with >= 4 ch, events passed muon selection: 1044
-Amount of events with >= 4 ch after hadron cuts (pT & Eta): 1001
-Amount of events where single pair found: 431
-Amount of events where two pairs found: 164
-num of Ch events after quality cut  with 1 or more svVertexChi2: 662
-num of Ch events after quality cut with 2 or more svVertexChi2: 427
+Amount of events passing muon cuts (no invmass cut): 18873
+Amount of events with >= 4 ch, events passed muon selection: 18873
+Amount of events with >= 4 ch after hadron cuts (pT & Eta): 18194
+Amount of events where single pair found: 8174
+Amount of events where two pairs found: 3453
+num of Ch events after quality cut  with 1 or more svVertexChi2: 12273
+num of Ch events after quality cut with 2 or more svVertexChi2: 7715
 
 Reconstructed Scalar and Higgs
 
 No scalar cuts currently
-Amount of Events after scalar selection/cuts: 164
-Amount of Events with m(s1s2)/m(higgs) in ]110, 140[: 6
-Amount of Events with m(s1s2)/m(higgs) in [-inf, 110] U [140, +inf[: 158
+Amount of Events after scalar selection/cuts: 3453
+Amount of Events with m(s1s2)/m(higgs) in ]110, 140[: 231
+Amount of Events with m(s1s2)/m(higgs) in [-inf, 110] U [140, +inf[: 3222
 
 
-Time taken: --- 42.89857506752014 seconds ---
+Time taken: --- 112.1318793296814 seconds ---

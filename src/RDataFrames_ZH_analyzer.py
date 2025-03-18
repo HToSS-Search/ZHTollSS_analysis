@@ -280,8 +280,8 @@ gInterpreter_pairselection()
 gInterpreter_matching()
 gInterpreter_diObjectLxy()
 
-df = ROOT.RDataFrame(treeName, '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0000/output_1.root') 
-#df = ROOT.RDataFrame(treeName, list_of_files)
+#df = ROOT.RDataFrame(treeName, '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0000/output_1.root') 
+df = ROOT.RDataFrame(treeName, list_of_files)
 sys.stderr.write('\nTree loaded in succesfully')
 
 totalEntries = df.Count().GetValue()
