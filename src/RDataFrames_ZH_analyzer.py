@@ -8,7 +8,7 @@ import ROOT
 import time
 import sys
 
-from ZH_analysis_helper import gInterpreter_lv, gInterpreter_getIndices, gInterpreter_getKinematics, gInterpreter_pairselection, gInterpreter_matching, gInterpreter_diObjectLxy
+from ZH_analysis_helper import gInterpreter_PFIsolation, gInterpreter_lv, gInterpreter_getIndices, gInterpreter_getKinematics, gInterpreter_pairselection, gInterpreter_matching, gInterpreter_diObjectLxy
 from sf_helper import get_pileup, gInterpreter_SF
 
 ROOT.gROOT.SetBatch(True)
@@ -98,13 +98,13 @@ for dirtmp in directories:
 			if not root_file or root_file.IsZombie() or root_file.TestBit(ROOT.TFile.kRecovered):
 				raise Exception(f"Error opening file: {fistr}")
 			# else:
-			# 	continue
+			#	continue
 		except Exception as e:
 			sys.stderr.write(f"Error processing file {fistr}: {e}")
 			continue
 		list_of_files.append(fistr)
 
-sys.stderr.write(str(list_of_files))
+#sys.stderr.write(str(list_of_files))
 
 
 
@@ -247,16 +247,16 @@ hmass_low, hmass_high = 110, 140
 
 #Higgs mass cut is always there; when flag is true, use tight mass conditions else use loose
 #This is the peak region [122.5, 127.5]
-higgs_mass_peak = 'higgs_invmass >='+str(s1s2_mass_low)+' && '+'higgs_invmass <='+str(s1s2_mass_high)
+higgs_mass_peak = 'higgs_mass >='+str(s1s2_mass_low)+' && '+'higgs_mass <='+str(s1s2_mass_high)
 
 #This is the offpeak region ]-inf, 122.5[  U  ]127.5, +inf[
-higgs_mass_peak_blinded = 'higgs_invmass <'+str(s1s2_mass_low)+' || '+'higgs_invmass >'+str(s1s2_mass_high)
+higgs_mass_peak_blinded = 'higgs_mass <'+str(s1s2_mass_low)+' || '+'higgs_mass >'+str(s1s2_mass_high)
 
 #This is loosest peak region ]110, 140[
-higgs_mass_peak_loose = f'higgs_invmass >{hmass_low}'+' && '+f'higgs_invmass <{hmass_high}'
+higgs_mass_peak_loose = f'higgs_mass >{hmass_low}'+' && '+f'higgs_mass <{hmass_high}'
 
 #This is loose peak region ]120,130[
-higgs_mass_peak_tight = f'higgs_invmass > {s1s2_mass_low-sideband}'+' && '+f'higgs_invmass < {s1s2_mass_high+sideband}'
+higgs_mass_peak_tight = f'higgs_mass > {s1s2_mass_low-sideband}'+' && '+f'higgs_mass < {s1s2_mass_high+sideband}'
 
 #Higgs_mass_peak is tighter than higgs_mass_peak_tight
 higgs_mass_cuts = higgs_mass_peak_tight
@@ -279,20 +279,51 @@ gInterpreter_getKinematics()
 gInterpreter_pairselection()
 gInterpreter_matching()
 gInterpreter_diObjectLxy()
+gInterpreter_PFIsolation()
 
+#TESTING
+list_of_files_bis = ['/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ZH_HToSSTo4Hadrons_ZToLL_MH125_MS1p2_ctauS0_TuneCP2_13TeV-powheg-pythia8/RunIIUL17/241208/new/output_13.root','/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ZH_HToSSTo4Hadrons_ZToLL_MH125_MS1p2_ctauS0_TuneCP2_13TeV-powheg-pythia8/RunIIUL17/241208/new/output_23.root','/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ZH_HToSSTo4Hadrons_ZToLL_MH125_MS1p2_ctauS0_TuneCP2_13TeV-powheg-pythia8/RunIIUL17/241208/new/output_22.root','/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ZH_HToSSTo4Hadrons_ZToLL_MH125_MS1p2_ctauS0_TuneCP2_13TeV-powheg-pythia8/RunIIUL17/241208/new/output_28.root','/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ZH_HToSSTo4Hadrons_ZToLL_MH125_MS1p2_ctauS0_TuneCP2_13TeV-powheg-pythia8/RunIIUL17/241208/new/output_9.root']
 #df = ROOT.RDataFrame(treeName, '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0000/output_1.root') 
-df = ROOT.RDataFrame(treeName, list_of_files)
+df = ROOT.RDataFrame(treeName, list_of_files_bis)
+
+#ORIGINAL
+#df = ROOT.RDataFrame(treeName, list_of_files)
 sys.stderr.write('\nTree loaded in succesfully')
 
 totalEntries = df.Count().GetValue()
 sys.stderr.write(f"\nTotal Entries : {totalEntries}\n")
 
+
+#Set up the weights
+dataset_weight = cross_section/sum_wts
+
+if "PUup" in args.output:
+	shift="up"
+elif "PUdown" in args.output:
+	shift="down"
+else:
+	shift="nominal"
+
 if isData:
-	sys.stderr.write('ISDATA TRUE')
+	sys.stderr.write('\nLooking at Data.......')
 	df = df.Define('weight', '1')
 else:
-	#IMPLEMENT PILEUP AND WEIGHTS FOR MC
-	None
+	sys.stderr.write('\nLooking at MC.......')
+
+	gInterpreter_std_map() # Accesses c++ map
+	pileup_ratio,pileup_edges = get_pileup(args.year,shift)
+	pileupMap = {e: r for e, r in zip(pileup_edges[:-1], pileup_ratio)}
+	pileupMap_c = ROOT.GetTheMap()
+	for key in pileupMap:
+		pileupMap_c[key]=pileupMap[key]
+	#Define the dataset weights MCweight * cross_section/sum_wts
+	df = df.Define('weight_', 'processMCWeight')
+	df = df.Define('weightOnlyDataset','weight_*{}'.format(dataset_weight))
+	#Rescale dataset weight with pileup weights
+	df = df.Define('PUReweight_sf','GetTheMap()[floor(numVert)]')
+	df = df.Define('weight_tmp','weightOnlyDataset*PUReweight_sf')
+
+#LATER ON IN CODE WILL UPDATE WEIGHTS WITH SCALE FACTORS WHERE NEEDED
 
 ##########################################################################################
 #####################################Generated Objects####################################
@@ -466,7 +497,7 @@ sys.stderr.write('\n\nReconstructed hadrons')
 isRecoCh = 'abs(packedCandsPdgId) == 211 && packedCandsCharge!=0 && packedCandsHasTrackDetails==1' #reconstructed charged hadrons 
 
 #cuts from muons
-df_recoCh = df_recoMu_cut.Define('pCandChId', f'packedCandsPdgId[{isRecoCh}]')\
+df_recoCh = df_recoMu_cut_invcut.Define('pCandChId', f'packedCandsPdgId[{isRecoCh}]')\
         .Define('recoCh_charge', f'packedCandsCharge[{isRecoCh}]')\
         .Define('recoCh_trkDetail', f'packedCandsHasTrackDetails[{isRecoCh}]')\
         .Define('chs_mass', str(chsMass_))\
@@ -723,7 +754,7 @@ if not isData:
 
 ##### Reconstructed Scalar/Higss ######
 
-sys.stderr.write('\n\nReconstructed Scalar and Higgs\n')
+sys.stderr.write('\n\nReconstructed Scalar and Higgs')
 
 #Scalar kinematics
 df_s1s2 = df_diCh_check.Define('s1_lv', 'ch1_lv + ch2_lv' ).Define('s2_lv', 'ch3_lv + ch4_lv')\
@@ -734,21 +765,21 @@ df_s1s2 = df_diCh_check.Define('s1_lv', 'ch1_lv + ch2_lv' ).Define('s2_lv', 'ch3
         .Define('s12_dR', 'ROOT::VecOps::DeltaR(s1_lv.Eta(), s2_lv.Eta(), s1_lv.Phi(), s2_lv.Phi())')
 
 sys.stderr.write('\nNo scalar cuts currently')
-#NEED TO IMPLEMENT VERTEX DEFINITIONS HERE FOR THE REGIONS
+
 
 ############## LXY CALCULATION FOR SCALARS ########################
 pv_sel = 'pvChi2!=0 && pvNdof!=0'
 df_vertex = df_s1s2.Define('PVCov00',f'pvCov00[{pv_sel}][0]').Define('PVCov01',f'pvCov01[{pv_sel}][0]').Define('PVCov02',f'pvCov02[{pv_sel}][0]').Define('PVCov10',f'pvCov10[{pv_sel}][0]').Define('PVCov11',f'pvCov11[{pv_sel}][0]').Define('PVCov12',f'pvCov12[{pv_sel}][0]').Define('PVCov20',f'pvCov20[{pv_sel}][0]').Define('PVCov21',f'pvCov21[{pv_sel}][0]').Define('PVCov22',f'pvCov22[{pv_sel}][0]').Define('PVX',f'pvX[{pv_sel}][0]').Define('PVY',f'pvY[{pv_sel}][0]').Define('PVZ',f'pvZ[{pv_sel}][0]')\
 						.Define('s1_lxyInfo','''getLxy(PVCov00,PVCov01,PVCov02,PVCov10,PVCov11,PVCov12,PVCov20,PVCov21,PVCov22,PVX,PVY,
-			  							chsTkPairTkVtxCov00[ch_pair_idx1[2]],chsTkPairTkVtxCov01[ch_pair_idx1[2]],chsTkPairTkVtxCov02[ch_pair_idx1[2]],
-			  							chsTkPairTkVtxCov10[ch_pair_idx1[2]],chsTkPairTkVtxCov11[ch_pair_idx1[2]],chsTkPairTkVtxCov12[ch_pair_idx1[2]],
-			  							chsTkPairTkVtxCov20[ch_pair_idx1[2]],chsTkPairTkVtxCov21[ch_pair_idx1[2]],chsTkPairTkVtxCov22[ch_pair_idx1[2]],
-			  							chsTkPairTkVx[ch_pair_idx1[2]],chsTkPairTkVy[ch_pair_idx1[2]])''')\
+										chsTkPairTkVtxCov00[ch_pair_idx1[2]],chsTkPairTkVtxCov01[ch_pair_idx1[2]],chsTkPairTkVtxCov02[ch_pair_idx1[2]],
+										chsTkPairTkVtxCov10[ch_pair_idx1[2]],chsTkPairTkVtxCov11[ch_pair_idx1[2]],chsTkPairTkVtxCov12[ch_pair_idx1[2]],
+										chsTkPairTkVtxCov20[ch_pair_idx1[2]],chsTkPairTkVtxCov21[ch_pair_idx1[2]],chsTkPairTkVtxCov22[ch_pair_idx1[2]],
+										chsTkPairTkVx[ch_pair_idx1[2]],chsTkPairTkVy[ch_pair_idx1[2]])''')\
 						.Define('s2_lxyInfo','''getLxy(PVCov00,PVCov01,PVCov02,PVCov10,PVCov11,PVCov12,PVCov20,PVCov21,PVCov22,PVX,PVY,
-			  							chsTkPairTkVtxCov00[ch_pair_idx2[2]],chsTkPairTkVtxCov01[ch_pair_idx2[2]],chsTkPairTkVtxCov02[ch_pair_idx2[2]],
-			  							chsTkPairTkVtxCov10[ch_pair_idx2[2]],chsTkPairTkVtxCov11[ch_pair_idx2[2]],chsTkPairTkVtxCov12[ch_pair_idx2[2]],
-			  							chsTkPairTkVtxCov20[ch_pair_idx2[2]],chsTkPairTkVtxCov21[ch_pair_idx2[2]],chsTkPairTkVtxCov22[ch_pair_idx2[22]],
-			  							chsTkPairTkVx[ch_pair_idx2[2]],chsTkPairTkVy[ch_pair_idx2[2]])''')\
+										chsTkPairTkVtxCov00[ch_pair_idx2[2]],chsTkPairTkVtxCov01[ch_pair_idx2[2]],chsTkPairTkVtxCov02[ch_pair_idx2[2]],
+										chsTkPairTkVtxCov10[ch_pair_idx2[2]],chsTkPairTkVtxCov11[ch_pair_idx2[2]],chsTkPairTkVtxCov12[ch_pair_idx2[2]],
+										chsTkPairTkVtxCov20[ch_pair_idx2[2]],chsTkPairTkVtxCov21[ch_pair_idx2[2]],chsTkPairTkVtxCov22[ch_pair_idx2[22]],
+										chsTkPairTkVx[ch_pair_idx2[2]],chsTkPairTkVy[ch_pair_idx2[2]])''')\
 						.Define('s1_lxy_vector','ROOT::Math::XYVector(chsTkPairTkVx[ch_pair_idx1[2]] - PVX, chsTkPairTkVy[ch_pair_idx1[2]] - PVY)')\
 						.Define('s2_lxy_vector','ROOT::Math::XYVector(chsTkPairTkVx[ch_pair_idx2[2]] - PVX, chsTkPairTkVy[ch_pair_idx2[2]] - PVY)')\
 						.Define('pt_dphi','ROOT::Math::VectorUtil::DeltaPhi(s1_lv,s2_lv)')\
@@ -768,69 +799,187 @@ df_vertex = df_s1s2.Define('PVCov00',f'pvCov00[{pv_sel}][0]').Define('PVCov01',f
 						.Define('s1_lxysign_tmp','s1_lxyInfo[2]')\
 						.Define('s2_lxysign_tmp','s2_lxyInfo[2]')\
 						.Define('s1_sim_val','s1_lxyInfo[3]')\
-						.Define('s2_sim_val','s2_lxyInfo[3]')
+						.Define('s2_sim_val','s2_lxyInfo[3]')\
+						.Define('s1_lxy','s1_lxyInfo[0]')\
+						.Define('s2_lxy','s2_lxyInfo[0]')
 
+#NO CUTS ON SCALAR MASS CURRENTLY
 
 
 #Higgs kinematics
-df_higgs = df_vertex.Define('higgs_lv', 's1_lv + s2_lv')\
-        .Define('higgs_invmass', 'higgs_lv.M()')\
+df_higgs_preblind = df_vertex.Define('higgs_lv', 's1_lv + s2_lv')\
+        .Define('higgs_mass', 'higgs_lv.M()')\
         .Define('higgs_pT', 'higgs_lv.Pt()')\
 		.Define('recohiggs_mass_peak', higgs_mass_peak)\
 		.Define('recohiggs_mass_blinded', higgs_mass_peak_blinded)\
 		.Define('recohiggs_mass_check_loose', higgs_mass_cuts_loose)\
-		.Define('recohiggs_mass_check', higgs_mass_cuts)
+		.Define('recohiggs_mass_check', higgs_mass_cuts)\
+		.Define('ch1_iso','''PFIsolation("hadron", ch1_lv, ch_pair_idx1[0], ch_pair_idx1[1], packedCandsPx, packedCandsPy, packedCandsPz, packedCandsE, packedCandsCharge, packedCandsPdgId, packedCandsFromPV, numPackedCands, 0.4)''')\
+		.Define('ch2_iso','''PFIsolation("hadron", ch2_lv, ch_pair_idx1[1], ch_pair_idx1[0], packedCandsPx, packedCandsPy, packedCandsPz, packedCandsE, packedCandsCharge, packedCandsPdgId, packedCandsFromPV, numPackedCands, 0.4)''')\
+		.Define('ch3_iso','''PFIsolation("hadron", ch3_lv, ch_pair_idx2[0], ch_pair_idx2[1], packedCandsPx, packedCandsPy, packedCandsPz, packedCandsE, packedCandsCharge, packedCandsPdgId, packedCandsFromPV, numPackedCands, 0.4)''')\
+		.Define('ch4_iso','''PFIsolation("hadron", ch4_lv, ch_pair_idx2[1], ch_pair_idx2[0], packedCandsPx, packedCandsPy, packedCandsPz, packedCandsE, packedCandsCharge, packedCandsPdgId, packedCandsFromPV, numPackedCands, 0.4)''')\
+		.Define('ch1_reliso', 'ch1_iso[0]')\
+		.Define('ch2_reliso', 'ch2_iso[0]')\
+		.Define('ch3_reliso', 'ch3_iso[0]')\
+		.Define('ch4_reliso', 'ch4_iso[0]')
 
-df_higgs_loose = df_higgs.Filter('recohiggs_mass_check_loose', f'm(s1s2) in ]{hmass_low},{hmass_high}[')
+df_higgs_preblind_loose = df_higgs_preblind.Filter('recohiggs_mass_check_loose', f'm(s1s2) in ]{hmass_low},{hmass_high}[')
 
-sys.stderr.write('\nAmount of Events after scalar selection/cuts: ' + str(df_higgs.Count().GetValue()))
-sys.stderr.write('\nAmount of Events with m(s1s2)/m(higgs) in ]110, 140[: ' + str(df_higgs_loose.Count().GetValue()))
-sys.stderr.write('\nAmount of Events with m(s1s2)/m(higgs) in [-inf, 110] U [140, +inf[: ' + str(df_higgs.Filter(f'higgs_invmass <= {hmass_low}'+' || '+f'higgs_invmass >= {hmass_high}').Count().GetValue()))
+sys.stderr.write('\nAmount of Events after scalar selection/cuts: ' + str(df_higgs_preblind.Count().GetValue()))
+sys.stderr.write('\nAmount of Events with m(s1s2)/m(higgs) in ]110, 140[: ' + str(df_higgs_preblind_loose.Count().GetValue()))
+sys.stderr.write('\nAmount of Events with m(s1s2)/m(higgs) in [-inf, 110] U [140, +inf[: ' + str(df_higgs_preblind.Filter(f'higgs_mass <= {hmass_low}'+' || '+f'higgs_mass >= {hmass_high}').Count().GetValue()))
 
 
-df_higgs_loose = df_higgs_loose.Define('prompt_check',R1)\
+############## Scale Factors ########################
+#HERE SCALEFACTORS ARE ADDED TO DF
+
+df_higgs_preblind_loose = df_higgs_preblind_loose.Define('prompt_check',R1)\
 	.Define('displaceds1_check',R2h1h2)\
 	.Define('displaceds2_check',R2h3h4)\
 	.Define('displaced_check',R3)
 
-#NEED TO IMPLEMENT BLINDING,... HERE
+
+############## (Un)Blinding ########################
+#Data is blinded by default, MC is unblinded by default
+#MC can be blinded, Data can be unblinded but would need to comment out in if statement below 
+
+if (unblind):
+	if isData=='true':
+		sys.stderr.write("\nUNBLIND == TRUE BUT LOOKING AT DATA --------- MANUALLY UNBLIND THE PEAK IN DATA - COMMENT OUT ABOVE")
+		quit()
+	else:
+		sys.stderr.write("\nUNBLIND == TRUE AND LOOKING AT MC --------- EVENTS REMAIN AS IS")
+		df_higgs_precat = df_higgs_preblind_loose
+		df_higgs_precat_test = df_higgs_preblind_loose
+else:
+	sys.stderr.write("\nUNBLIND == FALSE --------- EVENTS WILL BE BLINDED, EVENTS OMITTED IN mHiggs [122.5,127.5]")
+	df_higgs_precat = df_higgs_preblind_loose.Filter('recohiggs_mass_blinded',f'm(mumuhh) blinded in [122.5,127.5]')
+	df_higgs_precat_test = df_higgs_preblind_loose.Filter('recohiggs_mass_blinded',f'm(mumuhh) blinded in [122.5,127.5]')
+
+#Look at signal region if unblinded [122.5, 127.5]
+if (unblind):
+	sys.stderr.write('\nUNBLINDED, LOOKING AT [122.5, 127.5] PEAK REGION')
+	df_higgs_precat = df_higgs_precat.Filter('recohiggs_mass_peak','m(mumuhh) in [122.5,127.5] peak')
+#Look at sidebands if blinded: Tight = [120, 122.5] U [127.5, 130] || Loose = [110, 122.5] U [127.5, 140]
+else:
+	#Tight CR condition
+	sys.stderr.write('\nBLINDED, LOOKING AT TIGHT SIDEBANDS[120, 122.5] U [127.5, 130]')
+	df_higgs_precat = df_higgs_precat.Filter('recohiggs_mass_check','m(mumuhh) in [120,130] sidebands')
+	#Loose CR condition
+	#sys.stderr.write('\n BLINDED, LOOKING AT LOOSE SIDEBANDS[110, 122.5] U [127.5, 140]')
+	#df_higgs_precat = df_higgs_precat.Filter('recohiggs_mass_check_loose','m(mumuhh) in [110,140] sidebands')
 
 
-df_higgs_precat = df_higgs_loose
 
+############## Histograms Precat ########################
 
 outFile = ROOT.TFile(args.output, "RECREATE")
 # outFile.SetBit(ROOT.TFile.k630forwardCompatibility)
 outFile.cd()
 
 hists_1d_test={}
+hists_2d_test={}
 hists_1d_precat={}
 hists_2d_precat={}
 
-diobjects = {'s1':'Scalar1', 's2':'Scalar2'}
-dikinematics = {
-	'mass':{'var':'lv.M()','nameSuf':'Mass','titleSuf':'','nbins':4000,'minX':0.,'maxX':4.},
-	'pT':{'var':'lv.Pt()','nameSuf':'pT','titleSuf':'','nbins':4000,'minX':0.,'maxX':200.},
-}
-
-hists_1d_test['h_'+'ZBoson'+'Mass']=df_recoMu_cut_invcut.Histo1D(('h_'+'ZBoson'+'Mass','', 70, 70, 110), 'Z_mass', 'weight')
-
-for obj in diobjects:
-	for kin in dikinematics:
-		hists_1d_precat['h_'+diobjects[obj]+dikinematics[kin]['nameSuf']]=\
-			df_higgs_precat\
-			.Histo1D(('h_'+diobjects[obj]+dikinematics[kin]['nameSuf'],'',\
-			dikinematics[kin]['nbins'],dikinematics[kin]['minX'],dikinematics[kin]['maxX']), obj+'_'+kin, 'weight')
+s12m_range = [0.8, 3.6] if isData else [0.8, 1.6]
+s12m_bins = 280 if isData else 80
+s12lxy_range = [0, 60]
+s12lxy_bins = 300
+s12lxysig_range = [0, 1000]
+s12lxysig_bins = 50
 
 
-hists_1d_test['h_ZBosonMass'].Write()
+precat_count = df_higgs_precat.Count().GetValue()
+precattest_count = df_higgs_precat_test.Count().GetValue()
 
-#CATEGORIZATION
+sys.stderr.write('\nPRECAT (PEAK SR or TIGHT CR): ' + str(precat_count))
+sys.stderr.write('\nPRECAT TEST (LOOSE CR): ' + str(precattest_count))
+
+#hists_1d_test['h_'+'ChargedHadron1_'+'relIso'] = df_higgs_precat.Histo1D(('h_'+'ChargedHadron1_'+'relIso','', 100, 0, 10), 'ch1_reliso', 'weight')
+#hists_1d_test['h_'+'ChargedHadron2_'+'relIso'] = df_higgs_precat.Histo1D(('h_'+'ChargedHadron2_'+'relIso','', 100, 0, 10), 'ch2_reliso', 'weight')
+#hists_1d_test['h_'+'ChargedHadron3_'+'relIso'] = df_higgs_precat.Histo1D(('h_'+'ChargedHadron3_'+'relIso','', 100, 0, 10), 'ch3_reliso', 'weight')
+#hists_1d_test['h_'+'ChargedHadron4_'+'relIso'] = df_higgs_precat.Histo1D(('h_'+'ChargedHadron4_'+'relIso','', 100, 0, 10), 'ch4_reliso', 'weight')
+sys.stderr.write('\nhere1')
+#hists_1d_test['h_'+'ZBoson_'+'Mass']=df_recoMu_cut_invcut.Histo1D(('h_'+'ZBoson'+'Mass','', 400, 70, 110), 'Z_mass', 'weight')
+hists_1d_test['h_'+'Scalar1_'+'Mass'] = df_higgs_precat.Histo1D(('h_'+'Scalar1_'+'Mass', '', s12m_bins, s12m_range[0], s12m_range[1]), 's1_mass','weight')
+hists_1d_test['h_'+'Scalar2_'+'Mass'] = df_higgs_precat.Histo1D(('h_'+'Scalar2_'+'Mass', '', s12m_bins, s12m_range[0], s12m_range[1]), 's2_mass','weight')
+hists_1d_test['h_'+'Scalar1_'+'Lxy'] = df_higgs_precat.Histo1D(('h_'+'Scalar1_'+'Lxy', '', s12lxy_bins, s12lxy_range[0], s12lxy_range[1]), 's1_lxy', 'weight')
+hists_1d_test['h_'+'Scalar1_'+'LxySig'] = df_higgs_precat.Histo1D(('h_'+'Scalar1_'+'LxySig', '', s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1]), 's1_lxysign_tmp', 'weight')
+hists_1d_test['h_'+'Scalar2_'+'Lxy'] = df_higgs_precat.Histo1D(('h_'+'Scalar2_'+'Lxy', '', s12lxy_bins, s12lxy_range[0], s12lxy_range[1]), 's2_lxy', 'weight')
+hists_1d_test['h_'+'Scalar2_'+'LxySig'] = df_higgs_precat.Histo1D(('h_'+'Scalar2_'+'LxySig', '', s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1]), 's2_lxysign_tmp', 'weight')
+
+sys.stderr.write('\nhere2')
+hists_2d_test['h_'+'Scalar_'+'Lxy'] = df_higgs_precat.Histo2D(('h_'+'Scalar_'+'Lxy', '', s12lxy_bins, s12lxy_range[0], s12lxy_range[1], s12lxy_bins, s12lxy_range[0], s12lxy_range[1]), 's1_lxy', 's2_lxy', 'weight')
+hists_2d_test['h_'+'Scalar_'+'LxySig'] = df_higgs_precat.Histo2D(('h_'+'Scalar_'+'LxySig', '', s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1], s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1]), 's1_lxysign_tmp', 's2_lxysign_tmp', 'weight')
+
+
+sys.stderr.write('\nhere3')
+#hists_1d_test['h_'+'ChargedHadron1_'+'relIso'+ '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'ChargedHadron1_'+'relIso'+ '_Loose','', 100, 0, 10), 'ch1_reliso', 'weight')
+#hists_1d_test['h_'+'ChargedHadron2_'+'relIso'+ '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'ChargedHadron2_'+'relIso'+ '_Loose','', 100, 0, 10), 'ch2_reliso', 'weight')
+#hists_1d_test['h_'+'ChargedHadron3_'+'relIso'+ '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'ChargedHadron3_'+'relIso'+ '_Loose','', 100, 0, 10), 'ch3_reliso', 'weight')
+#hists_1d_test['h_'+'ChargedHadron4_'+'relIso'+ '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'ChargedHadron4_'+'relIso'+ '_Loose','', 100, 0, 10), 'ch4_reliso', 'weight')
+
+sys.stderr.write('\nhere4')
+hists_1d_test['h_'+'HiggsBoson_'+'Mass' + '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'HiggsBoson_'+'Mass' + '_Loose', '', 300, 110, 140), 'higgs_mass','weight')
+hists_1d_test['h_'+'Scalar1_'+'Mass' + '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'Scalar1_'+'Mass' + '_Loose', '', s12m_bins, s12m_range[0], s12m_range[1]), 's1_mass','weight')
+hists_1d_test['h_'+'Scalar2_'+'Mass' + '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'Scalar2_'+'Mass' + '_Loose', '', s12m_bins, s12m_range[0], s12m_range[1]), 's2_mass','weight')
+hists_1d_test['h_'+'Scalar1_'+'Lxy'+'_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'Scalar1_'+'Lxy'+'_Loose', '', s12lxy_bins, s12lxy_range[0], s12lxy_range[1]), 's1_lxy', 'weight')
+hists_1d_test['h_'+'Scalar1_'+'LxySig'+'_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'Scalar1_'+'LxySig'+'_Loose', '', s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1]), 's1_lxysign_tmp', 'weight')
+hists_1d_test['h_'+'Scalar2_'+'Lxy'+'_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'Scalar2_'+'Lxy'+'_Loose', '', s12lxy_bins, s12lxy_range[0], s12lxy_range[1]), 's2_lxy', 'weight')
+hists_1d_test['h_'+'Scalar2_'+'LxySig'+'_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'Scalar2_'+'LxySig'+'_Loose', '', s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1]), 's2_lxysign_tmp', 'weight')
+
+sys.stderr.write('\nhere5')
+hists_2d_test['h_'+'Scalar_'+'Lxy'+'_Loose'] = df_higgs_precat_test.Histo2D(('h_'+'Scalar_'+'Lxy'+'_Loose', '', s12lxy_bins, s12lxy_range[0], s12lxy_range[1], s12lxy_bins, s12lxy_range[0], s12lxy_range[1]), 's1_lxy', 's2_lxy', 'weight')
+hists_2d_test['h_'+'Scalar_'+'LxySig'+'_Loose'] = df_higgs_precat_test.Histo2D(('h_'+'Scalar_'+'LxySig'+'_Loose', '', s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1], s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1]), 's1_lxysign_tmp', 's2_lxysign_tmp', 'weight')
+
+
+
+#Tight
+if precat_count != 0:
+    sys.stderr.write('\nhere6')
+    #hists_1d_test['h_ChargedHadron1_relIso'].Write()
+    #hists_1d_test['h_ChargedHadron2_relIso'].Write()
+    #hists_1d_test['h_ChargedHadron3_relIso'].Write()
+    #hists_1d_test['h_ChargedHadron4_relIso'].Write()
+    #hists_1d_test['h_ZBosonMass'].Write()
+    hists_1d_test['h_Scalar1_Mass'].Write()
+    #hists_1d_test['h_Scalar2_Mass'].Write()
+    #hists_1d_test['h_Scalar1_Lxy'].Write()
+    #hists_1d_test['h_Scalar2_Lxy'].Write()
+    #hists_1d_test['h_Scalar1_LxySig'].Write()
+    #hists_1d_test['h_Scalar2_LxySig'].Write()
+    #2D
+    #hists_2d_test['h_Scalar_Lxy'].Write()
+    #hists_2d_test['h_Scalar_LxySig'].Write()
+
+#Loose
+if precattest_count != 0:
+    sys.stderr.write('\nhere7')
+    #hists_1d_test['h_ChargedHadron1_relIso_Loose'].Write()
+    #hists_1d_test['h_ChargedHadron2_relIso_Loose'].Write()
+    #hists_1d_test['h_ChargedHadron3_relIso_Loose'].Write()
+    #hists_1d_test['h_ChargedHadron4_relIso_Loose'].Write()
+    #hists_1d_test['h_HiggsBoson_Mass_Loose'].Write()
+    #hists_1d_test['h_Scalar1_Mass_Loose'].Write()
+    #hists_1d_test['h_Scalar2_Mass_Loose'].Write()
+    #hists_1d_test['h_Scalar1_Lxy_Loose'].Write()
+    #hists_1d_test['h_Scalar2_Lxy_Loose'].Write()
+    #hists_1d_test['h_Scalar1_LxySig_Loose'].Write()
+    #hists_1d_test['h_Scalar2_LxySig_Loose'].Write()
+    #2D
+    #hists_2d_test['h_Scalar_Lxy_Loose'].Write()
+    #hists_2d_test['h_Scalar_LxySig_Loose'].Write()
+############## Categorization ########################
+
 reg_={}
 #reg_['prompt'] = higgs_definitions_blinded_loose_iso.Filter('prompt_check','only prompt region')
 #reg_['displaceds1'] = higgs_definitions_blinded_loose_iso.Filter('displaceds1_check','only displaced s1 region')
 #reg_['displaceds2'] = higgs_definitions_blinded_loose_iso.Filter('displaceds2_check','only displaced s2 region')
 #reg_['displaced'] = higgs_definitions_blinded_loose_iso.Filter('displaced_check','both displaced region')
+
+
+############## Histograms Postcat ########################
 
 hists_1d_={}
 hists_2d_={}

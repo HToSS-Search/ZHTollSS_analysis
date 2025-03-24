@@ -1,7 +1,8 @@
-/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/['/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2501.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2502.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2503.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2504.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2505.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2506.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2507.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2508.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2509.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2510.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2511.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2512.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2513.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2514.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2515.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2517.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2518.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2519.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2520.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2521.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2522.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2523.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2524.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2525.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2526.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2527.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2528.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2529.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2530.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2531.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2532.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2533.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2534.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2535.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2536.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2537.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2538.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2539.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2540.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2541.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2542.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2543.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2544.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2545.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2546.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2547.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2548.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2549.root', '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0002/output_2550.root']
+/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/
 Tree loaded in succesfully
 Total Entries : 184084
-ISDATA TRUE
+
+Looking at Data.......
 
 Reconstructed Muons
 Total Events to start from before muon selection: 184084
@@ -15,19 +16,663 @@ Events after Zmass cut: 39107
 
 Reconstructed hadrons
 Amount of events passing muon cuts (no invmass cut): 65739
-Amount of events with >= 4 ch, events passed muon selection: 65739
-Amount of events with >= 4 ch after hadron cuts (pT & Eta): 62878
-Amount of events where single pair found: 23944
-Amount of events where two pairs found: 9915
-num of Ch events after quality cut  with 1 or more svVertexChi2: 42102
-num of Ch events after quality cut with 2 or more svVertexChi2: 26446
+Amount of events with >= 4 ch, events passed muon selection: 39107
+Amount of events with >= 4 ch after hadron cuts (pT & Eta): 37077
+Amount of events where single pair found: 10754
+Amount of events where two pairs found: 3369
+num of Ch events after quality cut  with 1 or more svVertexChi2: 22106
+num of Ch events after quality cut with 2 or more svVertexChi2: 12037
 
 Reconstructed Scalar and Higgs
-
 No scalar cuts currently
-Amount of Events after scalar selection/cuts: 9915
-Amount of Events with m(s1s2)/m(higgs) in ]110, 140[: 646
-Amount of Events with m(s1s2)/m(higgs) in [-inf, 110] U [140, +inf[: 9269
+Amount of Events after scalar selection/cuts: 3369
+Amount of Events with m(s1s2)/m(higgs) in ]110, 140[: 172
+Amount of Events with m(s1s2)/m(higgs) in [-inf, 110] U [140, +inf[: 3197
+UNBLIND == FALSE --------- EVENTS WILL BE BLINDED, EVENTS OMITTED IN mHiggs [122.5,127.5]
+BLINDED, LOOKING AT TIGHT SIDEBANDS[120, 122.5] U [127.5, 130] *** Break *** segmentation violation
+ *** Break *** segmentation violation
+ *** Break *** segmentation violation
 
 
-Time taken: --- 307.6898241043091 seconds ---
+
+===========================================================
+There was a crash.
+This is the entire stack trace of all threads:
+===========================================================
+
+Thread 7 (Thread 0x152b66472640 (LWP 461905) "python"):
+#0  0x0000152b9fed8b3f in wait4 () from /lib64/libc.so.6
+#1  0x0000152b9fe4b283 in do_system () from /lib64/libc.so.6
+#2  0x0000152b8430fbd9 in TUnixSystem::StackTrace() () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libCore.so
+#3  0x0000152b847875e3 in (anonymous namespace)::TExceptionHandlerImp::HandleException(int) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libcppyy_backend3_9.so
+#4  0x0000152b8430f401 in TUnixSystem::DispatchSignals(ESignals) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libCore.so
+#5  <signal handler called>
+#6  0x0000152b6a55d2db in ?? ()
+#7  0x3ec26ff280000000 in ?? ()
+#8  0x3fb58371a0000000 in ?? ()
+#9  0xbf9bc2ef20000000 in ?? ()
+#10 0x3fd579ffc0000000 in ?? ()
+#11 0xbfaf560020000000 in ?? ()
+#12 0x3fbfbf6420000000 in ?? ()
+#13 0xbfaf560020000000 in ?? ()
+#14 0x3f86dd7dc0000000 in ?? ()
+#15 0xbf97294920000000 in ?? ()
+#16 0x3fbfbf6420000000 in ?? ()
+#17 0xbf97294920000000 in ?? ()
+#18 0x3fa7776540000000 in ?? ()
+#19 0x3fd0b679c0000000 in ?? ()
+#20 0xbfadca6d20000000 in ?? ()
+#21 0x0000152b66470da0 in ?? ()
+#22 0x3eb0110ea0000000 in ?? ()
+#23 0x3f9823d740000000 in ?? ()
+#24 0xbfda3d3a40000000 in ?? ()
+#25 0x3f9823d740000000 in ?? ()
+#26 0x3fa7776540000000 in ?? ()
+#27 0x3fd0b679c0000000 in ?? ()
+#28 0x3e9233f060000000 in ?? ()
+#29 0xbeb11c8580000000 in ?? ()
+#30 0x3e9233f060000000 in ?? ()
+#31 0x3e97399740000000 in ?? ()
+#32 0xbe89143a80000000 in ?? ()
+#33 0xbeb11c8580000000 in ?? ()
+#34 0xbe89143a80000000 in ?? ()
+#35 0x0000152b66470da0 in ?? ()
+#36 0x3ec26ff280000000 in ?? ()
+#37 0x3fb58371a0000000 in ?? ()
+#38 0xbf9bc2ef20000000 in ?? ()
+#39 0x3fc70182e0000000 in ?? ()
+#40 0xbf852a1de0000000 in ?? ()
+#41 0xbfda3d3a40000000 in ?? ()
+#42 0xbf852a1de0000000 in ?? ()
+#43 0x3f4397f8c0000000 in ?? ()
+#44 0x0000152b58367640 in ?? ()
+#45 0x0000152b580f4820 in ?? ()
+#46 0x0000152b5817c7e0 in ?? ()
+#47 0x0000152b5817bce0 in ?? ()
+#48 0x0000152b5820e4b0 in ?? ()
+#49 0x0000152b5821d8e0 in ?? ()
+#50 0x0000152b5821afd0 in ?? ()
+#51 0x0000152b5822da20 in ?? ()
+#52 0x0000152b580d83a0 in ?? ()
+#53 0x0000152b5817d2e0 in ?? ()
+#54 0x0000152b580ca160 in ?? ()
+#55 0x0000000000000002 in ?? ()
+#56 0x0000152b77bae7f0 in ?? ()
+#57 0x0000152b75b8de70 in ?? ()
+#58 0x0000000011dd8510 in ?? ()
+#59 0x0000152b66470ee0 in ?? ()
+#60 0x0000152b6a572314 in ?? ()
+#61 0x0000152b580d83a0 in ?? ()
+#62 0x0000152b5821afd0 in ?? ()
+#63 0x0000152b5817d2e0 in ?? ()
+#64 0x0000152b5822da20 in ?? ()
+#65 0x0000152b580f4820 in ?? ()
+#66 0x0000152b58367640 in ?? ()
+#67 0x0000000011dd8510 in ?? ()
+#68 0x00000000b448a1d4 in ?? ()
+#69 0x0000152b3dac1b8d in ?? ()
+#70 0x0000152bbcde1779 in ?? ()
+#71 0x0000152b66470db0 in ?? ()
+#72 0x0000000800000000 in ?? ()
+#73 0x3fc703e1fa123d9d in ?? ()
+#74 0x3fe2d7af2c0443fd in ?? ()
+#75 0x3fd38b0dc23e3a03 in ?? ()
+#76 0x3fd630a59e465ef4 in ?? ()
+#77 0x0000000000000000 in ?? ()
+
+Thread 6 (Thread 0x152b66873640 (LWP 461904) "python"):
+#0  0x0000152b851fe18c in inflate_fast () from /lib64/libz.so.1
+#1  0x0000152b852069e3 in inflate () from /lib64/libz.so.1
+#2  0x0000152b84305f71 in R__unzip () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libCore.so
+#3  0x0000152b6901b94f in TBasket::ReadBasketBuffers(long long, int, TFile*) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTree.so
+#4  0x0000152b69026a64 in TBranch::GetBasketImpl(int, TBuffer*) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTree.so
+#5  0x0000152b6902854d in TBranch::GetBasketAndFirst(TBasket*&, long long&, TBuffer*) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTree.so
+#6  0x0000152b69028737 in TBranch::GetEntry(long long, int) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTree.so
+#7  0x0000152b674f50ed in (anonymous namespace)::TObjectArrayReader::At(ROOT::Detail::TBranchProxy*, unsigned long) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTreePlayer.so
+#8  0x0000152b70f60f88 in ?? ()
+#9  0x0000152b501f5d60 in ?? ()
+#10 0x0000000000000000 in ?? ()
+
+Thread 5 (Thread 0x152b66c74640 (LWP 461903) "python"):
+#0  0x0000152b851fdda6 in inflate_fast () from /lib64/libz.so.1
+#1  0x0000152b852069e3 in inflate () from /lib64/libz.so.1
+#2  0x0000152b84305f71 in R__unzip () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libCore.so
+#3  0x0000152b6901b94f in TBasket::ReadBasketBuffers(long long, int, TFile*) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTree.so
+#4  0x0000152b69026a64 in TBranch::GetBasketImpl(int, TBuffer*) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTree.so
+#5  0x0000152b6902854d in TBranch::GetBasketAndFirst(TBasket*&, long long&, TBuffer*) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTree.so
+#6  0x0000152b69028737 in TBranch::GetEntry(long long, int) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTree.so
+#7  0x0000152b674f50ed in (anonymous namespace)::TObjectArrayReader::At(ROOT::Detail::TBranchProxy*, unsigned long) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTreePlayer.so
+#8  0x0000152b70f60f88 in ?? ()
+#9  0x0000152b605be3e0 in ?? ()
+#10 0x0000000000000000 in ?? ()
+
+Thread 4 (Thread 0x152b957fd640 (LWP 460383) "python"):
+#0  0x0000152b9fe868ba in __futex_abstimed_wait_common () from /lib64/libc.so.6
+#1  0x0000152b9fe890c0 in pthread_cond_wait
+
+GLIBC_2.3.2 () from /lib64/libc.so.6
+#2  0x0000152b9e2ad89b in blas_thread_server () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libopenblas.so.0
+#3  0x0000152b9fe89d22 in start_thread () from /lib64/libc.so.6
+#4  0x0000152b9ff0ed40 in clone3 () from /lib64/libc.so.6
+
+Thread 3 (Thread 0x152b9d9fe640 (LWP 460382) "python"):
+#0  0x0000152b9fe868ba in __futex_abstimed_wait_common () from /lib64/libc.so.6
+#1  0x0000152b9fe890c0 in pthread_cond_wait
+
+GLIBC_2.3.2 () from /lib64/libc.so.6
+#2  0x0000152b9e2ad89b in blas_thread_server () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libopenblas.so.0
+#3  0x0000152b9fe89d22 in start_thread () from /lib64/libc.so.6
+#4  0x0000152b9ff0ed40 in clone3 () from /lib64/libc.so.6
+
+Thread 2 (Thread 0x152b9dbff640 (LWP 460381) "python"):
+#0  0x0000152b9fe868ba in __futex_abstimed_wait_common () from /lib64/libc.so.6
+#1  0x0000152b9fe890c0 in pthread_cond_wait
+
+GLIBC_2.3.2 () from /lib64/libc.so.6
+#2  0x0000152b9e2ad89b in blas_thread_server () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libopenblas.so.0
+#3  0x0000152b9fe89d22 in start_thread () from /lib64/libc.so.6
+#4  0x0000152b9ff0ed40 in clone3 () from /lib64/libc.so.6
+
+Thread 1 (Thread 0x152ba061e740 (LWP 460377) "python"):
+#0  0x0000152b9fed8b3f in wait4 () from /lib64/libc.so.6
+#1  0x0000152b9fe4b283 in do_system () from /lib64/libc.so.6
+#2  0x0000152b8430fbd9 in TUnixSystem::StackTrace() () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libCore.so
+#3  0x0000152b847875e3 in (anonymous namespace)::TExceptionHandlerImp::HandleException(int) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libcppyy_backend3_9.so
+#4  0x0000152b8430f401 in TUnixSystem::DispatchSignals(ESignals) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libCore.so
+#5  <signal handler called>
+#6  0x0000152b6a55d2db in ?? ()
+#7  0x3eb6d64d60000000 in ?? ()
+#8  0x3fb528e0e0000000 in ?? ()
+#9  0xbfa01644c0000000 in ?? ()
+#10 0x3f52daa6a0000000 in ?? ()
+#11 0xbf67f6cba0000000 in ?? ()
+#12 0x3f64fa35c0000000 in ?? ()
+#13 0xbf67f6cba0000000 in ?? ()
+#14 0x3f7e7eec40000000 in ?? ()
+#15 0xbf7ab0ecc0000000 in ?? ()
+#16 0x3f64fa35c0000000 in ?? ()
+#17 0xbf7ab0ecc0000000 in ?? ()
+#18 0x3f7761b320000000 in ?? ()
+#19 0x3fb95dbba0000000 in ?? ()
+#20 0xbfb26a41e0000000 in ?? ()
+#21 0x00007ffda7468620 in ?? ()
+#22 0x3ea92a1fa0000000 in ?? ()
+#23 0xbf8b1afd80000000 in ?? ()
+#24 0x3f69d8f080000000 in ?? ()
+#25 0xbf8b1afd80000000 in ?? ()
+#26 0x3f7761b320000000 in ?? ()
+#27 0x3fb95dbba0000000 in ?? ()
+#28 0xbea30753e0000000 in ?? ()
+#29 0x3e8f400240000000 in ?? ()
+#30 0xbea30753e0000000 in ?? ()
+#31 0x3eb47ccb00000000 in ?? ()
+#32 0xbe920aaf80000000 in ?? ()
+#33 0x3e8f400240000000 in ?? ()
+#34 0xbe920aaf80000000 in ?? ()
+#35 0x00007ffda7468620 in ?? ()
+#36 0x3eb6d64d60000000 in ?? ()
+#37 0x3fb528e0e0000000 in ?? ()
+#38 0xbfa01644c0000000 in ?? ()
+#39 0x3f253fb3c0000000 in ?? ()
+#40 0xbf45d63720000000 in ?? ()
+#41 0x3f69d8f080000000 in ?? ()
+#42 0xbf45d63720000000 in ?? ()
+#43 0x3f66ecf1c0000000 in ?? ()
+#44 0x0000000016e8b940 in ?? ()
+#45 0x0000000016df93f0 in ?? ()
+#46 0x000000001721da80 in ?? ()
+#47 0x000000001709ff40 in ?? ()
+#48 0x0000000016f5b480 in ?? ()
+#49 0x00000000152eb7c0 in ?? ()
+#50 0x0000000016f8cdf0 in ?? ()
+#51 0x00000000172c3d30 in ?? ()
+#52 0x000000001731a960 in ?? ()
+#53 0x0000000017099580 in ?? ()
+#54 0x00000000170866d0 in ?? ()
+#55 0x0000000000000002 in ?? ()
+#56 0x0000152b77bae7f0 in ?? ()
+#57 0x0000152b75b8de70 in ?? ()
+#58 0x0000000011dd8480 in ?? ()
+#59 0x00007ffda7468760 in ?? ()
+#60 0x0000152b6a572314 in ?? ()
+#61 0x000000001731a960 in ?? ()
+#62 0x0000000016f8cdf0 in ?? ()
+#63 0x0000000017099580 in ?? ()
+#64 0x00000000172c3d30 in ?? ()
+#65 0x0000000016df93f0 in ?? ()
+#66 0x0000000016e8b940 in ?? ()
+#67 0x0000000011dd8480 in ?? ()
+#68 0x00000000b490557c in ?? ()
+#69 0x00007ffd3da94707 in ?? ()
+#70 0x0000152bbd00b226 in ?? ()
+#71 0x00007ffda7468630 in ?? ()
+#72 0x0000000800000000 in ?? ()
+#73 0x3fa6625f840e34ed in ?? ()
+#74 0x3fb7bbd7d2a82965 in ?? ()
+#75 0x3fde2e34cbb1285d in ?? ()
+#76 0x3f819a54e6ef6504 in ?? ()
+#77 0x0000000000000000 in ?? ()
+===========================================================
+
+
+The lines below might hint at the cause of the crash. If you see question
+marks as part of the stack trace, try to recompile with debugging information
+enabled and export CLING_DEBUG=1 environment variable before running.
+You may get help by asking at the ROOT forum https://root.cern/forum
+preferably using the command (.forum bug) in the ROOT prompt.
+Only if you are really convinced it is a bug in ROOT then please submit a
+report at https://root.cern/bugs or (preferably) using the command (.gh bug) in
+the ROOT prompt. Please post the ENTIRE stack trace
+from above as an attachment in addition to anything else
+that might help us fixing this issue.
+===========================================================
+#6  0x0000152b6a55d2db in ?? ()
+#7  0x3ec26ff280000000 in ?? ()
+#8  0x3fb58371a0000000 in ?? ()
+#9  0xbf9bc2ef20000000 in ?? ()
+#10 0x3fd579ffc0000000 in ?? ()
+#11 0xbfaf560020000000 in ?? ()
+#12 0x3fbfbf6420000000 in ?? ()
+#13 0xbfaf560020000000 in ?? ()
+#14 0x3f86dd7dc0000000 in ?? ()
+#15 0xbf97294920000000 in ?? ()
+#16 0x3fbfbf6420000000 in ?? ()
+#17 0xbf97294920000000 in ?? ()
+#18 0x3fa7776540000000 in ?? ()
+#19 0x3fd0b679c0000000 in ?? ()
+#20 0xbfadca6d20000000 in ?? ()
+#21 0x0000152b66470da0 in ?? ()
+#22 0x3eb0110ea0000000 in ?? ()
+#23 0x3f9823d740000000 in ?? ()
+#24 0xbfda3d3a40000000 in ?? ()
+#25 0x3f9823d740000000 in ?? ()
+#26 0x3fa7776540000000 in ?? ()
+#27 0x3fd0b679c0000000 in ?? ()
+#28 0x3e9233f060000000 in ?? ()
+#29 0xbeb11c8580000000 in ?? ()
+#30 0x3e9233f060000000 in ?? ()
+#31 0x3e97399740000000 in ?? ()
+#32 0xbe89143a80000000 in ?? ()
+#33 0xbeb11c8580000000 in ?? ()
+#34 0xbe89143a80000000 in ?? ()
+#35 0x0000152b66470da0 in ?? ()
+#36 0x3ec26ff280000000 in ?? ()
+#37 0x3fb58371a0000000 in ?? ()
+#38 0xbf9bc2ef20000000 in ?? ()
+#39 0x3fc70182e0000000 in ?? ()
+#40 0xbf852a1de0000000 in ?? ()
+#41 0xbfda3d3a40000000 in ?? ()
+#42 0xbf852a1de0000000 in ?? ()
+#43 0x3f4397f8c0000000 in ?? ()
+#44 0x0000152b58367640 in ?? ()
+#45 0x0000152b580f4820 in ?? ()
+#46 0x0000152b5817c7e0 in ?? ()
+#47 0x0000152b5817bce0 in ?? ()
+#48 0x0000152b5820e4b0 in ?? ()
+#49 0x0000152b5821d8e0 in ?? ()
+#50 0x0000152b5821afd0 in ?? ()
+#51 0x0000152b5822da20 in ?? ()
+#52 0x0000152b580d83a0 in ?? ()
+#53 0x0000152b5817d2e0 in ?? ()
+#54 0x0000152b580ca160 in ?? ()
+#55 0x0000000000000002 in ?? ()
+#56 0x0000152b77bae7f0 in ?? ()
+#57 0x0000152b75b8de70 in ?? ()
+#58 0x0000000011dd8510 in ?? ()
+#59 0x0000152b66470ee0 in ?? ()
+#60 0x0000152b6a572314 in ?? ()
+#61 0x0000152b580d83a0 in ?? ()
+#62 0x0000152b5821afd0 in ?? ()
+#63 0x0000152b5817d2e0 in ?? ()
+#64 0x0000152b5822da20 in ?? ()
+#65 0x0000152b580f4820 in ?? ()
+#66 0x0000152b58367640 in ?? ()
+#67 0x0000000011dd8510 in ?? ()
+#68 0x00000000b448a1d4 in ?? ()
+#69 0x0000152b3dac1b8d in ?? ()
+#70 0x0000152bbcde1779 in ?? ()
+#71 0x0000152b66470db0 in ?? ()
+#72 0x0000000800000000 in ?? ()
+#73 0x3fc703e1fa123d9d in ?? ()
+#74 0x3fe2d7af2c0443fd in ?? ()
+#75 0x3fd38b0dc23e3a03 in ?? ()
+#76 0x3fd630a59e465ef4 in ?? ()
+#77 0x0000000000000000 in ?? ()
+
+===========================================================
+
+
+ *** Break *** segmentation violation
+
+
+
+===========================================================
+There was a crash.
+This is the entire stack trace of all threads:
+===========================================================
+
+Thread 7 (Thread 0x152b66472640 (LWP 461905) "python"):
+#0  0x0000152b9fed8b3f in wait4 () from /lib64/libc.so.6
+#1  0x0000152b9fe4b283 in do_system () from /lib64/libc.so.6
+#2  0x0000152b8430fbd9 in TUnixSystem::StackTrace() () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libCore.so
+#3  0x0000152b84787463 in (anonymous namespace)::TExceptionHandlerImp::HandleException(int) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libcppyy_backend3_9.so
+#4  0x0000152b8430f401 in TUnixSystem::DispatchSignals(ESignals) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libCore.so
+#5  <signal handler called>
+#6  0x0000152b6a55d2db in ?? ()
+#7  0x3ec26ff280000000 in ?? ()
+#8  0x3fb58371a0000000 in ?? ()
+#9  0xbf9bc2ef20000000 in ?? ()
+#10 0x3fd579ffc0000000 in ?? ()
+#11 0xbfaf560020000000 in ?? ()
+#12 0x3fbfbf6420000000 in ?? ()
+#13 0xbfaf560020000000 in ?? ()
+#14 0x3f86dd7dc0000000 in ?? ()
+#15 0xbf97294920000000 in ?? ()
+#16 0x3fbfbf6420000000 in ?? ()
+#17 0xbf97294920000000 in ?? ()
+#18 0x3fa7776540000000 in ?? ()
+#19 0x3fd0b679c0000000 in ?? ()
+#20 0xbfadca6d20000000 in ?? ()
+#21 0x0000152b66470da0 in ?? ()
+#22 0x3eb0110ea0000000 in ?? ()
+#23 0x3f9823d740000000 in ?? ()
+#24 0xbfda3d3a40000000 in ?? ()
+#25 0x3f9823d740000000 in ?? ()
+#26 0x3fa7776540000000 in ?? ()
+#27 0x3fd0b679c0000000 in ?? ()
+#28 0x3e9233f060000000 in ?? ()
+#29 0xbeb11c8580000000 in ?? ()
+#30 0x3e9233f060000000 in ?? ()
+#31 0x3e97399740000000 in ?? ()
+#32 0xbe89143a80000000 in ?? ()
+#33 0xbeb11c8580000000 in ?? ()
+#34 0xbe89143a80000000 in ?? ()
+#35 0x0000152b66470da0 in ?? ()
+#36 0x3ec26ff280000000 in ?? ()
+#37 0x3fb58371a0000000 in ?? ()
+#38 0xbf9bc2ef20000000 in ?? ()
+#39 0x3fc70182e0000000 in ?? ()
+#40 0xbf852a1de0000000 in ?? ()
+#41 0xbfda3d3a40000000 in ?? ()
+#42 0xbf852a1de0000000 in ?? ()
+#43 0x3f4397f8c0000000 in ?? ()
+#44 0x0000152b58367640 in ?? ()
+#45 0x0000152b580f4820 in ?? ()
+#46 0x0000152b5817c7e0 in ?? ()
+#47 0x0000152b5817bce0 in ?? ()
+#48 0x0000152b5820e4b0 in ?? ()
+#49 0x0000152b5821d8e0 in ?? ()
+#50 0x0000152b5821afd0 in ?? ()
+#51 0x0000152b5822da20 in ?? ()
+#52 0x0000152b580d83a0 in ?? ()
+#53 0x0000152b5817d2e0 in ?? ()
+#54 0x0000152b580ca160 in ?? ()
+#55 0x0000000000000002 in ?? ()
+#56 0x0000152b77bae7f0 in ?? ()
+#57 0x0000152b75b8de70 in ?? ()
+#58 0x0000000011dd8510 in ?? ()
+#59 0x0000152b66470ee0 in ?? ()
+#60 0x0000152b6a572314 in ?? ()
+#61 0x0000152b580d83a0 in ?? ()
+#62 0x0000152b5821afd0 in ?? ()
+#63 0x0000152b5817d2e0 in ?? ()
+#64 0x0000152b5822da20 in ?? ()
+#65 0x0000152b580f4820 in ?? ()
+#66 0x0000152b58367640 in ?? ()
+#67 0x0000000011dd8510 in ?? ()
+#68 0x00000000b448a1d4 in ?? ()
+#69 0x0000152b3dac1b8d in ?? ()
+#70 0x0000152bbcde1779 in ?? ()
+#71 0x0000152b66470db0 in ?? ()
+#72 0x0000000800000000 in ?? ()
+#73 0x3fc703e1fa123d9d in ?? ()
+#74 0x3fe2d7af2c0443fd in ?? ()
+#75 0x3fd38b0dc23e3a03 in ?? ()
+#76 0x3fd630a59e465ef4 in ?? ()
+#77 0x0000000000000000 in ?? ()
+
+Thread 6 (Thread 0x152b66873640 (LWP 461904) "python"):
+#0  0x0000152b9ff5a1c9 in __memset_avx2_unaligned_erms () from /lib64/libc.so.6
+#1  0x0000152b841fb868 in TStorage::ReAllocChar(char*, unsigned long, unsigned long) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libCore.so
+#2  0x0000152b841ada1e in TBuffer::Expand(int, bool) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libCore.so
+#3  0x0000152b6901bda9 in TBasket::ReadBasketBuffers(long long, int, TFile*) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTree.so
+#4  0x0000152b69026a64 in TBranch::GetBasketImpl(int, TBuffer*) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTree.so
+#5  0x0000152b6902854d in TBranch::GetBasketAndFirst(TBasket*&, long long&, TBuffer*) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTree.so
+#6  0x0000152b69028737 in TBranch::GetEntry(long long, int) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTree.so
+#7  0x0000152b674f50ed in (anonymous namespace)::TObjectArrayReader::At(ROOT::Detail::TBranchProxy*, unsigned long) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTreePlayer.so
+#8  0x0000152b70f60f88 in ?? ()
+#9  0x0000152b51fc0e80 in ?? ()
+#10 0x0000000000000000 in ?? ()
+
+Thread 5 (Thread 0x152b66c74640 (LWP 461903) "python"):
+#0  0x0000152b9fefdaec in read () from /lib64/libc.so.6
+#1  0x0000152b83939972 in TFile::ReadBuffer(char*, int) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libRIO.so
+#2  0x0000152b83934cda in TFile::ReadBuffers(char*, long long*, int*, int) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libRIO.so
+#3  0x0000152b8392b2e1 in TFileCacheRead::ReadBufferExtNormal(char*, long long, int, int&) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libRIO.so
+#4  0x0000152b8392a720 in TFileCacheRead::ReadBuffer(char*, long long, int) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libRIO.so
+#5  0x0000152b6908cf05 in TTreeCache::ReadBufferNormal(char*, long long, int) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTree.so
+#6  0x0000152b6901b68e in TBasket::ReadBasketBuffers(long long, int, TFile*) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTree.so
+#7  0x0000152b69026a64 in TBranch::GetBasketImpl(int, TBuffer*) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTree.so
+#8  0x0000152b6902854d in TBranch::GetBasketAndFirst(TBasket*&, long long&, TBuffer*) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTree.so
+#9  0x0000152b69028737 in TBranch::GetEntry(long long, int) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTree.so
+#10 0x0000152b67510ad1 in ROOT::Internal::TTreeReaderValueBase::EReadStatus ROOT::Internal::TTreeReaderValueBase::ProxyReadTemplate<&ROOT::Detail::TBranchProxy::ReadNoParentNoBranchCountNoCollection>() () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTreePlayer.so
+#11 0x0000152b6750b8fd in ROOT::Internal::TTreeReaderValueBase::GetAddress() () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libTreePlayer.so
+#12 0x0000152b738e678b in ?? ()
+#13 0x0000152b66c72df0 in ?? ()
+#14 0x0000152b602ee4a0 in ?? ()
+#15 0x0000152b602ee4f0 in ?? ()
+#16 0x0000152b738e6ce0 in ?? ()
+#17 0x0000152b66c72e10 in ?? ()
+#18 0x0000152b738e6750 in ?? ()
+#19 0x0000152b66c72e20 in ?? ()
+#20 0x0000152b738e6733 in ?? ()
+#21 0x0000152b66c72e30 in ?? ()
+#22 0x0000152b738e3bba in ?? ()
+#23 0x0000152b66c72e50 in ?? ()
+#24 0x0000152b738e2724 in ?? ()
+#25 0x0000152b738d8000 in ?? ()
+#26 0x00000000000032c8 in ?? ()
+#27 0x0000152b66c72ed0 in ?? ()
+#28 0x0000152b738e25f3 in ?? ()
+#29 0x0000152b74f3c360 in ?? ()
+#30 0x0000152b74f3c350 in ?? ()
+#31 0x0000003000000003 in ?? ()
+#32 0x0000000000000000 in ?? ()
+
+Thread 4 (Thread 0x152b957fd640 (LWP 460383) "python"):
+#0  0x0000152b9fe868ba in __futex_abstimed_wait_common () from /lib64/libc.so.6
+#1  0x0000152b9fe890c0 in pthread_cond_wait
+
+GLIBC_2.3.2 () from /lib64/libc.so.6
+#2  0x0000152b9e2ad89b in blas_thread_server () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libopenblas.so.0
+#3  0x0000152b9fe89d22 in start_thread () from /lib64/libc.so.6
+#4  0x0000152b9ff0ed40 in clone3 () from /lib64/libc.so.6
+
+Thread 3 (Thread 0x152b9d9fe640 (LWP 460382) "python"):
+#0  0x0000152b9fe868ba in __futex_abstimed_wait_common () from /lib64/libc.so.6
+#1  0x0000152b9fe890c0 in pthread_cond_wait
+
+GLIBC_2.3.2 () from /lib64/libc.so.6
+#2  0x0000152b9e2ad89b in blas_thread_server () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libopenblas.so.0
+#3  0x0000152b9fe89d22 in start_thread () from /lib64/libc.so.6
+#4  0x0000152b9ff0ed40 in clone3 () from /lib64/libc.so.6
+
+Thread 2 (Thread 0x152b9dbff640 (LWP 460381) "python"):
+#0  0x0000152b9fe868ba in __futex_abstimed_wait_common () from /lib64/libc.so.6
+#1  0x0000152b9fe890c0 in pthread_cond_wait
+
+GLIBC_2.3.2 () from /lib64/libc.so.6
+#2  0x0000152b9e2ad89b in blas_thread_server () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libopenblas.so.0
+#3  0x0000152b9fe89d22 in start_thread () from /lib64/libc.so.6
+#4  0x0000152b9ff0ed40 in clone3 () from /lib64/libc.so.6
+
+Thread 1 (Thread 0x152ba061e740 (LWP 460377) "python"):
+#0  0x0000152b9fed8b3f in wait4 () from /lib64/libc.so.6
+#1  0x0000152b9fe4b283 in do_system () from /lib64/libc.so.6
+#2  0x0000152b8430fbd9 in TUnixSystem::StackTrace() () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libCore.so
+#3  0x0000152b847875e3 in (anonymous namespace)::TExceptionHandlerImp::HandleException(int) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libcppyy_backend3_9.so
+#4  0x0000152b8430f401 in TUnixSystem::DispatchSignals(ESignals) () from /cvmfs/sft.cern.ch/lcg/views/LCG_105b/x86_64-el9-gcc13-opt/lib/libCore.so
+#5  <signal handler called>
+#6  0x0000152b6a55d2db in ?? ()
+#7  0x3eb6d64d60000000 in ?? ()
+#8  0x3fb528e0e0000000 in ?? ()
+#9  0xbfa01644c0000000 in ?? ()
+#10 0x3f52daa6a0000000 in ?? ()
+#11 0xbf67f6cba0000000 in ?? ()
+#12 0x3f64fa35c0000000 in ?? ()
+#13 0xbf67f6cba0000000 in ?? ()
+#14 0x3f7e7eec40000000 in ?? ()
+#15 0xbf7ab0ecc0000000 in ?? ()
+#16 0x3f64fa35c0000000 in ?? ()
+#17 0xbf7ab0ecc0000000 in ?? ()
+#18 0x3f7761b320000000 in ?? ()
+#19 0x3fb95dbba0000000 in ?? ()
+#20 0xbfb26a41e0000000 in ?? ()
+#21 0x00007ffda7468620 in ?? ()
+#22 0x3ea92a1fa0000000 in ?? ()
+#23 0xbf8b1afd80000000 in ?? ()
+#24 0x3f69d8f080000000 in ?? ()
+#25 0xbf8b1afd80000000 in ?? ()
+#26 0x3f7761b320000000 in ?? ()
+#27 0x3fb95dbba0000000 in ?? ()
+#28 0xbea30753e0000000 in ?? ()
+#29 0x3e8f400240000000 in ?? ()
+#30 0xbea30753e0000000 in ?? ()
+#31 0x3eb47ccb00000000 in ?? ()
+#32 0xbe920aaf80000000 in ?? ()
+#33 0x3e8f400240000000 in ?? ()
+#34 0xbe920aaf80000000 in ?? ()
+#35 0x00007ffda7468620 in ?? ()
+#36 0x3eb6d64d60000000 in ?? ()
+#37 0x3fb528e0e0000000 in ?? ()
+#38 0xbfa01644c0000000 in ?? ()
+#39 0x3f253fb3c0000000 in ?? ()
+#40 0xbf45d63720000000 in ?? ()
+#41 0x3f69d8f080000000 in ?? ()
+#42 0xbf45d63720000000 in ?? ()
+#43 0x3f66ecf1c0000000 in ?? ()
+#44 0x0000000016e8b940 in ?? ()
+#45 0x0000000016df93f0 in ?? ()
+#46 0x000000001721da80 in ?? ()
+#47 0x000000001709ff40 in ?? ()
+#48 0x0000000016f5b480 in ?? ()
+#49 0x00000000152eb7c0 in ?? ()
+#50 0x0000000016f8cdf0 in ?? ()
+#51 0x00000000172c3d30 in ?? ()
+#52 0x000000001731a960 in ?? ()
+#53 0x0000000017099580 in ?? ()
+#54 0x00000000170866d0 in ?? ()
+#55 0x0000000000000002 in ?? ()
+#56 0x0000152b77bae7f0 in ?? ()
+#57 0x0000152b75b8de70 in ?? ()
+#58 0x0000000011dd8480 in ?? ()
+#59 0x00007ffda7468760 in ?? ()
+#60 0x0000152b6a572314 in ?? ()
+#61 0x000000001731a960 in ?? ()
+#62 0x0000000016f8cdf0 in ?? ()
+#63 0x0000000017099580 in ?? ()
+#64 0x00000000172c3d30 in ?? ()
+#65 0x0000000016df93f0 in ?? ()
+#66 0x0000000016e8b940 in ?? ()
+#67 0x0000000011dd8480 in ?? ()
+#68 0x00000000b490557c in ?? ()
+#69 0x00007ffd3da94707 in ?? ()
+#70 0x0000152bbd00b226 in ?? ()
+#71 0x00007ffda7468630 in ?? ()
+#72 0x0000000800000000 in ?? ()
+#73 0x3fa6625f840e34ed in ?? ()
+#74 0x3fb7bbd7d2a82965 in ?? ()
+#75 0x3fde2e34cbb1285d in ?? ()
+#76 0x3f819a54e6ef6504 in ?? ()
+#77 0x0000000000000000 in ?? ()
+===========================================================
+
+
+The lines below might hint at the cause of the crash. If you see question
+marks as part of the stack trace, try to recompile with debugging information
+enabled and export CLING_DEBUG=1 environment variable before running.
+You may get help by asking at the ROOT forum https://root.cern/forum
+preferably using the command (.forum bug) in the ROOT prompt.
+Only if you are really convinced it is a bug in ROOT then please submit a
+report at https://root.cern/bugs or (preferably) using the command (.gh bug) in
+the ROOT prompt. Please post the ENTIRE stack trace
+from above as an attachment in addition to anything else
+that might help us fixing this issue.
+===========================================================
+#6  0x0000152b6a55d2db in ?? ()
+#7  0x3ec26ff280000000 in ?? ()
+#8  0x3fb58371a0000000 in ?? ()
+#9  0xbf9bc2ef20000000 in ?? ()
+#10 0x3fd579ffc0000000 in ?? ()
+#11 0xbfaf560020000000 in ?? ()
+#12 0x3fbfbf6420000000 in ?? ()
+#13 0xbfaf560020000000 in ?? ()
+#14 0x3f86dd7dc0000000 in ?? ()
+#15 0xbf97294920000000 in ?? ()
+#16 0x3fbfbf6420000000 in ?? ()
+#17 0xbf97294920000000 in ?? ()
+#18 0x3fa7776540000000 in ?? ()
+#19 0x3fd0b679c0000000 in ?? ()
+#20 0xbfadca6d20000000 in ?? ()
+#21 0x0000152b66470da0 in ?? ()
+#22 0x3eb0110ea0000000 in ?? ()
+#23 0x3f9823d740000000 in ?? ()
+#24 0xbfda3d3a40000000 in ?? ()
+#25 0x3f9823d740000000 in ?? ()
+#26 0x3fa7776540000000 in ?? ()
+#27 0x3fd0b679c0000000 in ?? ()
+#28 0x3e9233f060000000 in ?? ()
+#29 0xbeb11c8580000000 in ?? ()
+#30 0x3e9233f060000000 in ?? ()
+#31 0x3e97399740000000 in ?? ()
+#32 0xbe89143a80000000 in ?? ()
+#33 0xbeb11c8580000000 in ?? ()
+#34 0xbe89143a80000000 in ?? ()
+#35 0x0000152b66470da0 in ?? ()
+#36 0x3ec26ff280000000 in ?? ()
+#37 0x3fb58371a0000000 in ?? ()
+#38 0xbf9bc2ef20000000 in ?? ()
+#39 0x3fc70182e0000000 in ?? ()
+#40 0xbf852a1de0000000 in ?? ()
+#41 0xbfda3d3a40000000 in ?? ()
+#42 0xbf852a1de0000000 in ?? ()
+#43 0x3f4397f8c0000000 in ?? ()
+#44 0x0000152b58367640 in ?? ()
+#45 0x0000152b580f4820 in ?? ()
+#46 0x0000152b5817c7e0 in ?? ()
+#47 0x0000152b5817bce0 in ?? ()
+#48 0x0000152b5820e4b0 in ?? ()
+#49 0x0000152b5821d8e0 in ?? ()
+#50 0x0000152b5821afd0 in ?? ()
+#51 0x0000152b5822da20 in ?? ()
+#52 0x0000152b580d83a0 in ?? ()
+#53 0x0000152b5817d2e0 in ?? ()
+#54 0x0000152b580ca160 in ?? ()
+#55 0x0000000000000002 in ?? ()
+#56 0x0000152b77bae7f0 in ?? ()
+#57 0x0000152b75b8de70 in ?? ()
+#58 0x0000000011dd8510 in ?? ()
+#59 0x0000152b66470ee0 in ?? ()
+#60 0x0000152b6a572314 in ?? ()
+#61 0x0000152b580d83a0 in ?? ()
+#62 0x0000152b5821afd0 in ?? ()
+#63 0x0000152b5817d2e0 in ?? ()
+#64 0x0000152b5822da20 in ?? ()
+#65 0x0000152b580f4820 in ?? ()
+#66 0x0000152b58367640 in ?? ()
+#67 0x0000000011dd8510 in ?? ()
+#68 0x00000000b448a1d4 in ?? ()
+#69 0x0000152b3dac1b8d in ?? ()
+#70 0x0000152bbcde1779 in ?? ()
+#71 0x0000152b66470db0 in ?? ()
+#72 0x0000000800000000 in ?? ()
+#73 0x3fc703e1fa123d9d in ?? ()
+#74 0x3fe2d7af2c0443fd in ?? ()
+#75 0x3fd38b0dc23e3a03 in ?? ()
+#76 0x3fd630a59e465ef4 in ?? ()
+#77 0x0000000000000000 in ?? ()
+
+===========================================================
+
+
+/user/yvekemans/MasterThesis/ZHTollSS_analysis/AnalyzeJob.sh: line 31: 460377 Segmentation fault      (core dumped) python src/RDataFrames_ZH_analyzer.py -c $cfg --cuts $cuts -o $output -y $year --flow $flow --fhigh $fhigh --dname $dname

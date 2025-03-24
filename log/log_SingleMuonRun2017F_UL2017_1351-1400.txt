@@ -74,3 +74,111 @@
 
 	Job terminated of its own accord at 2025-03-18T18:48:22Z with exit-code 0.
 ...
+000 (65148.027.000) 2025-03-20 18:28:31 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_1892_5546>
+...
+001 (65148.027.000) 2025-03-20 18:29:02 Job executing on host: <192.168.38.1:9618?addrs=192.168.38.1-9618+[2001-6a8-1080--c-3801]-9618&alias=node38-1.wn.iihe.ac.be&noUDP&sock=startd_6797_c14f>
+	SlotName: slot1_97@node38-1.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_567216"
+	Cpus = 4
+	Disk = 7649
+	GPUs = 0
+	Memory = 100
+...
+006 (65148.027.000) 2025-03-20 18:29:11 Image size of job updated: 157412
+	154  -  MemoryUsage of job (MB)
+	157412  -  ResidentSetSize of job (KB)
+...
+006 (65148.027.000) 2025-03-20 18:34:12 Image size of job updated: 170684
+	163  -  MemoryUsage of job (MB)
+	166772  -  ResidentSetSize of job (KB)
+...
+006 (65148.027.000) 2025-03-20 18:43:00 Image size of job updated: 170684
+	165  -  MemoryUsage of job (MB)
+	168380  -  ResidentSetSize of job (KB)
+...
+006 (65148.027.000) 2025-03-20 18:51:40 Image size of job updated: 174688
+	165  -  MemoryUsage of job (MB)
+	168508  -  ResidentSetSize of job (KB)
+...
+006 (65148.027.000) 2025-03-20 18:56:41 Image size of job updated: 266604
+	241  -  MemoryUsage of job (MB)
+	246688  -  ResidentSetSize of job (KB)
+...
+006 (65148.027.000) 2025-03-20 19:06:38 Image size of job updated: 448916
+	256  -  MemoryUsage of job (MB)
+	261384  -  ResidentSetSize of job (KB)
+...
+006 (65148.027.000) 2025-03-20 19:11:38 Image size of job updated: 448916
+	257  -  MemoryUsage of job (MB)
+	262912  -  ResidentSetSize of job (KB)
+...
+006 (65148.027.000) 2025-03-20 19:16:39 Image size of job updated: 448916
+	404  -  MemoryUsage of job (MB)
+	413616  -  ResidentSetSize of job (KB)
+...
+006 (65148.027.000) 2025-03-20 19:21:39 Image size of job updated: 456032
+	404  -  MemoryUsage of job (MB)
+	413616  -  ResidentSetSize of job (KB)
+...
+006 (65148.027.000) 2025-03-20 19:31:40 Image size of job updated: 4263356
+	4106  -  MemoryUsage of job (MB)
+	4203756  -  ResidentSetSize of job (KB)
+...
+006 (65148.027.000) 2025-03-20 19:36:41 Image size of job updated: 6167896
+	4106  -  MemoryUsage of job (MB)
+	4203756  -  ResidentSetSize of job (KB)
+...
+006 (65148.027.000) 2025-03-20 19:41:41 Image size of job updated: 6560572
+	6274  -  MemoryUsage of job (MB)
+	6424320  -  ResidentSetSize of job (KB)
+...
+006 (65148.027.000) 2025-03-20 19:46:42 Image size of job updated: 6919040
+	6601  -  MemoryUsage of job (MB)
+	6759176  -  ResidentSetSize of job (KB)
+...
+005 (65148.027.000) 2025-03-20 19:48:49 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:06:27, Sys 0 00:00:48  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:06:27, Sys 0 00:00:48  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.69        4         4 
+	   Disk (KB)            :     1           1      7649 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  6601           1       100 
+	   TimeExecute (s)      :  4787                       
+	   TimeSlotBusy (s)     :  4787                       
+
+	Job terminated of its own accord at 2025-03-20T18:48:49Z with exit-code 0.
+...
+000 (66027.027.000) 2025-03-21 14:25:01 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_1892_5546>
+...
+021 (66027.027.000) 2025-03-21 14:27:48 Error from starter on slot1_13@node34-9.wn.iihe.ac.be:
+	Failed to open '/ada_mnt/ada/user/yvekemans/MasterThesis/ZHTollSS_analysis/plots/UL2017/Data/KaonAssumption/test/Data/SingleMuonRun2017F/output_SingleMuonRun2017F_1351-1400.root' as standard output: Permission denied (errno 13)
+	Code 7 Subcode 13
+...
+004 (66027.027.000) 2025-03-21 14:27:48 Job was evicted.
+	(0) CPU times
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	Error from slot1_13@node34-9.wn.iihe.ac.be: Failed to open '/ada_mnt/ada/user/yvekemans/MasterThesis/ZHTollSS_analysis/plots/UL2017/Data/KaonAssumption/test/Data/SingleMuonRun2017F/output_SingleMuonRun2017F_1351-1400.root' as standard output: Permission denied (errno 13)
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :                 4         4 
+	   Disk (KB)            :        1        1      4243 
+	   GPUs                 :                           0 
+	   Memory (MB)          :                 1       100 
+...
+012 (66027.027.000) 2025-03-21 14:27:50 Job was held.
+	Error from slot1_13@node34-9.wn.iihe.ac.be: Failed to open '/ada_mnt/ada/user/yvekemans/MasterThesis/ZHTollSS_analysis/plots/UL2017/Data/KaonAssumption/test/Data/SingleMuonRun2017F/output_SingleMuonRun2017F_1351-1400.root' as standard output: Permission denied (errno 13)
+	Code 7 Subcode 13
+...
+009 (66027.027.000) 2025-03-21 14:44:46 Job was aborted.
+	via condor_rm (by user yvekemans)
+...

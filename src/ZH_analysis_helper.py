@@ -1,4 +1,64 @@
 import ROOT
+def gInterpreter_PFIsolation():
+    getPFIsolation_code = '''
+        using FourVectorPxPyPzE = ROOT::Math::PxPyPzEVector;
+        using namespace ROOT::VecOps;
+
+        RVec<Float_t> PFIsolation(TString ptype, FourVector &Trk, int trk_ind, int trk_exc, 
+        const RVec<Float_t> packedCandsPx, const RVec<Float_t> packedCandsPy, const RVec<Float_t> packedCandsPz, const RVec<Float_t> packedCandsE, 
+        const RVec<Int_t> packedCandsCharge, const RVec<Int_t> packedCandsPdgId, const RVec<Int_t> packedCandsFromPV, Int_t numPackedCands, double dr_max = 0.4) {
+        float nh_iso {0.0};
+        float ph_iso {0.0};
+        float ch_iso {0.0};
+        float pu_iso {0.0};
+        float dr_trk_packedCandVec {99.};
+        RVec<Float_t> pfiso(5);
+        int count = 0;
+        bool verbose_=false;
+        if (verbose_) {
+            std::cout<<"Check the PFCandidates for isolation!"<<std::endl;
+            std::cout<<"Reco primary trk (type,index,pt,eta,phi):"<<ptype<<","<<trk_ind<<","<<Trk.Pt()<<","<<Trk.Eta()<<","<<Trk.Phi()<<std::endl;
+            }
+        for (int k = 0; k < numPackedCands; k++) {
+            if (ptype.Contains("hadron")) {
+            if ( k == trk_ind || k == trk_exc ) continue;
+            }
+
+            FourVectorPxPyPzE packedCandVec {packedCandsPx[k], packedCandsPy[k], packedCandsPz[k], packedCandsE[k]};
+            if (packedCandVec.Pt()<0.5) continue;
+            dr_trk_packedCandVec = ROOT::Math::VectorUtil::DeltaR(Trk, packedCandVec);
+            if ((verbose_) && (dr_trk_packedCandVec < dr_max)) {
+            std::cout<<"Nearby trk (index,pt,eta,phi,pdg):"<<k<<","<<packedCandVec.Pt()<<","<<packedCandVec.Eta()<<","<<packedCandVec.Phi()<<","<<packedCandsPdgId[k]<<std::endl;
+            }
+            if ( std::abs(packedCandsPdgId[k]) == 11 ||  std::abs(packedCandsPdgId[k]) == 13) continue; //rejecting muon/ele tracks
+            if ( packedCandsCharge[k] == 0 ) {
+            if ( dr_trk_packedCandVec < dr_max ) { 
+                if (packedCandsPdgId[k] == 22) ph_iso += packedCandVec.Et();
+                else nh_iso += packedCandVec.Et();
+            }
+            }
+            else {
+            if ( packedCandsFromPV[k] >= 2 ) {
+                if ( dr_trk_packedCandVec < dr_max )  ch_iso += packedCandVec.Pt();
+            }
+            else {
+                if ( dr_trk_packedCandVec  < dr_max )  pu_iso += packedCandVec.Pt();
+            }
+            }
+        }
+        float iso  = ch_iso  + std::max( float(0.0), nh_iso+ph_iso - float(0.5*pu_iso)  );
+        float RelIso;
+        RelIso = iso/(Trk.Pt()+1.0e-06);
+        if (verbose_) std::cout<<"All the iso values (reliso, iso, ch_iso, ph_iso, nh_iso, pu_iso):"<<RelIso<<","<<iso<<","<<ch_iso<<","<<ph_iso<<","<<nh_iso<<","<<pu_iso<<std::endl;
+        pfiso[0]=RelIso;
+        pfiso[1]=ch_iso;
+        pfiso[2]=nh_iso;
+        pfiso[3]=ph_iso;
+        pfiso[4]=pu_iso;
+        return pfiso;
+        }
+    '''
+    ROOT.gInterpreter.Declare(getPFIsolation_code)
 
 def gInterpreter_diObjectLxy():
     getLxy_code = '''

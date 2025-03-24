@@ -74,3 +74,79 @@
 
 	Job terminated of its own accord at 2025-03-18T18:48:35Z with exit-code 0.
 ...
+000 (65148.045.000) 2025-03-20 18:28:32 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_1892_5546>
+...
+001 (65148.045.000) 2025-03-20 18:29:08 Job executing on host: <192.168.38.4:9618?addrs=192.168.38.4-9618+[2001-6a8-1080--c-3804]-9618&alias=node38-4.wn.iihe.ac.be&noUDP&sock=startd_6300_dabe>
+	SlotName: slot1_119@node38-4.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_798896"
+	Cpus = 4
+	Disk = 7674
+	GPUs = 0
+	Memory = 100
+...
+006 (65148.045.000) 2025-03-20 18:29:16 Image size of job updated: 167132
+	163  -  MemoryUsage of job (MB)
+	166888  -  ResidentSetSize of job (KB)
+...
+006 (65148.045.000) 2025-03-20 18:34:16 Image size of job updated: 357156
+	345  -  MemoryUsage of job (MB)
+	352764  -  ResidentSetSize of job (KB)
+...
+006 (65148.045.000) 2025-03-20 18:39:17 Image size of job updated: 7893360
+	7621  -  MemoryUsage of job (MB)
+	7803596  -  ResidentSetSize of job (KB)
+...
+006 (65148.045.000) 2025-03-20 18:44:18 Image size of job updated: 8280072
+	7988  -  MemoryUsage of job (MB)
+	8179116  -  ResidentSetSize of job (KB)
+...
+006 (65148.045.000) 2025-03-20 18:46:03 Image size of job updated: 8303188
+	7988  -  MemoryUsage of job (MB)
+	8179116  -  ResidentSetSize of job (KB)
+...
+005 (65148.045.000) 2025-03-20 18:46:03 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:07:46, Sys 0 00:00:19  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:07:46, Sys 0 00:00:19  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.92        4         4 
+	   Disk (KB)            :     1           1      7674 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  7988           1       100 
+	   TimeExecute (s)      :  1015                       
+	   TimeSlotBusy (s)     :  1015                       
+
+	Job terminated of its own accord at 2025-03-20T17:46:03Z with exit-code 0.
+...
+000 (66027.045.000) 2025-03-21 14:25:02 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_1892_5546>
+...
+021 (66027.045.000) 2025-03-21 14:30:10 Error from starter on slot1_6@node33-9.wn.iihe.ac.be:
+	Failed to open '/ada_mnt/ada/user/yvekemans/MasterThesis/ZHTollSS_analysis/plots/UL2017/Data/KaonAssumption/test/Data/SingleMuonRun2017F/output_SingleMuonRun2017F_2251-2300.root' as standard output: Permission denied (errno 13)
+	Code 7 Subcode 13
+...
+004 (66027.045.000) 2025-03-21 14:30:10 Job was evicted.
+	(0) CPU times
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	Error from slot1_6@node33-9.wn.iihe.ac.be: Failed to open '/ada_mnt/ada/user/yvekemans/MasterThesis/ZHTollSS_analysis/plots/UL2017/Data/KaonAssumption/test/Data/SingleMuonRun2017F/output_SingleMuonRun2017F_2251-2300.root' as standard output: Permission denied (errno 13)
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :                 4         4 
+	   Disk (KB)            :        1        1      4327 
+	   GPUs                 :                           0 
+	   Memory (MB)          :                 1       100 
+...
+012 (66027.045.000) 2025-03-21 14:30:11 Job was held.
+	Error from slot1_6@node33-9.wn.iihe.ac.be: Failed to open '/ada_mnt/ada/user/yvekemans/MasterThesis/ZHTollSS_analysis/plots/UL2017/Data/KaonAssumption/test/Data/SingleMuonRun2017F/output_SingleMuonRun2017F_2251-2300.root' as standard output: Permission denied (errno 13)
+	Code 7 Subcode 13
+...
+009 (66027.045.000) 2025-03-21 14:44:48 Job was aborted.
+	via condor_rm (by user yvekemans)
+...

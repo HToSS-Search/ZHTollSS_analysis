@@ -74,3 +74,67 @@
 
 	Job terminated of its own accord at 2025-03-18T18:49:02Z with exit-code 0.
 ...
+000 (65148.053.000) 2025-03-20 18:28:32 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_1892_5546>
+...
+001 (65148.053.000) 2025-03-20 18:29:11 Job executing on host: <192.168.34.12:9618?addrs=192.168.34.12-9618+[2001-6a8-1080--c-3412]-9618&alias=node34-12.wn.iihe.ac.be&noUDP&sock=startd_2672_5925>
+	SlotName: slot1_24@node34-12.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_2619202"
+	Cpus = 4
+	Disk = 4241
+	GPUs = 0
+	Memory = 100
+...
+006 (65148.053.000) 2025-03-20 18:29:20 Image size of job updated: 167856
+	164  -  MemoryUsage of job (MB)
+	167324  -  ResidentSetSize of job (KB)
+...
+006 (65148.053.000) 2025-03-20 18:33:36 Image size of job updated: 6628588
+	5651  -  MemoryUsage of job (MB)
+	5785760  -  ResidentSetSize of job (KB)
+...
+005 (65148.053.000) 2025-03-20 18:33:36 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:06:57, Sys 0 00:00:17  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:06:57, Sys 0 00:00:17  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     1.65        4         4 
+	   Disk (KB)            :     1           1      4241 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  5651           1       100 
+	   TimeExecute (s)      :   265                       
+	   TimeSlotBusy (s)     :   265                       
+
+	Job terminated of its own accord at 2025-03-20T17:33:36Z with exit-code 0.
+...
+000 (66027.053.000) 2025-03-21 14:25:02 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_1892_5546>
+...
+021 (66027.053.000) 2025-03-21 14:30:13 Error from starter on slot1_9@node34-9.wn.iihe.ac.be:
+	Failed to open '/ada_mnt/ada/user/yvekemans/MasterThesis/ZHTollSS_analysis/plots/UL2017/Data/KaonAssumption/test/Data/SingleMuonRun2017F/output_SingleMuonRun2017F_2651-2700.root' as standard output: Permission denied (errno 13)
+	Code 7 Subcode 13
+...
+004 (66027.053.000) 2025-03-21 14:30:13 Job was evicted.
+	(0) CPU times
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	Error from slot1_9@node34-9.wn.iihe.ac.be: Failed to open '/ada_mnt/ada/user/yvekemans/MasterThesis/ZHTollSS_analysis/plots/UL2017/Data/KaonAssumption/test/Data/SingleMuonRun2017F/output_SingleMuonRun2017F_2651-2700.root' as standard output: Permission denied (errno 13)
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :                 4         4 
+	   Disk (KB)            :        1        1      4243 
+	   GPUs                 :                           0 
+	   Memory (MB)          :                 1       100 
+...
+012 (66027.053.000) 2025-03-21 14:30:14 Job was held.
+	Error from slot1_9@node34-9.wn.iihe.ac.be: Failed to open '/ada_mnt/ada/user/yvekemans/MasterThesis/ZHTollSS_analysis/plots/UL2017/Data/KaonAssumption/test/Data/SingleMuonRun2017F/output_SingleMuonRun2017F_2651-2700.root' as standard output: Permission denied (errno 13)
+	Code 7 Subcode 13
+...
+009 (66027.053.000) 2025-03-21 14:44:50 Job was aborted.
+	via condor_rm (by user yvekemans)
+...
