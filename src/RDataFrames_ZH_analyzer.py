@@ -52,7 +52,7 @@ data_loc = conf_pars['locations']
 cross_section = 1 if 'Run' in args.config else conf_pars['cross_section']
 sum_wts = 1 if 'Run' in args.config else conf_pars['sum_weights']
 # lumi = 1 if 'Run' in args.config else 41474 #2017 for now
-lumi = 1 if 'Run' in args.config else lumi_factor
+# lumi = 1 if 'Run' in args.config else lumi_factor
 # lumi = 1 if 'Run' in args.config else 4247.682053046 #2017D for now
 isData = True if 'Run' in args.dname else False
 
@@ -106,20 +106,23 @@ for dirtmp in directories:
 
 #sys.stderr.write(str(list_of_files))
 
-
-
+#Hardcoded MC Files for the sum of weights calculation
+#list_of_files = ['/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ZH_HToSSTo4Hadrons_ZToLL_MH125_MS1p2_ctauS0_TuneCP2_13TeV-powheg-pythia8/RunIIUL17/241208/new/output_13.root','/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ZH_HToSSTo4Hadrons_ZToLL_MH125_MS1p2_ctauS0_TuneCP2_13TeV-powheg-pythia8/RunIIUL17/241208/new/output_23.root','/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ZH_HToSSTo4Hadrons_ZToLL_MH125_MS1p2_ctauS0_TuneCP2_13TeV-powheg-pythia8/RunIIUL17/241208/new/output_22.root','/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ZH_HToSSTo4Hadrons_ZToLL_MH125_MS1p2_ctauS0_TuneCP2_13TeV-powheg-pythia8/RunIIUL17/241208/new/output_28.root','/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ZH_HToSSTo4Hadrons_ZToLL_MH125_MS1p2_ctauS0_TuneCP2_13TeV-powheg-pythia8/RunIIUL17/241208/new/output_9.root']
+ 
 ###################### CALCULATION OF SUM OF WEIGHTS ####################
 if args.onlyweights:
     # sum_wts calculated here
     sys.stderr.write("enters sum weights calculation")
     #sys.stderr.write(list_of_files)
-    if not 'Run' in args.config:
+    if not isData:
+        print('weights...')
         if not isinstance(list_of_files, list):
             file = ROOT.TFile(list_of_files)
             weightPlot = file.Get("makeTopologyNtupleMiniAOD/weightHisto").Clone()
             weightPlot.SetDirectory(0)
             file.Close()
         else:
+            print(list_of_files[0])
             file = ROOT.TFile(list_of_files[0])
             weightPlot = file.Get("makeTopologyNtupleMiniAOD/weightHisto").Clone()
             weightPlot.SetDirectory(0)
@@ -132,7 +135,7 @@ if args.onlyweights:
                 try:
                     # Open the ROOT file
                     file = ROOT.TFile.Open(fistr)
-
+                    print(fistr)
                     # Check if the file was opened successfully
                     if not file or file.IsZombie() or file.TestBit(ROOT.TFile.kRecovered):
                         raise Exception(f"Error opening file: {fistr}")
@@ -149,7 +152,7 @@ if args.onlyweights:
                     continue  # Continue to the next file in case of an error
         totalEvents_ = weightPlot.GetBinContent(2) - weightPlot.GetBinContent(3) # bins filled from 1, but bins available from 0
         sum_wts = totalEvents_
-    sys.stderr.write("sum of weights:"+str(sum_wts)+"\n")
+    sys.stderr.write("\n\nsum of weights:"+str(sum_wts)+"\n")
     fout = ROOT.TFile(args.output,"RECREATE")
     weightPlot.Write()
     fout.Close()
@@ -322,8 +325,8 @@ else:
     #Rescale dataset weight with pileup weights
     df = df.Define('PUReweight_sf','GetTheMap()[floor(numVert)]')
     df = df.Define('weight_tmp','weightOnlyDataset*PUReweight_sf')
-    #CURRENTLY HARDCODE WEIGHT TO BE 1 UNTIL FIXED
-    df = df.Define('weight', '1')
+    #CURRENTLY HARDCODE WEIGHT TO BE DATASETWEIGHT*PILEUP UNTIL FIXED
+    df = df.Define('weight', 'weight_tmp')
 
 #LATER ON IN CODE WILL UPDATE WEIGHTS WITH SCALE FACTORS WHERE NEEDED
 

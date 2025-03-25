@@ -162,41 +162,35 @@ def main():
     lumi_factor = lumi_scale[args.year]
 
     indir = args.input
-    for dname in datasets_dict:
-        print(dname)
-        if 'Run' in dname:
-            print('here')
-            tag = '_onlyData'
-            fin = ROOT.TFile(indir+"/Data/"+ "output_" + dname + ".root", "READ")
-        elif 'ZHTollSS' in dname:
-            print('here1')
-            tag = '_onlySignal'
-            fin = ROOT.TFile(indir+"/ZH/"+ "output_" + dname + ".root", "READ")
-            fin.ls()
-        for key in histo_dict:
-            leg = ROOT.TLegend(0.5, 0.65, 0.95, 0.92)
-            leg.SetBorderSize(0)
-            leg.SetFillStyle(0)
-            leg.SetNColumns(2)
-            leg.SetTextSize(0.022)
-            savename=key + tag
-            boundary_percent = 0.35
-            ylength_c = int(2400*(1-boundary_percent+0.15))
-            c1 = TCanvas(savename, savename, 2200, ylength_c)
-            pad1 = ROOT.TPad("pad1", "pad1", 0, 0, 1, 1)
-            pad1.SetTopMargin(0.06)
-            pad1.SetBottomMargin(0.15)
-            pad1.SetLeftMargin(0.16)
-            pad1.SetRightMargin(0.04)
-            #pad1.SetGridx()
-            pad1.Draw()
-            # Lower ratio plot is pad2
-            c1.cd()
-            pad1.cd()
-            if args.log:
-                # c1.SetLogy()
-                pad1.SetLogy()
-                # pad1.SetLogx()
+    for key in histo_dict:
+        print(key)
+        leg = ROOT.TLegend(0.5, 0.65, 0.95, 0.92)
+        leg.SetBorderSize(0)
+        leg.SetFillStyle(0)
+        leg.SetNColumns(2)
+        leg.SetTextSize(0.022)
+        boundary_percent = 0.35
+        ylength_c = int(2400*(1-boundary_percent+0.15))
+        savename = key + '_DataMC'
+        c1, pad1, pad2 = createCanvasPads(savename)
+        # Lower ratio plot is pad2
+        c1.cd()
+        pad1.cd()
+        if args.log:
+            # c1.SetLogy()
+            pad1.SetLogy()
+            # pad1.SetLogx()
+
+        hists = []    
+        ymax_arr = []
+        for dno,dname in enumerate(datasets_dict):
+            print(dname)
+            if 'Run' in dname:
+                fin = ROOT.TFile(indir+"/Data/"+ "output_" + dname + ".root", "READ")
+            elif 'ZHTollSS' in dname:
+                fin = ROOT.TFile(indir+"/ZH/"+ "output_" + dname + ".root", "READ")
+
+            print(indir+"/"+ "output_" + dname + ".root")
             
             hprop = histo_dict[key]
             histname = hprop['hname']
@@ -206,48 +200,96 @@ def main():
             #h_1.Rebin(hprop['hrebin'])
             if 'ZHTollSS' in dname:
                 h_1.Scale(lumi_factor)
-            #if args.norm:
-            #    h_1.Scale(1/h_1.Integral())
-            #datasets_dict[dname]['integral']=h_1.Integral()
+            
             color_ = datasets_dict[dname]['color']
             h_1.SetFillColor(color_)
             h_1.SetFillStyle(0) # hollow hist
             h_1.SetMarkerColor(color_)
             h_1.SetLineColor(color_)
             h_1.SetMarkerStyle(8)
-            #h_1.SetLineStyle(ctau_style_map[dname.split('_')[-1]])
             h_1.SetLineWidth(4)
             h_1.SetMarkerSize(m_size)
             h_1.GetXaxis().SetRangeUser(hprop['xlow'],hprop['xhigh'])
+            # if args.log:
+            #     h_1.GetXaxis().SetLimits(1e-2,1e2)
             h_1.GetXaxis().SetTitle(hprop['label'])
+            # h_1.GetYaxis().SetTitle("Normalized Events / "+str(h_1.GetXaxis().GetBinWidth(1)))
+            # h_1.GetYaxis().SetTitle("Events/#Sigma(wts) / "+str(h_1.GetXaxis().GetBinWidth(1)))
+            
+            
             leg.AddEntry(h_1, datasets_dict[dname]['label'], "l")
+            
+            if args.log:
+                if args.norm:
+                    h_1.SetMinimum(1e-3)
+                    h_1.SetMaximum(3)
+                else:
+                    if args.analysis:
+                        h_1.SetMinimum(1e-3)
+                    else:
+                        h_1.SetMinimum(1)
+                    h_1.SetMaximum(1e4)
+            else:
+                h_1.SetMinimum(0.)
+                ymax = args.yhigh*h_1.GetMaximum()
+           
+            ymax = h_1.GetMaximum()
+            ymax_arr.append(ymax)
+
             h_1.GetXaxis().SetTitleSize(0.05)
             h_1.GetYaxis().SetTitleSize(0.05)
             h_1.GetXaxis().SetLabelSize(0.045)
             h_1.GetYaxis().SetLabelSize(0.045)
             h_1.GetXaxis().SetTitleOffset(1.1)
             h_1.GetYaxis().SetTitleOffset(1.4)
-            h_1.Draw('hist')
 
-            leg.Draw()
-            pad1.Modified()
-            pad1.Update()           
-            #CMS_lumi.cmsText = 'CMS'
-            #CMS_lumi.writeExtraText = True
-            #CMS_lumi.extraText = 'Work in Progress'
-            #CMS_lumi.lumi_13TeV = args.year+" MC"
-            #CMS_lumi.lumiTextSize = 0.5
-            #CMS_lumi.cmsTextSize=1.
-            #CMS_lumi.CMS_lumi(pad1, 4, 11)
+            hists.append(h_1)
+            fin.Close()
 
-            pad1.Modified()
-            pad1.Update()
-            c1.Modified()
-            c1.Update()
-            c1.SaveAs(args.out+'/'+savename+'.png')
-            c1.SaveAs(args.out+'/'+savename+'.pdf')
-        fin.Close()
+        hists[0].SetMaximum(max(ymax_arr)*1.1)
+        hists[1].SetMaximum(max(ymax_arr)*1.1)
+        hists[0].Draw('hist')
+        hists[1].Draw('same')
+        leg.Draw("same")
+        pad1.Modified()
+        pad1.Update()
+
+        #if ('RelIso' in key):
+        #    iso_val=iso_dict[key]
+        #    l1 = ROOT.TLine(iso_val,0,iso_val,h_1.GetMaximum())
+        #    l1.SetLineWidth(4)
+        #    l1.SetLineStyle(7)
+        #    l1.SetLineColor(ROOT.kRed)
+        #    l1.Draw("same")
+        #pad1.Modified()
+        #pad1.Update()
+
+        #CMS_lumi.cmsText = 'CMS'
+        #CMS_lumi.writeExtraText = True
+        #CMS_lumi.extraText = 'Work in Progress'
+        #CMS_lumi.lumi_13TeV = args.year+" MC"
+        #CMS_lumi.lumiTextSize = 0.5
+        #CMS_lumi.cmsTextSize=1.
+        #CMS_lumi.CMS_lumi(pad1, 4, 11)
+
+        #pad1.Modified()
+        #pad1.Update()
+        
+        pad2.cd()
+        h_ratio = createRatio(hists[1], hists[0])
+        h_ratio.Draw('E')
+        pad2.Modified()
+        pad2.Update()
+
+        c1.Modified()
+        c1.Update()
+        c1.SaveAs(args.out+'/'+savename+'.png')
+        c1.SaveAs(args.out+'/'+savename+'.pdf')
+        # c1.SaveAs(args.out+'/'+dirn+savename+'.root')
+        # c1.Clear()
+        # c1.Delete()
     gc.enable()
 
+    #c.Print(args.out+savename+'.root')
 if __name__ == '__main__':
     main()

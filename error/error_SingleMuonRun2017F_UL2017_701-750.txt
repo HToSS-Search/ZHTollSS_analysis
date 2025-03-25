@@ -41,4 +41,4 @@ here6
 here7
 
 
-Time taken: --- 131.0710575580597 seconds ---
+Time taken: --- 95.191321849823 seconds ---

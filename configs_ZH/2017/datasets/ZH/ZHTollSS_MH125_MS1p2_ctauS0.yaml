@@ -1,11 +1,11 @@
 colour: '#006699'
-cross_section: 5398
+cross_section: 0.00004795085
 histogram: ZHTollSS_MH125_MS1p2_ctauS0
 label: H#rightarrowaa m_{a}=1.2 c_{#tau}=0
 locations: /pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ZH_HToSSTo4Hadrons_ZToLL_MH125_MS1p2_ctauS0_TuneCP2_13TeV-powheg-pythia8/RunIIUL17/241208
 mc: true
 name: ZHTollSS_MH125_MS1p2_ctauS0
 plot_type: l
-sum_weights: 103344974
+sum_weights: 395.60515660000374
 total_events: -1
 
