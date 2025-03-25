@@ -225,7 +225,8 @@ def main():
             h_1.GetYaxis().SetLabelSize(0.045)
             h_1.GetXaxis().SetTitleOffset(1.1)
             h_1.GetYaxis().SetTitleOffset(1.4)
-            
+            h_1.Draw('hist')
+
             leg.Draw()
             pad1.Modified()
             pad1.Update()           
