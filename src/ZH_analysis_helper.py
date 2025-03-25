@@ -1,4 +1,15 @@
 import ROOT
+
+def gInterpreter_std_map():
+    ROOT.gInterpreter.Declare("""
+    auto &GetTheMap() {
+        static std::unordered_map<float, float> theGlobalMap;
+        return theGlobalMap;
+    }
+    """) # defines a std::map in C++ and returns it with address -> modify this std::map as theGlobalMap[x]=y and the change will
+    # appear globally. Hence, next time you call GetTheMap, you will access std::map which has new values taken acc. to above
+
+
 def gInterpreter_PFIsolation():
     getPFIsolation_code = '''
         using FourVectorPxPyPzE = ROOT::Math::PxPyPzEVector;

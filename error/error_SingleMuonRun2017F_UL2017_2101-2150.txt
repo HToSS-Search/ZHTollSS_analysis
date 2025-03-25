@@ -1,0 +1,44 @@
+/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/
+Tree loaded in succesfully
+Total Entries : 116298
+
+Looking at Data.......
+
+Reconstructed Muons
+Total Events to start from before muon selection: 116298
+Events after numMuonPF2PAT >= 2 cut: 116298
+PfRelIsoLoose pass: 31819
+PfRelIsoTight pass: 28641
+Events after quality cuts: 52360
+Events after leadingPt, opposite charge cut: 41307
+Events after Zmass cut: 24273
+
+
+Reconstructed hadrons
+Amount of events passing muon cuts (no invmass cut): 41307
+Amount of events with >= 4 ch, events passed muon selection: 24273
+Amount of events with >= 4 ch after hadron cuts (pT & Eta): 23236
+Amount of events where single pair found: 7925
+Amount of events where two pairs found: 2668
+num of Ch events after quality cut  with 1 or more svVertexChi2: 13685
+num of Ch events after quality cut with 2 or more svVertexChi2: 7488
+
+Reconstructed Scalar and Higgs
+No scalar cuts currently
+Amount of Events after scalar selection/cuts: 2668
+Amount of Events with m(s1s2)/m(higgs) in ]110, 140[: 129
+Amount of Events with m(s1s2)/m(higgs) in [-inf, 110] U [140, +inf[: 2539
+UNBLIND == FALSE --------- EVENTS WILL BE BLINDED, EVENTS OMITTED IN mHiggs [122.5,127.5]
+BLINDED, LOOKING AT TIGHT SIDEBANDS[120, 122.5] U [127.5, 130]
+PRECAT (PEAK SR or TIGHT CR): 21
+PRECAT TEST (LOOSE CR): 108
+here1
+here2
+here3
+here4
+here5
+here6
+here7
+
+
+Time taken: --- 237.52191638946533 seconds ---

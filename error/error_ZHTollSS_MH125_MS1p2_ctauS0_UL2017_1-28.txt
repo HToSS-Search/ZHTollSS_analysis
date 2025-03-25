@@ -1,0 +1,76 @@
+/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ZH_HToSSTo4Hadrons_ZToLL_MH125_MS1p2_ctauS0_TuneCP2_13TeV-powheg-pythia8/RunIIUL17/241208/
+Tree loaded in succesfully
+Total Entries : 5000
+
+Looking at MC.......Total events: 5000
+Events with minimum 1 muons and muons are from Z: 1636
+Events with minimum 2 muons and muons are from Z: 1636
+Events with exactly 2 muons from Z: 1636
+
+
+Gen Muons
+scalar to hh events and Z to mumu in event: 1636
+
+
+Reconstructed Muons
+Events from gen Mu: 1636
+Events after numMuonPF2PAT >= 2 cut: 1563
+PfRelIsoLoose pass: 945
+PfRelIsoTight pass: 882
+Events after quality cuts: 1106
+Events after leadingPt, opposite charge cut: 1068
+Events after Zmass cut: 731
+
+
+Reconstructed hadrons
+Amount of events passing muon cuts (no invmass cut): 1068
+Amount of events with >= 4 ch, events passed muon selection: 731
+Amount of events with >= 4 ch after hadron cuts (pT & Eta): 596
+Amount of events where single pair found: 578
+Amount of events where two pairs found: 431
+num of Ch events after quality cut  with 1 or more svVertexChi2: 396
+num of Ch events after quality cut with 2 or more svVertexChi2: 199
+Gen matching of the reco chs pairs...
+Events before matching conditions on pair selected events: 431
+Amount of events able to be genmatched: 352
+
+Gen matching of the reco chs in the muon selected data...
+Events before matching conditions: 1068
+Number of unmatched events: 399
+Number of matched events: 669
+Number of matched events and one correct Tkpair found: 668
+Number of matched events and both correct Tkpair found: 637
+-----------CrossPairs-----------
+Number of matched events where n1p2 or n2p1 is a track pair: 0
+Number of matched events where n1p2 and n2p1 is a track pair: 0
+Number of matched events where n1n2 or p1p2 is a track pair: 0
+Number of matched events where n1n2 andp1p2 is a track pair: 0
+-------------------------------
+num of matched gen events with 1 or more svVertexChi2: 468
+num of matched gen events with 2 or more svVertexChi2: 234
+num of total events with 1 or more svVertexChi2: 3235
+num of total events with 2 or more svVertexChi2: 1560
+Performing pair selection on the matched ch
+Amount of matched events with >= 4 ch after quality cuts (pT & Eta): 594
+num of matched events after quality cut  with 1 or more svVertexChi2: 418
+num of matched events after quality cut with 2 or more svVertexChi2: 206
+
+Reconstructed Scalar and Higgs
+No scalar cuts currently
+Amount of Events after scalar selection/cuts: 431
+Amount of Events with m(s1s2)/m(higgs) in ]110, 140[: 349
+Amount of Events with m(s1s2)/m(higgs) in [-inf, 110] U [140, +inf[: 82
+UNBLIND == TRUE AND LOOKING AT MC --------- EVENTS REMAIN AS IS
+UNBLINDED, LOOKING AT [122.5, 127.5] PEAK REGION
+PRECAT (PEAK SR or TIGHT CR): 274
+PRECAT TEST (LOOSE CR): 349
+here1
+here2
+here3
+here4
+here5
+here6
+here7
+
+
+Time taken: --- 41.12779426574707 seconds ---

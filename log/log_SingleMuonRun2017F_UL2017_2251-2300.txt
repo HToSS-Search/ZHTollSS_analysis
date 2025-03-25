@@ -150,3 +150,45 @@
 009 (66027.045.000) 2025-03-21 14:44:48 Job was aborted.
 	via condor_rm (by user yvekemans)
 ...
+000 (70477.045.000) 2025-03-25 13:07:40 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_1892_5546>
+...
+001 (70477.045.000) 2025-03-25 13:13:59 Job executing on host: <192.168.33.11:9618?addrs=192.168.33.11-9618+[2001-6a8-1080--c-3311]-9618&alias=node33-11.wn.iihe.ac.be&noUDP&sock=startd_2863_5bbc>
+	SlotName: slot1_2@node33-11.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_1365896"
+	Cpus = 4
+	Disk = 4235
+	GPUs = 0
+	Memory = 100
+...
+006 (70477.045.000) 2025-03-25 13:14:08 Image size of job updated: 168616
+	165  -  MemoryUsage of job (MB)
+	168376  -  ResidentSetSize of job (KB)
+...
+006 (70477.045.000) 2025-03-25 13:19:09 Image size of job updated: 8282600
+	8054  -  MemoryUsage of job (MB)
+	8247024  -  ResidentSetSize of job (KB)
+...
+006 (70477.045.000) 2025-03-25 13:20:02 Image size of job updated: 8313456
+	8054  -  MemoryUsage of job (MB)
+	8247024  -  ResidentSetSize of job (KB)
+...
+005 (70477.045.000) 2025-03-25 13:20:02 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:16:56, Sys 0 00:00:34  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:16:56, Sys 0 00:00:34  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     3.93        4         4 
+	   Disk (KB)            :     1           1      4235 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  8054           1       100 
+	   TimeExecute (s)      :   363                       
+	   TimeSlotBusy (s)     :   363                       
+
+	Job terminated of its own accord at 2025-03-25T12:20:02Z with exit-code 0.
+...
