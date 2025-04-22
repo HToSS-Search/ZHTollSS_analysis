@@ -111,8 +111,6 @@ def createRatio(h1, h2):
 
 def main():
     ROOT.TH1.AddDirectory(ROOT.kFALSE)
-
-
     parser = argparse.ArgumentParser(description='Plot stacked histogram')
     parser.add_argument("-y", "--year",   dest="year",   help="data year", type=str)
     # parser.add_argument("-s", "--signal",   dest="sig",   help="HtoSS_MS2_ctauS0 or HtoSS_MS2_ctauS1 etc", type=str)
@@ -125,6 +123,7 @@ def main():
     parser.add_argument("--yhigh", dest="yhigh", default=500,help="y-axis multiplicative factor for ymax", type=float)
     parser.add_argument("--log", dest="log", help="true for plotting with logY, false by default", action="store_true")
     parser.add_argument("--norm", dest="norm", help="true for plotting with normalisation, false by default", action="store_true")
+    parser.add_argument("--cat", dest="cat", help="true for plotting the categorized plots, false by default", action="store_true")
     # parser.add_argument("--mass", dest="mass", help="mass of scalar", type=str)
     # parser.add_argument("--analysis", dest="analysis", help="true for plotting after analysis, false by default (after skim)", action="store_true")
 
@@ -137,19 +136,50 @@ def main():
 
     #Set up the histogram dictionaries in same way as defined in RDataFrames_ZH_Analyzer.py
     histo_dict = {
-        'ZBosonMass': {'hname':'h_ZBosonMass','label': "m_{Z}", 'xlow':70,'xhigh':110,'hrebin':1},
-        'ChargedHadron1relIso': {'hname':'h_ChargedHadron1relIso','label': "leading h^{#pm}(s1) PF Rel. isolation", 'xlow':0.,'xhigh':10.,'hrebin':1},
-        'ChargedHadron2relIso': {'hname':'h_ChargedHadron2relIso','label': "subleading h^{#pm}(s1) PF Rel. isolation", 'xlow':0.,'xhigh':10.,'hrebin':1},
-        'ChargedHadron3relIso': {'hname':'h_ChargedHadron3relIso','label': "leading h^{#pm}(s2) PF Rel. isolation", 'xlow':0.,'xhigh':10.,'hrebin':1},
-        'ChargedHadron4relIso': {'hname':'h_ChargedHadron4relIso','label': "subleading h^{#pm}(s2) PF Rel. isolation", 'xlow':0.,'xhigh':10.,'hrebin':1},
-        'Scalar1Mass': {'hname':'h_Scalar1Mass','label': "m_{s1}", 'xlow':0.8,'xhigh':3.6,'hrebin':1},
-        'Scalar2Mass': {'hname':'h_Scalar2Mass','label': "m_{s2}", 'xlow':0.8,'xhigh':3.6,'hrebin':1},
-        'Scalar1Lxy': {'hname':'h_Scalar1Lxy','label': "L_{xy}^{s1}", 'xlow':0.,'xhigh':60.,'hrebin':1},
-        'Scalar1LxySig': {'hname':'h_Scalar1LxySig','label': "L_{xy}^{s1}/#Delta L_{xy}^{s1}", 'xlow':0.,'xhigh':1000.,'hrebin':1},
-        'Scalar2Lxy': {'hname':'h_Scalar2Lxy','label': "L_{xy}^{s2}", 'xlow':0.,'xhigh':60.,'hrebin':1},
-        'Scalar2LxySig': {'hname':'h_Scalar2LxySig','label': "L_{xy}^{s2}/#Delta L_{xy}^{s2}", 'xlow':0.,'xhigh':1000.,'hrebin':1},
-        'HiggsBosonMass_Loose': {'hname':'h_HiggsBosonMass_Loose','label': "m_{H}", 'xlow':110,'xhigh':140,'hrebin':1}
-    }   
+        'CutFlow':{'hname':'h_CutFlow','label': "Cuts", 'xlow':-0.5,'xhigh':8.5,'hrebin':1, '2d':False},
+        #'ZBosonMass': {'hname':'h_ZBosonMass','label': "m_{Z} (GeV)", 'xlow':70,'xhigh':110,'hrebin':1, '2d':False},
+        'ChargedHadron1relIso': {'hname':'h_ChargedHadron1relIso','label': "leading h^{#pm}(s1) PF Rel. isolation", 'xlow':0.,'xhigh':10.,'hrebin':1, '2d':False},
+        'ChargedHadron2relIso': {'hname':'h_ChargedHadron2relIso','label': "subleading h^{#pm}(s1) PF Rel. isolation", 'xlow':0.,'xhigh':10.,'hrebin':1, '2d':False},
+        'ChargedHadron3relIso': {'hname':'h_ChargedHadron3relIso','label': "leading h^{#pm}(s2) PF Rel. isolation", 'xlow':0.,'xhigh':10.,'hrebin':1, '2d':False},
+        'ChargedHadron4relIso': {'hname':'h_ChargedHadron4relIso','label': "subleading h^{#pm}(s2) PF Rel. isolation", 'xlow':0.,'xhigh':10.,'hrebin':1, '2d':False},
+        'Scalar1Mass': {'hname':'h_Scalar1Mass','label': "m_{s1} (GeV)", 'xlow':0.8,'xhigh':3.6,'hrebin':1, '2d':False},
+        'Scalar2Mass': {'hname':'h_Scalar2Mass','label': "m_{s2} (GeV)", 'xlow':0.8,'xhigh':3.6,'hrebin':1, '2d':False},
+        'Scalar12Mass': {'hname':'h_Scalar12Mass','label': "m_{s2} (GeV)", 'xlow':0.8,'xhigh':3.6,'hrebin':1, '2d':False},
+        #'Scalar1Lxy': {'hname':'h_Scalar1Lxy','label': "L_{xy}^{s1} (cm)", 'xlow':0.,'xhigh':20.,'hrebin':1, '2d':False},
+        #'Scalar1LxySig': {'hname':'h_Scalar1LxySig','label': "L_{xy}^{s1}/#Delta L_{xy}^{s1}", 'xlow':0.,'xhigh':200.,'hrebin':1, '2d':False},
+        #'Scalar2Lxy': {'hname':'h_Scalar2Lxy','label': "L_{xy}^{s2} (cm)", 'xlow':0.,'xhigh':20.,'hrebin':1, '2d':False},
+        #'Scalar2LxySig': {'hname':'h_Scalar2LxySig','label': "L_{xy}^{s2}/#Delta L_{xy}^{s2}", 'xlow':0.,'xhigh':200.,'hrebin':1, '2d':False},
+        #'HiggsBosonMass_Loose_Loose': {'hname':'h_HiggsBosonMass_Loose','label': "m_{H} (GeV)", 'xlow':110,'xhigh':140,'hrebin':1, '2d':False},
+        'ChargedHadron1relIso_Loose': {'hname':'h_ChargedHadron1relIso_Loose','label': "leading h^{#pm}(s1) PF Rel. isolation", 'xlow':0.,'xhigh':10.,'hrebin':1, '2d':False},
+        'ChargedHadron2relIso_Loose': {'hname':'h_ChargedHadron2relIso_Loose','label': "subleading h^{#pm}(s1) PF Rel. isolation", 'xlow':0.,'xhigh':10.,'hrebin':1, '2d':False},
+        'ChargedHadron3relIso_Loose': {'hname':'h_ChargedHadron3relIso_Loose','label': "leading h^{#pm}(s2) PF Rel. isolation", 'xlow':0.,'xhigh':10.,'hrebin':1, '2d':False},
+        'ChargedHadron4relIso_Loose': {'hname':'h_ChargedHadron4relIso_Loose','label': "subleading h^{#pm}(s2) PF Rel. isolation", 'xlow':0.,'xhigh':10.,'hrebin':1, '2d':False},
+        'Scalar1Mass_Loose': {'hname':'h_Scalar1Mass_Loose','label': "m_{s1} (GeV)", 'xlow':0.8,'xhigh':3.6,'hrebin':1, '2d':False},
+        'Scalar2Mass_Loose': {'hname':'h_Scalar2Mass_Loose','label': "m_{s2} (GeV)", 'xlow':0.8,'xhigh':3.6,'hrebin':1, '2d':False},
+        'Scalar12Mass_Loose': {'hname':'h_Scalar12Mass_Loose','label': "m_{s2} (GeV)", 'xlow':0.8,'xhigh':3.6,'hrebin':1, '2d':False},
+        #'Scalar1Lxy_Loose': {'hname':'h_Scalar1Lxy_Loose','label': "L_{xy}^{s1} (cm)", 'xlow':0.,'xhigh':20.,'hrebin':1, '2d':False},
+        #'Scalar1LxySig_Loose': {'hname':'h_Scalar1LxySig_Loose','label': "L_{xy}^{s1}/#Delta L_{xy}^{s1}", 'xlow':0.,'xhigh':200.,'hrebin':1, '2d':False},
+        #'Scalar2Lxy_Loose': {'hname':'h_Scalar2Lxy_Loose','label': "L_{xy}^{s2} (cm)", 'xlow':0.,'xhigh':20.,'hrebin':1, '2d':False},
+        #'Scalar2LxySig_Loose': {'hname':'h_Scalar2LxySig_Loose','label': "L_{xy}^{s2}/#Delta L_{xy}^{s2}", 'xlow':0.,'xhigh':200.,'hrebin':1, '2d':False},
+        'ScalarMass': {'hname':'h_ScalarMass','labelx': "m_{s1} (GeV)",'labely': "m_{s2} (GeV)", 'xlow':0.8,'xhigh':3.6,'hrebin':1, '2d':True},
+        'ScalarMass_Loose': {'hname':'h_ScalarMass_Loose','labelx': "m_{s1} (GeV)",'labely': "m_{s2} (GeV)", 'xlow':0.8,'xhigh':3.6,'hrebin':1, '2d':True},
+        #'ScalarLxy': {'hname':'h_ScalarLxy','labelx': "L_{xy}^{s1} (cm)" ,'labely': "L_{xy}^{s2} (cm)", 'xlow':0.,'xhigh':20.,'hrebin':1, '2d':True},
+        'ScalarLxySig': {'hname':'h_ScalarLxySig','labelx': "L_{xy}^{s1}/#Delta L_{xy}^{s1}" ,'labely': "L_{xy}^{s2}/#Delta L_{xy}^{s2}", 'xlow':0.,'xhigh':200.,'hrebin':1, '2d':True},
+        #'ScalarLxy_Loose': {'hname':'h_ScalarLxy_Loose','labelx': "L_{xy}^{s1} (cm)", 'labely': "L_{xy}^{s2} (cm)", 'xlow':0.,'xhigh':20.,'hrebin':1, '2d':True},
+        'ScalarLxySig_Loose': {'hname':'h_ScalarLxySig_Loose','labelx': "L_{xy}^{s1}/#Delta L_{xy}^{s1}", 'labely': "L_{xy}^{s2}/#Delta L_{xy}^{s2}", 'xlow':0.,'xhigh':200.,'hrebin':1, '2d':True},
+        #'Scalar1MassLxy': {'hname':'h_Scalar1MassLxy','labelx': "m_{s1} (GeV)" ,'labely': "L_{xy}^{s1} (cm)", 'xlow':0.,'xhigh':20.,'hrebin':1, '2d':True},
+        #'Scalar2MassLxy': {'hname':'h_Scalar1MassLxy','labelx': "m_{s2} (GeV)" ,'labely': "L_{xy}^{s2} (cm)", 'xlow':0.,'xhigh':20.,'hrebin':1, '2d':True},
+        #'Scalar1MassLxy_Loose': {'hname':'h_Scalar1MassLxy_Loose','labelx': "m_{s1} (GeV)" ,'labely': "L_{xy}^{s1} (cm)", 'xlow':0.,'xhigh':20.,'hrebin':1, '2d':True},
+        #'Scalar2MassLxy_Loose': {'hname':'h_Scalar1MassLxy_Loose','labelx': "m_{s2} (GeV)" ,'labely': "L_{xy}^{s2} (cm)", 'xlow':0.,'xhigh':20.,'hrebin':1, '2d':True},
+    }
+
+
+    cat_dict = {
+        'prompt': {'id_': '_prompt', 'label': 'prompt'}, 
+        'displaceds1': {'id_': '_displaceds1', 'label': 'displaced s1'},
+        'displaceds2': {'id_': '_displaceds2', 'label': 'displaced s2'},
+        'displaced': {'id_': '_displaced', 'label': 'displaced'}
+    }
 
     datasets_dict = {
         'ZHTollSS_MH125_MS1p2_ctauS0':{'type':'signal','label':"#splitline{m_{S}=1.2 GeV,}{c#tau = 0.1mm}",'color':ROOT.kOrange+1,'integral':-1},
@@ -160,6 +190,7 @@ def main():
 
     lumi_scale = {'UL2016_APV': 19500, 'UL2016': 16800,'UL2017':  41480,'UL2018': 59830, '2017F': 13540} #in pb-1
     lumi_factor = lumi_scale[args.year]
+
 
     indir = args.input
     for dname in datasets_dict:
@@ -172,81 +203,182 @@ def main():
             print('here1')
             tag = '_onlySignal'
             fin = ROOT.TFile(indir+"/ZH/"+ "output_" + dname + ".root", "READ")
-            fin.ls()
-        for key in histo_dict:
-            leg = ROOT.TLegend(0.5, 0.65, 0.95, 0.92)
-            leg.SetBorderSize(0)
-            leg.SetFillStyle(0)
-            leg.SetNColumns(2)
-            leg.SetTextSize(0.022)
-            savename=key + tag
-            boundary_percent = 0.35
-            ylength_c = int(2400*(1-boundary_percent+0.15))
-            c1 = TCanvas(savename, savename, 2200, ylength_c)
-            pad1 = ROOT.TPad("pad1", "pad1", 0, 0, 1, 1)
-            pad1.SetTopMargin(0.06)
-            pad1.SetBottomMargin(0.15)
-            pad1.SetLeftMargin(0.16)
-            pad1.SetRightMargin(0.04)
-            #pad1.SetGridx()
-            pad1.Draw()
-            # Lower ratio plot is pad2
-            c1.cd()
-            pad1.cd()
-            if args.log:
-                # c1.SetLogy()
-                pad1.SetLogy()
-                # pad1.SetLogx()
-            
-            hprop = histo_dict[key]
-            histname = hprop['hname']
-            h_1 = fin.Get(histname)
-            print(h_1.GetName())
+        fin.ls()
+        if args.cat:
+            print('CATEGORY PLOTS')
+            for cat_key in cat_dict:
+                catName = cat_dict[cat_key]['id_']
+                catLabel = cat_dict[cat_key]['label']
+                for key in histo_dict:
+                    if 'CutFlow' in key: 
+                        continue
+                    savename=key + catName + tag
+                    hprop = histo_dict[key]
+                    histname = hprop['hname'] + catName
+                    print(histname)
+                    h_1 = fin.Get(histname)
+                    print(h_1.GetName())
+                    leg = ROOT.TLegend(0.5, 0.65, 0.95, 0.92)
+                    leg.SetBorderSize(0)
+                    leg.SetFillStyle(0)
+                    leg.SetNColumns(2)
+                    leg.SetTextSize(0.022)
+                    boundary_percent = 0.35
+                    ylength_c = int(2400*(1-boundary_percent+0.15))
+                    c1 = TCanvas(savename, savename, 2200, ylength_c)
+                    pad1 = ROOT.TPad("pad1", "pad1", 0, 0, 1, 1)
+                    pad1.SetTopMargin(0.06)
+                    pad1.SetBottomMargin(0.15)
+                    pad1.SetLeftMargin(0.16)
+                    pad1.SetRightMargin(0.16)
+                    #pad1.SetGridx()
+                    pad1.Draw()
+                    # Lower ratio plot is pad2
+                    c1.cd()
+                    pad1.cd()
+                    
+                    if ('ZHTollSS' in dname) and ('CutFlow' not in key):
+                        h_1.Scale(lumi_factor)
+                    #if args.norm:
+                    #    h_1.Scale(1/h_1.Integral())
+                    #datasets_dict[dname]['integral']=h_1.Integral()
+                    if args.log:
+                        # c1.SetLogy()
+                        pad1.SetLogy()
+                        if hprop['2d']: pad1.SetLogx()
+                        # pad1.SetLogx()
+                    if hprop['2d']:
+                        h_1.GetXaxis().SetTitle(hprop['labelx'])
+                        h_1.GetYaxis().SetTitle(hprop['labely'])
+                        ROOT.gStyle.SetStatX(0.12)
+                        ROOT.gStyle.SetStatW(0.12)
+                        ROOT.gStyle.SetStatY(0.5)
+                        h_1.Draw('COLZ')
+                    else:
+                        color_ = datasets_dict[dname]['color']
+                        h_1.SetFillColor(color_)
+                        h_1.SetFillStyle(0) # hollow hist
+                        h_1.SetMarkerColor(color_)
+                        h_1.SetLineColor(color_)
+                        h_1.SetMarkerStyle(8)
+                        #h_1.SetLineStyle(ctau_style_map[dname.split('_')[-1]])
+                        h_1.SetLineWidth(4)
+                        h_1.SetMarkerSize(0.8) if ('CutFlow' in key) else h_1.SetMarkerSize(m_size)
+                        if (not 'CutFlow' in key):
+                            h_1.GetXaxis().SetRangeUser(hprop['xlow'],hprop['xhigh'])
+                            h_1.GetXaxis().SetTitle(hprop['label'])
+                            h_1.GetXaxis().SetTitleSize(0.05)
+                            h_1.GetYaxis().SetTitleSize(0.05)
+                            h_1.GetXaxis().SetLabelSize(0.045)
+                            h_1.GetYaxis().SetLabelSize(0.045)
+                            h_1.GetXaxis().SetTitleOffset(1.1)
+                            h_1.GetYaxis().SetTitleOffset(1.4)
+                        drawTag = 'hist text' if ('CutFlow' in key) else 'hist' 
+                        h_1.Draw(drawTag)
+                    leg.AddEntry(h_1, datasets_dict[dname]['label'], "l")
 
-            #h_1.Rebin(hprop['hrebin'])
-            if 'ZHTollSS' in dname:
-                h_1.Scale(lumi_factor)
-            #if args.norm:
-            #    h_1.Scale(1/h_1.Integral())
-            #datasets_dict[dname]['integral']=h_1.Integral()
-            color_ = datasets_dict[dname]['color']
-            h_1.SetFillColor(color_)
-            h_1.SetFillStyle(0) # hollow hist
-            h_1.SetMarkerColor(color_)
-            h_1.SetLineColor(color_)
-            h_1.SetMarkerStyle(8)
-            #h_1.SetLineStyle(ctau_style_map[dname.split('_')[-1]])
-            h_1.SetLineWidth(4)
-            h_1.SetMarkerSize(m_size)
-            h_1.GetXaxis().SetRangeUser(hprop['xlow'],hprop['xhigh'])
-            h_1.GetXaxis().SetTitle(hprop['label'])
-            leg.AddEntry(h_1, datasets_dict[dname]['label'], "l")
-            h_1.GetXaxis().SetTitleSize(0.05)
-            h_1.GetYaxis().SetTitleSize(0.05)
-            h_1.GetXaxis().SetLabelSize(0.045)
-            h_1.GetYaxis().SetLabelSize(0.045)
-            h_1.GetXaxis().SetTitleOffset(1.1)
-            h_1.GetYaxis().SetTitleOffset(1.4)
-            h_1.Draw('hist')
 
-            leg.Draw()
-            pad1.Modified()
-            pad1.Update()           
-            #CMS_lumi.cmsText = 'CMS'
-            #CMS_lumi.writeExtraText = True
-            #CMS_lumi.extraText = 'Work in Progress'
-            #CMS_lumi.lumi_13TeV = args.year+" MC"
-            #CMS_lumi.lumiTextSize = 0.5
-            #CMS_lumi.cmsTextSize=1.
-            #CMS_lumi.CMS_lumi(pad1, 4, 11)
+                    leg.Draw()
+                    pad1.Modified()
+                    pad1.Update()           
+                    #CMS_lumi.cmsText = 'CMS'
+                    #CMS_lumi.writeExtraText = True
+                    #CMS_lumi.extraText = 'Work in Progress'
+                    #CMS_lumi.lumi_13TeV = args.year+" MC"
+                    #CMS_lumi.lumiTextSize = 0.5
+                    #CMS_lumi.cmsTextSize=1.
+                    #CMS_lumi.CMS_lumi(pad1, 4, 11)
 
-            pad1.Modified()
-            pad1.Update()
-            c1.Modified()
-            c1.Update()
-            c1.SaveAs(args.out+'/'+savename+'.png')
-            c1.SaveAs(args.out+'/'+savename+'.pdf')
-        fin.Close()
+                    pad1.Modified()
+                    pad1.Update()
+                    c1.Modified()
+                    c1.Update()
+                    c1.SaveAs(args.out+'/'+str(cat_key)+'/'+savename+'.png')
+        else:
+            for key in histo_dict:
+                leg = ROOT.TLegend(0.5, 0.65, 0.95, 0.92)
+                leg.SetBorderSize(0)
+                leg.SetFillStyle(0)
+                leg.SetNColumns(2)
+                leg.SetTextSize(0.022)
+                boundary_percent = 0.35
+                ylength_c = int(2400*(1-boundary_percent+0.15))
+                c1 = TCanvas(savename, savename, 2200, ylength_c)
+                pad1 = ROOT.TPad("pad1", "pad1", 0, 0, 1, 1)
+                pad1.SetTopMargin(0.06)
+                pad1.SetBottomMargin(0.15)
+                pad1.SetLeftMargin(0.16)
+                pad1.SetRightMargin(0.16)
+                #pad1.SetGridx()
+                pad1.Draw()
+                # Lower ratio plot is pad2
+                c1.cd()
+                pad1.cd()
+                hprop = histo_dict[key]
+                histname = hprop['hname']
+                h_1 = fin.Get(histname)
+                print(h_1.GetName())
+
+                #h_1.Rebin(hprop['hrebin'])
+                if ('ZHTollSS' in dname) and ('CutFlow' not in key):
+                    h_1.Scale(lumi_factor)
+                #if args.norm:
+                #    h_1.Scale(1/h_1.Integral())
+                #datasets_dict[dname]['integral']=h_1.Integral()
+                if args.log:
+                    # c1.SetLogy()
+                    pad1.SetLogy()
+                    if hprop['2d']: pad1.SetLogx()
+                    # pad1.SetLogx()
+                if hprop['2d']:
+                    h_1.GetXaxis().SetTitle(hprop['labelx'])
+                    h_1.GetYaxis().SetTitle(hprop['labely'])
+                    ROOT.gStyle.SetStatX(0.12)
+                    ROOT.gStyle.SetStatW(0.12)
+                    ROOT.gStyle.SetStatY(0.5)
+                    h_1.Draw('COLZ')
+                else:
+                    color_ = datasets_dict[dname]['color']
+                    h_1.SetFillColor(color_)
+                    h_1.SetFillStyle(0) # hollow hist
+                    h_1.SetMarkerColor(color_)
+                    h_1.SetLineColor(color_)
+                    h_1.SetMarkerStyle(8)
+                    #h_1.SetLineStyle(ctau_style_map[dname.split('_')[-1]])
+                    h_1.SetLineWidth(4)
+                    h_1.SetMarkerSize(0.8) if ('CutFlow' in key) else h_1.SetMarkerSize(m_size)
+                    if (not 'CutFlow' in key):
+                        h_1.GetXaxis().SetRangeUser(hprop['xlow'],hprop['xhigh'])
+                        h_1.GetXaxis().SetTitle(hprop['label'])
+                        h_1.GetXaxis().SetTitleSize(0.05)
+                        h_1.GetYaxis().SetTitleSize(0.05)
+                        h_1.GetXaxis().SetLabelSize(0.045)
+                        h_1.GetYaxis().SetLabelSize(0.045)
+                        h_1.GetXaxis().SetTitleOffset(1.1)
+                        h_1.GetYaxis().SetTitleOffset(1.4)
+                    drawTag = 'hist text' if ('CutFlow' in key) else 'hist' 
+                    h_1.Draw(drawTag)
+                leg.AddEntry(h_1, datasets_dict[dname]['label'], "l")
+
+
+                leg.Draw()
+                pad1.Modified()
+                pad1.Update()           
+                #CMS_lumi.cmsText = 'CMS'
+                #CMS_lumi.writeExtraText = True
+                #CMS_lumi.extraText = 'Work in Progress'
+                #CMS_lumi.lumi_13TeV = args.year+" MC"
+                #CMS_lumi.lumiTextSize = 0.5
+                #CMS_lumi.cmsTextSize=1.
+                #CMS_lumi.CMS_lumi(pad1, 4, 11)
+
+                pad1.Modified()
+                pad1.Update()
+                c1.Modified()
+                c1.Update()
+                c1.SaveAs(args.out+'/'+savename+'.png')
+                #c1.SaveAs(args.out+'/'+savename+'.pdf')
+            fin.Close()
     gc.enable()
 
 if __name__ == '__main__':

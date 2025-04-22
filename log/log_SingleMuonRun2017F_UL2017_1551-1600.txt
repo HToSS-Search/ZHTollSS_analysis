@@ -252,3 +252,854 @@
 
 	Job terminated of its own accord at 2025-03-25T16:01:49Z with exit-code 0.
 ...
+000 (71281.031.000) 2025-03-26 14:09:12 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_1892_5546>
+...
+001 (71281.031.000) 2025-03-26 14:09:27 Job executing on host: <192.168.38.2:9618?addrs=192.168.38.2-9618+[2001-6a8-1080--c-3802]-9618&alias=node38-2.wn.iihe.ac.be&noUDP&sock=startd_6456_db84>
+	SlotName: slot1_30@node38-2.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_2179172"
+	Cpus = 4
+	Disk = 7626
+	GPUs = 0
+	Memory = 100
+...
+006 (71281.031.000) 2025-03-26 14:09:35 Image size of job updated: 168128
+	165  -  MemoryUsage of job (MB)
+	168020  -  ResidentSetSize of job (KB)
+...
+006 (71281.031.000) 2025-03-26 14:12:50 Image size of job updated: 4787280
+	3887  -  MemoryUsage of job (MB)
+	3980104  -  ResidentSetSize of job (KB)
+...
+005 (71281.031.000) 2025-03-26 14:12:51 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:04:26, Sys 0 00:00:11  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:04:26, Sys 0 00:00:11  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.00        4         4 
+	   Disk (KB)            :     1           1      7626 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  3887           1       100 
+	   TimeExecute (s)      :   203                       
+	   TimeSlotBusy (s)     :   203                       
+
+	Job terminated of its own accord at 2025-03-26T13:12:50Z with exit-code 0.
+...
+000 (71338.031.000) 2025-03-26 15:44:35 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_1892_5546>
+...
+001 (71338.031.000) 2025-03-26 15:57:46 Job executing on host: <192.168.38.3:9618?addrs=192.168.38.3-9618+[2001-6a8-1080--c-3803]-9618&alias=node38-3.wn.iihe.ac.be&noUDP&sock=startd_6553_6434>
+	SlotName: slot1_49@node38-3.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_1692985"
+	Cpus = 4
+	Disk = 7644
+	GPUs = 0
+	Memory = 100
+...
+006 (71338.031.000) 2025-03-26 15:57:54 Image size of job updated: 172440
+	168  -  MemoryUsage of job (MB)
+	171944  -  ResidentSetSize of job (KB)
+...
+006 (71338.031.000) 2025-03-26 16:00:05 Image size of job updated: 4800644
+	3902  -  MemoryUsage of job (MB)
+	3994940  -  ResidentSetSize of job (KB)
+...
+005 (71338.031.000) 2025-03-26 16:00:05 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:04:02, Sys 0 00:00:13  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:04:02, Sys 0 00:00:13  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.01        4         4 
+	   Disk (KB)            :     1           1      7644 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  3902           1       100 
+	   TimeExecute (s)      :   139                       
+	   TimeSlotBusy (s)     :   140                       
+
+	Job terminated of its own accord at 2025-03-26T15:00:05Z with exit-code 0.
+...
+000 (71464.031.000) 2025-03-26 16:33:50 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_1892_5546>
+...
+001 (71464.031.000) 2025-03-26 16:37:48 Job executing on host: <192.168.38.3:9618?addrs=192.168.38.3-9618+[2001-6a8-1080--c-3803]-9618&alias=node38-3.wn.iihe.ac.be&noUDP&sock=startd_6553_6434>
+	SlotName: slot1_61@node38-3.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_2302711"
+	Cpus = 4
+	Disk = 7644
+	GPUs = 0
+	Memory = 100
+...
+006 (71464.031.000) 2025-03-26 16:37:56 Image size of job updated: 311948
+	305  -  MemoryUsage of job (MB)
+	311948  -  ResidentSetSize of job (KB)
+...
+006 (71464.031.000) 2025-03-26 16:39:10 Image size of job updated: 821172
+	305  -  MemoryUsage of job (MB)
+	311948  -  ResidentSetSize of job (KB)
+...
+005 (71464.031.000) 2025-03-26 16:39:10 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:04:00, Sys 0 00:00:10  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:04:00, Sys 0 00:00:10  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     3.38        4         4 
+	   Disk (KB)            :     1           1      7644 
+	   GPUs                 :                           0 
+	   Memory (MB)          :   305           1       100 
+	   TimeExecute (s)      :    82                       
+	   TimeSlotBusy (s)     :    82                       
+
+	Job terminated of its own accord at 2025-03-26T15:39:10Z with exit-code 0.
+...
+000 (92585.031.000) 2025-03-31 14:16:21 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_1892_5546>
+...
+001 (92585.031.000) 2025-03-31 15:10:42 Job executing on host: <192.168.34.8:9618?addrs=192.168.34.8-9618+[2001-6a8-1080--c-3408]-9618&alias=node34-8.wn.iihe.ac.be&noUDP&sock=startd_2905_2ab6>
+	SlotName: slot1_1@node34-8.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_3125618"
+	Cpus = 4
+	Disk = 4248
+	GPUs = 0
+	Memory = 100
+...
+006 (92585.031.000) 2025-03-31 15:10:51 Image size of job updated: 331604
+	324  -  MemoryUsage of job (MB)
+	331604  -  ResidentSetSize of job (KB)
+...
+006 (92585.031.000) 2025-03-31 15:13:54 Image size of job updated: 5073352
+	4147  -  MemoryUsage of job (MB)
+	4245692  -  ResidentSetSize of job (KB)
+...
+005 (92585.031.000) 2025-03-31 15:13:54 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:07:47, Sys 0 00:00:24  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:07:47, Sys 0 00:00:24  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     3.53        4         4 
+	   Disk (KB)            :     1           1      4248 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  4147           1       100 
+	   TimeExecute (s)      :   192                       
+	   TimeSlotBusy (s)     :   192                       
+
+	Job terminated of its own accord at 2025-03-31T13:13:54Z with exit-code 0.
+...
+000 (93039.031.000) 2025-03-31 15:40:40 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_1892_5546>
+...
+001 (93039.031.000) 2025-03-31 15:49:31 Job executing on host: <192.168.38.1:9618?addrs=192.168.38.1-9618+[2001-6a8-1080--c-3801]-9618&alias=node38-1.wn.iihe.ac.be&noUDP&sock=startd_6721_a01d>
+	SlotName: slot1_35@node38-1.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_2458995"
+	Cpus = 4
+	Disk = 7613
+	GPUs = 0
+	Memory = 100
+...
+006 (93039.031.000) 2025-03-31 15:49:39 Image size of job updated: 172440
+	169  -  MemoryUsage of job (MB)
+	172188  -  ResidentSetSize of job (KB)
+...
+006 (93039.031.000) 2025-03-31 15:51:23 Image size of job updated: 4804648
+	3888  -  MemoryUsage of job (MB)
+	3980416  -  ResidentSetSize of job (KB)
+...
+005 (93039.031.000) 2025-03-31 15:51:23 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:04:24, Sys 0 00:00:14  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:04:24, Sys 0 00:00:14  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :        0        4         4 
+	   Disk (KB)            :        1        1      7613 
+	   GPUs                 :                           0 
+	   Memory (MB)          :     3888        1       100 
+	   TimeExecute (s)      :      112                    
+	   TimeSlotBusy (s)     :      113                    
+
+	Job terminated of its own accord at 2025-03-31T13:51:23Z with exit-code 0.
+...
+000 (93307.031.000) 2025-03-31 16:54:19 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_1892_5546>
+...
+001 (93307.031.000) 2025-03-31 16:59:25 Job executing on host: <192.168.38.3:9618?addrs=192.168.38.3-9618+[2001-6a8-1080--c-3803]-9618&alias=node38-3.wn.iihe.ac.be&noUDP&sock=startd_6597_925e>
+	SlotName: slot1_26@node38-3.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_404199"
+	Cpus = 4
+	Disk = 7639
+	GPUs = 0
+	Memory = 100
+...
+006 (93307.031.000) 2025-03-31 16:59:34 Image size of job updated: 172300
+	168  -  MemoryUsage of job (MB)
+	171888  -  ResidentSetSize of job (KB)
+...
+006 (93307.031.000) 2025-03-31 17:02:44 Image size of job updated: 4919480
+	4024  -  MemoryUsage of job (MB)
+	4120356  -  ResidentSetSize of job (KB)
+...
+005 (93307.031.000) 2025-03-31 17:02:44 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:07:32, Sys 0 00:00:35  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:07:32, Sys 0 00:00:35  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     3.31        4         4 
+	   Disk (KB)            :     1           1      7639 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  4024           1       100 
+	   TimeExecute (s)      :   199                       
+	   TimeSlotBusy (s)     :   199                       
+
+	Job terminated of its own accord at 2025-03-31T15:02:44Z with exit-code 0.
+...
+000 (94534.031.000) 2025-04-01 12:13:33 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_1892_5546>
+...
+001 (94534.031.000) 2025-04-01 12:19:27 Job executing on host: <192.168.33.11:9618?addrs=192.168.33.11-9618+[2001-6a8-1080--c-3311]-9618&alias=node33-11.wn.iihe.ac.be&noUDP&sock=startd_2932_afc5>
+	SlotName: slot1_1@node33-11.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_90310"
+	Cpus = 4
+	Disk = 4253
+	GPUs = 0
+	Memory = 100
+...
+006 (94534.031.000) 2025-04-01 12:19:35 Image size of job updated: 670532
+	655  -  MemoryUsage of job (MB)
+	670532  -  ResidentSetSize of job (KB)
+...
+006 (94534.031.000) 2025-04-01 12:23:20 Image size of job updated: 5482188
+	4541  -  MemoryUsage of job (MB)
+	4649856  -  ResidentSetSize of job (KB)
+...
+005 (94534.031.000) 2025-04-01 12:23:20 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:06:57, Sys 0 00:00:17  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:06:57, Sys 0 00:00:17  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.37        4         4 
+	   Disk (KB)            :     1           1      4253 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  4541           1       100 
+	   TimeExecute (s)      :   233                       
+	   TimeSlotBusy (s)     :   233                       
+
+	Job terminated of its own accord at 2025-04-01T10:23:20Z with exit-code 0.
+...
+000 (94564.031.000) 2025-04-01 13:09:24 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_1892_5546>
+...
+001 (94564.031.000) 2025-04-01 13:09:47 Job executing on host: <192.168.34.7:9618?addrs=192.168.34.7-9618+[2001-6a8-1080--c-3407]-9618&alias=node34-7.wn.iihe.ac.be&noUDP&sock=startd_2932_afc5>
+	SlotName: slot1_1@node34-7.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_3069145"
+	Cpus = 4
+	Disk = 4262
+	GPUs = 0
+	Memory = 100
+...
+006 (94564.031.000) 2025-04-01 13:09:56 Image size of job updated: 672304
+	657  -  MemoryUsage of job (MB)
+	672304  -  ResidentSetSize of job (KB)
+...
+006 (94564.031.000) 2025-04-01 13:13:40 Image size of job updated: 5475760
+	4534  -  MemoryUsage of job (MB)
+	4642240  -  ResidentSetSize of job (KB)
+...
+005 (94564.031.000) 2025-04-01 13:13:40 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:07:01, Sys 0 00:00:19  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:07:01, Sys 0 00:00:19  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     3.64        4         4 
+	   Disk (KB)            :     1           1      4262 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  4534           1       100 
+	   TimeExecute (s)      :   233                       
+	   TimeSlotBusy (s)     :   233                       
+
+	Job terminated of its own accord at 2025-04-01T11:13:40Z with exit-code 0.
+...
+000 (97500.031.000) 2025-04-03 10:57:59 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_1892_5546>
+...
+001 (97500.031.000) 2025-04-03 10:58:26 Job executing on host: <192.168.34.1:9618?addrs=192.168.34.1-9618+[2001-6a8-1080--c-3401]-9618&alias=node34-1.wn.iihe.ac.be&noUDP&sock=startd_2940_2c87>
+	SlotName: slot1_4@node34-1.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_2697129"
+	Cpus = 4
+	Disk = 4238
+	GPUs = 0
+	Memory = 100
+...
+006 (97500.031.000) 2025-04-03 10:58:35 Image size of job updated: 630420
+	616  -  MemoryUsage of job (MB)
+	630304  -  ResidentSetSize of job (KB)
+...
+006 (97500.031.000) 2025-04-03 11:03:36 Image size of job updated: 5247632
+	5095  -  MemoryUsage of job (MB)
+	5216468  -  ResidentSetSize of job (KB)
+...
+006 (97500.031.000) 2025-04-03 11:04:44 Image size of job updated: 5456736
+	5095  -  MemoryUsage of job (MB)
+	5216468  -  ResidentSetSize of job (KB)
+...
+005 (97500.031.000) 2025-04-03 11:04:45 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:07:29, Sys 0 00:00:20  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:07:29, Sys 0 00:00:20  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     1.71        4         4 
+	   Disk (KB)            :     1           1      4238 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  5095           1       100 
+	   TimeExecute (s)      :   378                       
+	   TimeSlotBusy (s)     :   379                       
+
+	Job terminated of its own accord at 2025-04-03T09:04:44Z with exit-code 0.
+...
+000 (99226.031.000) 2025-04-03 12:26:21 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_1892_5546>
+...
+001 (99226.031.000) 2025-04-03 12:35:12 Job executing on host: <192.168.33.13:9618?addrs=192.168.33.13-9618+[2001-6a8-1080--c-3313]-9618&alias=node33-13.wn.iihe.ac.be&noUDP&sock=startd_2911_4848>
+	SlotName: slot1_64@node33-13.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_2835591"
+	Cpus = 4
+	Disk = 4235
+	GPUs = 0
+	Memory = 100
+...
+006 (99226.031.000) 2025-04-03 12:35:20 Image size of job updated: 172300
+	169  -  MemoryUsage of job (MB)
+	172300  -  ResidentSetSize of job (KB)
+...
+006 (99226.031.000) 2025-04-03 12:40:20 Image size of job updated: 4948016
+	2637  -  MemoryUsage of job (MB)
+	2700252  -  ResidentSetSize of job (KB)
+...
+006 (99226.031.000) 2025-04-03 12:40:50 Image size of job updated: 4948016
+	4049  -  MemoryUsage of job (MB)
+	4145328  -  ResidentSetSize of job (KB)
+...
+005 (99226.031.000) 2025-04-03 12:40:51 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:09:45, Sys 0 00:00:28  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:09:45, Sys 0 00:00:28  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.59        4         4 
+	   Disk (KB)            :     1           1      4235 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  4049           1       100 
+	   TimeExecute (s)      :   338                       
+	   TimeSlotBusy (s)     :   339                       
+
+	Job terminated of its own accord at 2025-04-03T10:40:50Z with exit-code 0.
+...
+000 (146469.031.000) 2025-04-15 12:15:02 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_16952_3d8f>
+...
+001 (146469.031.000) 2025-04-15 12:30:11 Job executing on host: <192.168.34.7:9618?addrs=192.168.34.7-9618+[2001-6a8-1080--c-3407]-9618&alias=node34-7.wn.iihe.ac.be&noUDP&sock=startd_2943_3b4f>
+	SlotName: slot1_12@node34-7.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_3920240"
+	Cpus = 4
+	Disk = 4259
+	GPUs = 0
+	Memory = 100
+...
+006 (146469.031.000) 2025-04-15 12:30:20 Image size of job updated: 172456
+	169  -  MemoryUsage of job (MB)
+	172456  -  ResidentSetSize of job (KB)
+...
+006 (146469.031.000) 2025-04-15 12:35:21 Image size of job updated: 5041560
+	4803  -  MemoryUsage of job (MB)
+	4917296  -  ResidentSetSize of job (KB)
+...
+005 (146469.031.000) 2025-04-15 12:35:32 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:11:54, Sys 0 00:00:25  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:11:54, Sys 0 00:00:25  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     3.51        4         4 
+	   Disk (KB)            :     1           1      4259 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  4803           1       100 
+	   TimeExecute (s)      :   320                       
+	   TimeSlotBusy (s)     :   321                       
+
+	Job terminated of its own accord at 2025-04-15T10:35:31Z with exit-code 0.
+...
+000 (146706.031.000) 2025-04-15 13:25:51 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_16952_3d8f>
+...
+001 (146706.031.000) 2025-04-15 13:41:21 Job executing on host: <192.168.37.15:9618?addrs=192.168.37.15-9618+[2001-6a8-1080--c-3715]-9618&alias=node37-15.wn.iihe.ac.be&noUDP&sock=startd_2834_777d>
+	SlotName: slot1_2@node37-15.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_1938657"
+	Cpus = 4
+	Disk = 4271
+	GPUs = 0
+	Memory = 100
+...
+006 (146706.031.000) 2025-04-15 13:41:30 Image size of job updated: 168488
+	165  -  MemoryUsage of job (MB)
+	168232  -  ResidentSetSize of job (KB)
+...
+006 (146706.031.000) 2025-04-15 13:46:31 Image size of job updated: 4635544
+	4489  -  MemoryUsage of job (MB)
+	4596492  -  ResidentSetSize of job (KB)
+...
+006 (146706.031.000) 2025-04-15 13:50:01 Image size of job updated: 4939176
+	4489  -  MemoryUsage of job (MB)
+	4596492  -  ResidentSetSize of job (KB)
+...
+005 (146706.031.000) 2025-04-15 13:50:04 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:09:22, Sys 0 00:00:28  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:09:22, Sys 0 00:00:28  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     2.17        4         4 
+	   Disk (KB)            :     1           1      4271 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  4489           1       100 
+	   TimeExecute (s)      :   520                       
+	   TimeSlotBusy (s)     :   521                       
+
+	Job terminated of its own accord at 2025-04-15T11:50:01Z with exit-code 0.
+...
+000 (147308.031.000) 2025-04-16 10:34:56 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_16952_3d8f>
+...
+001 (147308.031.000) 2025-04-16 10:52:11 Job executing on host: <192.168.38.2:9618?addrs=192.168.38.2-9618+[2001-6a8-1080--c-3802]-9618&alias=node38-2.wn.iihe.ac.be&noUDP&sock=startd_6836_8181>
+	SlotName: slot1_42@node38-2.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_2394373"
+	Cpus = 4
+	Disk = 7628
+	GPUs = 0
+	Memory = 100
+...
+006 (147308.031.000) 2025-04-16 10:52:19 Image size of job updated: 177664
+	174  -  MemoryUsage of job (MB)
+	177660  -  ResidentSetSize of job (KB)
+...
+006 (147308.031.000) 2025-04-16 10:52:38 Image size of job updated: 589996
+	174  -  MemoryUsage of job (MB)
+	177660  -  ResidentSetSize of job (KB)
+...
+005 (147308.031.000) 2025-04-16 10:52:38 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:30, Sys 0 00:00:03  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:30, Sys 0 00:00:03  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :        0        4         4 
+	   Disk (KB)            :        1        1      7628 
+	   GPUs                 :                           0 
+	   Memory (MB)          :      174        1       100 
+	   TimeExecute (s)      :       27                    
+	   TimeSlotBusy (s)     :       27                    
+
+	Job terminated of its own accord at 2025-04-16T08:52:38Z with exit-code 0.
+...
+000 (147371.031.000) 2025-04-16 11:12:11 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_16952_3d8f>
+...
+001 (147371.031.000) 2025-04-16 11:43:14 Job executing on host: <192.168.37.16:9618?addrs=192.168.37.16-9618+[2001-6a8-1080--c-3716]-9618&alias=node37-16.wn.iihe.ac.be&noUDP&sock=startd_2875_96df>
+	SlotName: slot1_12@node37-16.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_2612696"
+	Cpus = 4
+	Disk = 4248
+	GPUs = 0
+	Memory = 100
+...
+006 (147371.031.000) 2025-04-16 11:43:22 Image size of job updated: 173140
+	170  -  MemoryUsage of job (MB)
+	173140  -  ResidentSetSize of job (KB)
+...
+006 (147371.031.000) 2025-04-16 11:46:58 Image size of job updated: 5178192
+	4192  -  MemoryUsage of job (MB)
+	4291980  -  ResidentSetSize of job (KB)
+...
+005 (147371.031.000) 2025-04-16 11:46:58 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:10:09, Sys 0 00:00:21  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:10:09, Sys 0 00:00:21  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     3.02        4         4 
+	   Disk (KB)            :     1           1      4248 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  4192           1       100 
+	   TimeExecute (s)      :   224                       
+	   TimeSlotBusy (s)     :   224                       
+
+	Job terminated of its own accord at 2025-04-16T09:46:58Z with exit-code 0.
+...
+000 (148641.031.000) 2025-04-17 11:00:57 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_16952_3d8f>
+...
+001 (148641.031.000) 2025-04-17 11:01:06 Job executing on host: <192.168.38.5:9618?addrs=192.168.38.5-9618+[2001-6a8-1080--c-3805]-9618&alias=node38-5.wn.iihe.ac.be&noUDP&sock=startd_6397_636d>
+	SlotName: slot1_1@node38-5.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_2610061"
+	Cpus = 4
+	Disk = 7633
+	GPUs = 0
+	Memory = 100
+...
+006 (148641.031.000) 2025-04-17 11:01:15 Image size of job updated: 657152
+	642  -  MemoryUsage of job (MB)
+	657152  -  ResidentSetSize of job (KB)
+...
+006 (148641.031.000) 2025-04-17 11:06:16 Image size of job updated: 5515520
+	5270  -  MemoryUsage of job (MB)
+	5395840  -  ResidentSetSize of job (KB)
+...
+006 (148641.031.000) 2025-04-17 11:07:47 Image size of job updated: 5525332
+	5270  -  MemoryUsage of job (MB)
+	5395840  -  ResidentSetSize of job (KB)
+...
+005 (148641.031.000) 2025-04-17 11:07:47 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:16:54, Sys 0 00:00:46  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:16:54, Sys 0 00:00:46  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     3.64        4         4 
+	   Disk (KB)            :     1           1      7633 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  5270           1       100 
+	   TimeExecute (s)      :   401                       
+	   TimeSlotBusy (s)     :   401                       
+
+	Job terminated of its own accord at 2025-04-17T09:07:47Z with exit-code 0.
+...
+000 (148668.031.000) 2025-04-17 12:16:05 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_16952_3d8f>
+...
+001 (148668.031.000) 2025-04-17 12:16:28 Job executing on host: <192.168.33.1:9618?addrs=192.168.33.1-9618+[2001-6a8-1080--c-3301]-9618&alias=node33-1.wn.iihe.ac.be&noUDP&sock=startd_2725879_d7f5>
+	SlotName: slot1_1@node33-1.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_3177536"
+	Cpus = 4
+	Disk = 4278
+	GPUs = 0
+	Memory = 100
+...
+006 (148668.031.000) 2025-04-17 12:16:41 Image size of job updated: 166400
+	163  -  MemoryUsage of job (MB)
+	166400  -  ResidentSetSize of job (KB)
+...
+006 (148668.031.000) 2025-04-17 12:21:41 Image size of job updated: 799652
+	767  -  MemoryUsage of job (MB)
+	784748  -  ResidentSetSize of job (KB)
+...
+006 (148668.031.000) 2025-04-17 12:25:06 Image size of job updated: 838076
+	767  -  MemoryUsage of job (MB)
+	784748  -  ResidentSetSize of job (KB)
+...
+005 (148668.031.000) 2025-04-17 12:25:06 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:24:53, Sys 0 00:00:41  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:24:53, Sys 0 00:00:41  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     3.54        4         4 
+	   Disk (KB)            :     1           1      4278 
+	   GPUs                 :                           0 
+	   Memory (MB)          :   767           1       100 
+	   TimeExecute (s)      :   518                       
+	   TimeSlotBusy (s)     :   519                       
+
+	Job terminated of its own accord at 2025-04-17T10:25:06Z with exit-code 0.
+...
+000 (149440.031.000) 2025-04-21 11:48:59 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_16952_3d8f>
+...
+001 (149440.031.000) 2025-04-21 11:49:21 Job executing on host: <192.168.38.3:9618?addrs=192.168.38.3-9618+[2001-6a8-1080--c-3803]-9618&alias=node38-3.wn.iihe.ac.be&noUDP&sock=startd_6636_5290>
+	SlotName: slot1_3@node38-3.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_3098274"
+	Cpus = 4
+	Disk = 7649
+	GPUs = 0
+	Memory = 100
+...
+006 (149440.031.000) 2025-04-21 11:49:30 Image size of job updated: 170360
+	167  -  MemoryUsage of job (MB)
+	170208  -  ResidentSetSize of job (KB)
+...
+006 (149440.031.000) 2025-04-21 11:54:31 Image size of job updated: 5139448
+	4963  -  MemoryUsage of job (MB)
+	5081996  -  ResidentSetSize of job (KB)
+...
+006 (149440.031.000) 2025-04-21 11:59:32 Image size of job updated: 5212936
+	4996  -  MemoryUsage of job (MB)
+	5115092  -  ResidentSetSize of job (KB)
+...
+005 (149440.031.000) 2025-04-21 12:00:23 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:30:19, Sys 0 00:01:44  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:30:19, Sys 0 00:01:44  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     3.61        4         4 
+	   Disk (KB)            :     1           1      7649 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  4996           1       100 
+	   TimeExecute (s)      :   662                       
+	   TimeSlotBusy (s)     :   662                       
+
+	Job terminated of its own accord at 2025-04-21T10:00:23Z with exit-code 0.
+...
+000 (149442.031.000) 2025-04-21 12:46:12 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_16952_3d8f>
+...
+009 (149442.031.000) 2025-04-21 12:46:29 Job was aborted.
+	via condor_rm (by user yvekemans)
+...
+000 (149443.031.000) 2025-04-21 12:46:58 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_16952_3d8f>
+...
+001 (149443.031.000) 2025-04-21 12:47:25 Job executing on host: <192.168.33.1:9618?addrs=192.168.33.1-9618+[2001-6a8-1080--c-3301]-9618&alias=node33-1.wn.iihe.ac.be&noUDP&sock=startd_2725879_d7f5>
+	SlotName: slot1_3@node33-1.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_567583"
+	Cpus = 4
+	Disk = 4278
+	GPUs = 0
+	Memory = 100
+...
+006 (149443.031.000) 2025-04-21 12:47:38 Image size of job updated: 212736
+	208  -  MemoryUsage of job (MB)
+	212736  -  ResidentSetSize of job (KB)
+...
+006 (149443.031.000) 2025-04-21 12:52:38 Image size of job updated: 811124
+	759  -  MemoryUsage of job (MB)
+	776544  -  ResidentSetSize of job (KB)
+...
+006 (149443.031.000) 2025-04-21 12:57:39 Image size of job updated: 855012
+	828  -  MemoryUsage of job (MB)
+	847752  -  ResidentSetSize of job (KB)
+...
+005 (149443.031.000) 2025-04-21 12:57:47 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:29:39, Sys 0 00:01:02  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:29:39, Sys 0 00:01:02  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     3.55        4         4 
+	   Disk (KB)            :     1           1      4278 
+	   GPUs                 :                           0 
+	   Memory (MB)          :   828           1       100 
+	   TimeExecute (s)      :   622                       
+	   TimeSlotBusy (s)     :   622                       
+
+	Job terminated of its own accord at 2025-04-21T10:57:47Z with exit-code 0.
+...
+000 (149447.031.000) 2025-04-21 15:59:25 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_16952_3d8f>
+...
+001 (149447.031.000) 2025-04-21 16:03:39 Job executing on host: <192.168.38.2:9618?addrs=192.168.38.2-9618+[2001-6a8-1080--c-3802]-9618&alias=node38-2.wn.iihe.ac.be&noUDP&sock=startd_6836_8181>
+	SlotName: slot1_10@node38-2.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_1065119"
+	Cpus = 4
+	Disk = 7628
+	GPUs = 0
+	Memory = 100
+...
+006 (149447.031.000) 2025-04-21 16:03:47 Image size of job updated: 821916
+	803  -  MemoryUsage of job (MB)
+	821916  -  ResidentSetSize of job (KB)
+...
+006 (149447.031.000) 2025-04-21 16:08:47 Image size of job updated: 5511524
+	5305  -  MemoryUsage of job (MB)
+	5431564  -  ResidentSetSize of job (KB)
+...
+006 (149447.031.000) 2025-04-21 16:11:28 Image size of job updated: 5553664
+	5305  -  MemoryUsage of job (MB)
+	5431564  -  ResidentSetSize of job (KB)
+...
+005 (149447.031.000) 2025-04-21 16:11:29 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:22:23, Sys 0 00:00:47  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:22:23, Sys 0 00:00:47  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     1.68        4         4 
+	   Disk (KB)            :     1           1      7628 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  5305           1       100 
+	   TimeExecute (s)      :   469                       
+	   TimeSlotBusy (s)     :   469                       
+
+	Job terminated of its own accord at 2025-04-21T14:11:28Z with exit-code 0.
+...
+000 (149456.031.000) 2025-04-21 17:31:16 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_16952_3d8f>
+...
+001 (149456.031.000) 2025-04-21 17:37:08 Job executing on host: <192.168.33.3:9618?addrs=192.168.33.3-9618+[2001-6a8-1080--c-3303]-9618&alias=node33-3.wn.iihe.ac.be&noUDP&sock=startd_2862_ac24>
+	SlotName: slot1_21@node33-3.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_2641143"
+	Cpus = 4
+	Disk = 4232
+	GPUs = 0
+	Memory = 100
+...
+006 (149456.031.000) 2025-04-21 17:37:17 Image size of job updated: 176044
+	172  -  MemoryUsage of job (MB)
+	176044  -  ResidentSetSize of job (KB)
+...
+006 (149456.031.000) 2025-04-21 17:42:18 Image size of job updated: 5016596
+	4803  -  MemoryUsage of job (MB)
+	4917572  -  ResidentSetSize of job (KB)
+...
+006 (149456.031.000) 2025-04-21 17:47:18 Image size of job updated: 5020732
+	4828  -  MemoryUsage of job (MB)
+	4942860  -  ResidentSetSize of job (KB)
+...
+006 (149456.031.000) 2025-04-21 17:49:04 Image size of job updated: 5043344
+	4828  -  MemoryUsage of job (MB)
+	4942860  -  ResidentSetSize of job (KB)
+...
+005 (149456.031.000) 2025-04-21 17:49:04 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:36:22, Sys 0 00:01:03  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:36:22, Sys 0 00:01:03  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     3.35        4         4 
+	   Disk (KB)            :     1           1      4232 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  4828           1       100 
+	   TimeExecute (s)      :   716                       
+	   TimeSlotBusy (s)     :   716                       
+
+	Job terminated of its own accord at 2025-04-21T15:49:04Z with exit-code 0.
+...
+000 (149471.031.000) 2025-04-22 09:22:04 Job submitted from host: <192.168.10.147:9618?addrs=192.168.10.147-9618&alias=schedd03.wn.iihe.ac.be&noUDP&sock=schedd_16952_3d8f>
+...
+001 (149471.031.000) 2025-04-22 09:22:21 Job executing on host: <192.168.34.5:9618?addrs=192.168.34.5-9618+[2001-6a8-1080--c-3405]-9618&alias=node34-5.wn.iihe.ac.be&noUDP&sock=startd_2996_95d4>
+	SlotName: slot1_2@node34-5.wn.iihe.ac.be
+	CondorScratchDir = "/scratch/condor/dir_488677"
+	Cpus = 4
+	Disk = 4269
+	GPUs = 0
+	Memory = 100
+...
+006 (149471.031.000) 2025-04-22 09:22:29 Image size of job updated: 625280
+	611  -  MemoryUsage of job (MB)
+	625020  -  ResidentSetSize of job (KB)
+...
+006 (149471.031.000) 2025-04-22 09:27:29 Image size of job updated: 5503172
+	5352  -  MemoryUsage of job (MB)
+	5480136  -  ResidentSetSize of job (KB)
+...
+006 (149471.031.000) 2025-04-22 09:32:30 Image size of job updated: 5550992
+	5352  -  MemoryUsage of job (MB)
+	5480136  -  ResidentSetSize of job (KB)
+...
+006 (149471.031.000) 2025-04-22 09:33:43 Image size of job updated: 5609660
+	5352  -  MemoryUsage of job (MB)
+	5480136  -  ResidentSetSize of job (KB)
+...
+005 (149471.031.000) 2025-04-22 09:33:43 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:33:16, Sys 0 00:00:59  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:33:16, Sys 0 00:00:59  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     3.87        4         4 
+	   Disk (KB)            :     1           1      4269 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  5352           1       100 
+	   TimeExecute (s)      :   682                       
+	   TimeSlotBusy (s)     :   682                       
+
+	Job terminated of its own accord at 2025-04-22T07:33:43Z with exit-code 0.
+...

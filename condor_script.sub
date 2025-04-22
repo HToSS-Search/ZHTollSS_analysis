@@ -13,7 +13,7 @@ log = /user/yvekemans/MasterThesis/ZHTollSS_analysis/log/log_$(dataset)_$(year)_
 
 request_cpus=4
 #request_memory=10000
-#+JobFlavour = "longlunch"
-+JobFlavour = "espresso"
++JobFlavour = "longlunch"
+#+JobFlavour = "espresso"
 max_retries = 5
-queue cfg,cuts,output,flow,fhigh,dataset,year from params_signal_kaon_UL2017.txt 
+queue cfg,cuts,output,flow,fhigh,dataset,year from params_data_UL2017.txt 

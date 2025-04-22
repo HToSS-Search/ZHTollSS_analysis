@@ -57,20 +57,26 @@ num of matched events after quality cut with 2 or more svVertexChi2: 206
 
 Reconstructed Scalar and Higgs
 No scalar cuts currently
-Amount of Events after scalar selection/cuts: 431
-Amount of Events with m(s1s2)/m(higgs) in ]110, 140[: 349
-Amount of Events with m(s1s2)/m(higgs) in [-inf, 110] U [140, +inf[: 82
+Amount of Events after scalar selection/cuts: 425
+Amount of Events with m(s1s2)/m(higgs) in ]110, 140[: 346
+Amount of Events with m(s1s2)/m(higgs) in [-inf, 110] U [140, +inf[: 79
 UNBLIND == TRUE AND LOOKING AT MC --------- EVENTS REMAIN AS IS
 UNBLINDED, LOOKING AT [122.5, 127.5] PEAK REGION
-PRECAT (PEAK SR or TIGHT CR): 274
-PRECAT TEST (LOOSE CR): 349
+PRECAT (PEAK SR or TIGHT CR): 273
+PRECAT TEST (LOOSE CR): 273
 here1
 here2
 here3
 here4
 here5
-here6
-here7
+Setting up categories...
+Prompt:(15, 15)
+Precat Count:273
+Prompt Region Count:266
+Precat_Loose Count:273
+Prompt_Loose Region Count:266
+Scrambling scalars...
+Applying scalar mass cut on scrambled s1...
 
 
-Time taken: --- 41.055351972579956 seconds ---
+Time taken: --- 99.8068540096283 seconds ---

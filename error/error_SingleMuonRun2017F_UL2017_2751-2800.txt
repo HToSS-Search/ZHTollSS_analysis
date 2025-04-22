@@ -7,38 +7,46 @@ Looking at Data.......
 Reconstructed Muons
 Total Events to start from before muon selection: 98237
 Events after numMuonPF2PAT >= 2 cut: 98237
-PfRelIsoLoose pass: 26757
-PfRelIsoTight pass: 24072
-Events after quality cuts: 45262
-Events after leadingPt, opposite charge cut: 35665
-Events after Zmass cut: 20854
+
+Events passing HLT_IsoMu27_v: 57246
+PfRelIsoLoose pass: 25320
+PfRelIsoTight pass: 22978
+Events after quality cuts: 33496
+Events after leadingPt, opposite charge cut: 29566
+Events after Zmass cut: 19530
 
 
 Reconstructed hadrons
-Amount of events passing muon cuts (no invmass cut): 35665
-Amount of events with >= 4 ch, events passed muon selection: 20854
-Amount of events with >= 4 ch after hadron cuts (pT & Eta): 19959
-Amount of events where single pair found: 7350
-Amount of events where two pairs found: 2433
-num of Ch events after quality cut  with 1 or more svVertexChi2: 11849
-num of Ch events after quality cut with 2 or more svVertexChi2: 6555
+Amount of events passing muon cuts (no invmass cut): 29566
+Amount of events with >= 4 ch, events passed muon selection: 19530
+Amount of events with >= 4 ch after hadron cuts (pT & Eta): 18644
+Amount of events where single pair found: 6432
+Amount of events where two pairs found: 1921
+num of Ch events after quality cut  with 1 or more svVertexChi2: 10663
+num of Ch events after quality cut with 2 or more svVertexChi2: 5560
 
 Reconstructed Scalar and Higgs
 No scalar cuts currently
-Amount of Events after scalar selection/cuts: 2433
-Amount of Events with m(s1s2)/m(higgs) in ]110, 140[: 148
-Amount of Events with m(s1s2)/m(higgs) in [-inf, 110] U [140, +inf[: 2285
+Amount of Events after scalar selection/cuts: 1906
+Amount of Events with m(s1s2)/m(higgs) in ]110, 140[: 99
+Amount of Events with m(s1s2)/m(higgs) in [-inf, 110] U [140, +inf[: 1807
 UNBLIND == FALSE --------- EVENTS WILL BE BLINDED, EVENTS OMITTED IN mHiggs [122.5,127.5]
 BLINDED, LOOKING AT TIGHT SIDEBANDS[120, 122.5] U [127.5, 130]
-PRECAT (PEAK SR or TIGHT CR): 12
-PRECAT TEST (LOOSE CR): 120
+PRECAT (PEAK SR or TIGHT CR): 10
+PRECAT TEST (LOOSE CR): 81
 here1
 here2
 here3
 here4
 here5
-here6
-here7
+Setting up categories...
+Prompt:(15, 15)
+Precat Count:10
+Prompt Region Count:9
+Precat_Loose Count:81
+Prompt_Loose Region Count:79
+Scrambling scalars...
+Applying scalar mass cut on scrambled s1...
 
 
-Time taken: --- 160.10950541496277 seconds ---
+Time taken: --- 468.73298621177673 seconds ---

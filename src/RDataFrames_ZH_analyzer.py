@@ -8,7 +8,7 @@ import ROOT
 import time
 import sys
 
-from ZH_analysis_helper import gInterpreter_PFIsolation, gInterpreter_lv, gInterpreter_getIndices, gInterpreter_getKinematics, gInterpreter_pairselection, gInterpreter_matching, gInterpreter_diObjectLxy, gInterpreter_std_map
+from ZH_analysis_helper import gInterpreter_PFIsolation, gInterpreter_lv, gInterpreter_getIndices, gInterpreter_getKinematics, gInterpreter_pairselection, gInterpreter_matching, gInterpreter_diObjectLxy, gInterpreter_std_map, gInterpreter_Scrambled
 from sf_helper import get_pileup, gInterpreter_SF
 
 ROOT.gROOT.SetBatch(True)
@@ -286,11 +286,12 @@ gInterpreter_PFIsolation()
 
 #TESTING
 #list_of_files_bis = ['/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ZH_HToSSTo4Hadrons_ZToLL_MH125_MS1p2_ctauS0_TuneCP2_13TeV-powheg-pythia8/RunIIUL17/241208/new/output_13.root','/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ZH_HToSSTo4Hadrons_ZToLL_MH125_MS1p2_ctauS0_TuneCP2_13TeV-powheg-pythia8/RunIIUL17/241208/new/output_23.root','/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ZH_HToSSTo4Hadrons_ZToLL_MH125_MS1p2_ctauS0_TuneCP2_13TeV-powheg-pythia8/RunIIUL17/241208/new/output_22.root','/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ZH_HToSSTo4Hadrons_ZToLL_MH125_MS1p2_ctauS0_TuneCP2_13TeV-powheg-pythia8/RunIIUL17/241208/new/output_28.root','/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/ZH_HToSSTo4Hadrons_ZToLL_MH125_MS1p2_ctauS0_TuneCP2_13TeV-powheg-pythia8/RunIIUL17/241208/new/output_9.root']
-#df = ROOT.RDataFrame(treeName, '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0000/output_1.root') 
+df = ROOT.RDataFrame(treeName, '/pnfs/iihe/cms/store/user/sdansana/HToSS/MC/nTuples/SingleMuon/Run2017F-UL2017_MiniAODv2-v1_DataUL2017F_ZH_production/250317_225506/0000/output_50.root') 
 #df = ROOT.RDataFrame(treeName, list_of_files_bis)
+#df.Describe().Print()
 
 #ORIGINAL
-df = ROOT.RDataFrame(treeName, list_of_files)
+#df = ROOT.RDataFrame(treeName, list_of_files)
 sys.stderr.write('\nTree loaded in succesfully')
 
 totalEntries = df.Count().GetValue()
@@ -449,11 +450,15 @@ sys.stderr.write('\n\nReconstructed Muons\n')
 if not isData:
     sys.stderr.write('Events from gen Mu: ' + str(df_genMuZ.Count().GetValue()) + '\n')
     df_recoMu = df_genMuZ.Filter('numMuonPF2PAT >= 2', '2 or more recoMu')
+    sys.stderr.write('Events after numMuonPF2PAT >= 2 cut: ' + str(df_recoMu.Count().GetValue()) + '\n')
 else:
     sys.stderr.write('Total Events to start from before muon selection: ' + str(df.Count().GetValue()) + '\n')
     df_recoMu = df.Filter('numMuonPF2PAT >= 2', '2 or more recoMu')
+    sys.stderr.write('Events after numMuonPF2PAT >= 2 cut: ' + str(df_recoMu.Count().GetValue()) + '\n')
+    df_recoMu = df_recoMu.Filter('HLT_IsoMu27_v', 'HLT_IsoMu27_v trigger')
+    muonTriggerCut = df_recoMu.Count().GetValue()
+    sys.stderr.write('\nEvents passing HLT_IsoMu27_v: ' + str(df_recoMu.Count().GetValue()) + '\n')
 
-sys.stderr.write('Events after numMuonPF2PAT >= 2 cut: ' + str(df_recoMu.Count().GetValue()) + '\n')
 recoMu_qualitycut = 'abs(muonPF2PATEta) < ' + str(mu_cuts['eta']) + ' && muonPF2PATLooseCutId &&  muonPF2PATPt > ' + str(mu_cuts['pt'])
 recoMu_qualitycutEta = 'abs(muonPF2PATEta) < ' + str(mu_cuts['eta'])
 recoMu_qualitycutId = 'muonPF2PATLooseCutId'
@@ -473,11 +478,13 @@ sys.stderr.write('PfRelIsoTight pass: ' + str(df_recoMu.Filter('recoMu_RelIsoTig
 
 df_recoMu = df_recoMu.Filter('Min(recoMu_pT) > ' + str(mu_cuts['pt']), 'Quality filter')
 df_recoMu = df_recoMu.Define('recoMu_pT_leading', 'recoMu_pT[0]').Define('recoMu_pT_subleading', 'recoMu_pT[1]')
+muonQualCut = df_recoMu.Count().GetValue()
 sys.stderr.write('Events after quality cuts: ' + str(df_recoMu.Count().GetValue()) + '\n')
 
 #Only keep events with leading pT above cut and opposite charged muons
 recoMu_cut = 'Max(recoMu_pT) > ' + str(mu_cuts['ptLeading']) + ' && recoMu_ch[0]*recoMu_ch[1] < 0'
 df_recoMu_cut = df_recoMu.Filter(recoMu_cut, 'Muon cuts')
+muonRecoCut = df_recoMu_cut.Count().GetValue()
 sys.stderr.write('Events after leadingPt, opposite charge cut: ' + str(df_recoMu_cut.Count().GetValue()) + '\n')
 
 #Set up the invariant Z mass
@@ -488,6 +495,7 @@ df_recoMu_cut = df_recoMu_cut.Define('mu_mass_', str(muonMass_))\
 
 invMassCut = 'Z_mass < ' + Zmass_high + ' && Z_mass > ' + Zmass_low
 df_recoMu_cut_invcut = df_recoMu_cut.Filter(invMassCut, 'Invariant mass cuts')
+ZmassCut = df_recoMu_cut_invcut.Count().GetValue()
 sys.stderr.write('Events after Zmass cut: ' + str(df_recoMu_cut_invcut.Count().GetValue()) + '\n')
 
 #sys.stderr.write('CUTFLOWREPORT MUONS BELOW\n')
@@ -527,6 +535,7 @@ df_recoCh_cut = df_recoCh.Define('LVs', f'makeLVs(pCandChId, recoCh_charge, reco
 
 #Filter on the events which have 4 or more Charged Hadrons
 df_recoCh_sel = df_recoCh_cut.Filter('ch_trk_sel')
+hadronQualCut = df_recoCh_sel.Count().GetValue()
 
 #Set up the 2 hadron pairs, related to the two scalars
 df_diCh = df_recoCh_sel.Define('cand_globalidx_hadronsonly',f'getIndices(numPackedCands)[{isRecoCh}]')\
@@ -562,7 +571,8 @@ df_diCh_check = df_diCh.Filter('ch_pair_check')\
         .Define('ch2_nhits_tmp','packedCandsPseudoTrkNumberOfHits[ch_pair_idx1[1]]')\
         .Define('ch3_nhits_tmp','packedCandsPseudoTrkNumberOfHits[ch_pair_idx2[0]]')\
         .Define('ch4_nhits_tmp','packedCandsPseudoTrkNumberOfHits[ch_pair_idx2[1]]')
-
+hadron1pair = df_diCh_check_single.Count().GetValue()
+hadron2pair = df_diCh_check.Count().GetValue()
 #Define the angular differences
 df_diCh_check = df_diCh_check.Define('ch12_dEta', 'ch1_eta - ch2_eta').Define('ch34_dEta', 'ch3_eta - ch4_eta')\
         .Define('ch12_dPhi', 'ROOT::VecOps::DeltaPhi(ch1_phi, ch2_phi)').Define('ch34_dPhi', 'ROOT::VecOps::DeltaPhi(ch3_phi, ch4_phi)')\
@@ -762,7 +772,9 @@ if not isData:
 sys.stderr.write('\n\nReconstructed Scalar and Higgs')
 
 #Scalar kinematics
-df_s1s2 = df_diCh_check.Define('s1_lv', 'ch1_lv + ch2_lv' ).Define('s2_lv', 'ch3_lv + ch4_lv')\
+df_s1s2 = df_diCh_check.Define('s1_lv_tmp', 'ch1_lv + ch2_lv' ).Define('s2_lv_tmp', 'ch3_lv + ch4_lv')\
+        .Define('s1_lv', 's1_lv_tmp.Pt() > s2_lv_tmp.Pt() ? s1_lv_tmp:s2_lv_tmp')\
+        .Define('s2_lv', 's1_lv_tmp.Pt() > s2_lv_tmp.Pt() ? s2_lv_tmp:s1_lv_tmp')\
         .Define('s1_mass', 's1_lv.M()').Define('s2_mass', 's2_lv.M()')\
         .Define('s1_pT', 's1_lv.Pt()').Define('s2_pT', 's2_lv.Pt()')\
         .Define('s12_mass', '''double s = (s1_mass + s2_mass)/2.0; return s;''')\
@@ -808,6 +820,9 @@ df_vertex = df_s1s2.Define('PVCov00',f'pvCov00[{pv_sel}][0]').Define('PVCov01',f
                         .Define('s1_lxy','s1_lxyInfo[0]')\
                         .Define('s2_lxy','s2_lxyInfo[0]')
 
+#Get rid of events where the displacement values are nonsense (negative similarity values)
+df_vertex = df_vertex.Filter('s1_sim_val >= 0 && s2_sim_val >= 0')
+
 #NO CUTS ON SCALAR MASS CURRENTLY
 
 
@@ -829,7 +844,7 @@ df_higgs_preblind = df_vertex.Define('higgs_lv', 's1_lv + s2_lv')\
         .Define('ch4_reliso', 'ch4_iso[0]')
 
 df_higgs_preblind_loose = df_higgs_preblind.Filter('recohiggs_mass_check_loose', f'm(s1s2) in ]{hmass_low},{hmass_high}[')
-
+higgsLooseCut = df_higgs_preblind_loose.Count().GetValue()
 sys.stderr.write('\nAmount of Events after scalar selection/cuts: ' + str(df_higgs_preblind.Count().GetValue()))
 sys.stderr.write('\nAmount of Events with m(s1s2)/m(higgs) in ]110, 140[: ' + str(df_higgs_preblind_loose.Count().GetValue()))
 sys.stderr.write('\nAmount of Events with m(s1s2)/m(higgs) in [-inf, 110] U [140, +inf[: ' + str(df_higgs_preblind.Filter(f'higgs_mass <= {hmass_low}'+' || '+f'higgs_mass >= {hmass_high}').Count().GetValue()))
@@ -855,18 +870,18 @@ if (unblind):
     else:
         sys.stderr.write("\nUNBLIND == TRUE AND LOOKING AT MC --------- EVENTS REMAIN AS IS")
         df_higgs_precat = df_higgs_preblind_loose
-        df_higgs_precat_test = df_higgs_preblind_loose
 else:
     sys.stderr.write("\nUNBLIND == FALSE --------- EVENTS WILL BE BLINDED, EVENTS OMITTED IN mHiggs [122.5,127.5]")
     df_higgs_precat = df_higgs_preblind_loose.Filter('recohiggs_mass_blinded',f'm(mumuhh) blinded in [122.5,127.5]')
     df_higgs_precat_test = df_higgs_preblind_loose.Filter('recohiggs_mass_blinded',f'm(mumuhh) blinded in [122.5,127.5]')
 
 #Look at signal region if unblinded [122.5, 127.5]
-if (unblind):
+if (unblind):#By default Signal MC
     sys.stderr.write('\nUNBLINDED, LOOKING AT [122.5, 127.5] PEAK REGION')
     df_higgs_precat = df_higgs_precat.Filter('recohiggs_mass_peak','m(mumuhh) in [122.5,127.5] peak')
+    df_higgs_precat_test = df_higgs_precat.Filter('recohiggs_mass_peak','m(mumuhh) in [122.5,127.5] peak')
 #Look at sidebands if blinded: Tight = [120, 122.5] U [127.5, 130] || Loose = [110, 122.5] U [127.5, 140]
-else:
+else: #By default DATA
     #Tight CR condition
     sys.stderr.write('\nBLINDED, LOOKING AT TIGHT SIDEBANDS[120, 122.5] U [127.5, 130]')
     df_higgs_precat = df_higgs_precat.Filter('recohiggs_mass_check','m(mumuhh) in [120,130] sidebands')
@@ -889,10 +904,11 @@ hists_2d_precat={}
 
 s12m_range = [0.8, 3.6] if isData else [0.8, 1.6]
 s12m_bins = 280 if isData else 80
-s12lxy_range = [0, 60]
-s12lxy_bins = 300
-s12lxysig_range = [0, 1000]
-s12lxysig_bins = 50
+s12m_bins_fit = 560 if isData else 320
+s12lxy_range = [0, 20]
+s12lxy_bins = 50
+s12lxysig_range = [0, 200]
+s12lxysig_bins = 80
 
 
 precat_count = df_higgs_precat.Count().GetValue()
@@ -901,93 +917,476 @@ precattest_count = df_higgs_precat_test.Count().GetValue()
 sys.stderr.write('\nPRECAT (PEAK SR or TIGHT CR): ' + str(precat_count))
 sys.stderr.write('\nPRECAT TEST (LOOSE CR): ' + str(precattest_count))
 
-hists_1d_test['h_'+'ChargedHadron1'+'relIso'] = df_higgs_precat.Histo1D(('h_'+'ChargedHadron1'+'relIso','', 100, 0, 10), 'ch1_reliso', 'weight')
-hists_1d_test['h_'+'ChargedHadron2'+'relIso'] = df_higgs_precat.Histo1D(('h_'+'ChargedHadron2'+'relIso','', 100, 0, 10), 'ch2_reliso', 'weight')
-hists_1d_test['h_'+'ChargedHadron3'+'relIso'] = df_higgs_precat.Histo1D(('h_'+'ChargedHadron3'+'relIso','', 100, 0, 10), 'ch3_reliso', 'weight')
-hists_1d_test['h_'+'ChargedHadron4'+'relIso'] = df_higgs_precat.Histo1D(('h_'+'ChargedHadron4'+'relIso','', 100, 0, 10), 'ch4_reliso', 'weight')
+hists_1d_test['h_'+'ChargedHadron1'+'relIso'] = df_higgs_precat.Histo1D(('h_'+'ChargedHadron1'+'relIso','', 100, 0, 5), 'ch1_reliso', 'weight')
+hists_1d_test['h_'+'ChargedHadron2'+'relIso'] = df_higgs_precat.Histo1D(('h_'+'ChargedHadron2'+'relIso','', 100, 0, 5), 'ch2_reliso', 'weight')
+hists_1d_test['h_'+'ChargedHadron3'+'relIso'] = df_higgs_precat.Histo1D(('h_'+'ChargedHadron3'+'relIso','', 100, 0, 5), 'ch3_reliso', 'weight')
+hists_1d_test['h_'+'ChargedHadron4'+'relIso'] = df_higgs_precat.Histo1D(('h_'+'ChargedHadron4'+'relIso','', 100, 0, 5), 'ch4_reliso', 'weight')
 sys.stderr.write('\nhere1')
 hists_1d_test['h_'+'ZBoson'+'Mass']=df_recoMu_cut_invcut.Histo1D(('h_'+'ZBoson'+'Mass','', 400, 70, 110), 'Z_mass', 'weight')
 hists_1d_test['h_'+'Scalar1'+'Mass'] = df_higgs_precat.Histo1D(('h_'+'Scalar1'+'Mass', '', s12m_bins, s12m_range[0], s12m_range[1]), 's1_mass','weight')
 hists_1d_test['h_'+'Scalar2'+'Mass'] = df_higgs_precat.Histo1D(('h_'+'Scalar2'+'Mass', '', s12m_bins, s12m_range[0], s12m_range[1]), 's2_mass','weight')
+hists_1d_test['h_'+'Scalar12'+'Mass'] = df_higgs_precat.Histo1D(('h_'+'Scalar12'+'Mass', '', s12m_bins, s12m_range[0], s12m_range[1]), 's12_mass','weight')
 hists_1d_test['h_'+'Scalar1'+'Lxy'] = df_higgs_precat.Histo1D(('h_'+'Scalar1'+'Lxy', '', s12lxy_bins, s12lxy_range[0], s12lxy_range[1]), 's1_lxy', 'weight')
 hists_1d_test['h_'+'Scalar1'+'LxySig'] = df_higgs_precat.Histo1D(('h_'+'Scalar1'+'LxySig', '', s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1]), 's1_lxysign_tmp', 'weight')
 hists_1d_test['h_'+'Scalar2'+'Lxy'] = df_higgs_precat.Histo1D(('h_'+'Scalar2'+'Lxy', '', s12lxy_bins, s12lxy_range[0], s12lxy_range[1]), 's2_lxy', 'weight')
 hists_1d_test['h_'+'Scalar2'+'LxySig'] = df_higgs_precat.Histo1D(('h_'+'Scalar2'+'LxySig', '', s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1]), 's2_lxysign_tmp', 'weight')
 
 sys.stderr.write('\nhere2')
+hists_2d_test['h_'+'Scalar'+'Mass'] = df_higgs_precat.Histo2D(('h_'+'Scalar'+'Mass', '', s12m_bins, s12m_range[0], s12m_range[1],s12m_bins, s12m_range[0], s12m_range[1]), 's1_mass','s2_mass', 'weight')
 hists_2d_test['h_'+'Scalar'+'Lxy'] = df_higgs_precat.Histo2D(('h_'+'Scalar'+'Lxy', '', s12lxy_bins, s12lxy_range[0], s12lxy_range[1], s12lxy_bins, s12lxy_range[0], s12lxy_range[1]), 's1_lxy', 's2_lxy', 'weight')
 hists_2d_test['h_'+'Scalar'+'LxySig'] = df_higgs_precat.Histo2D(('h_'+'Scalar'+'LxySig', '', s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1], s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1]), 's1_lxysign_tmp', 's2_lxysign_tmp', 'weight')
+hists_2d_test['h_Scalar1MassLxy'] = df_higgs_precat.Histo2D(('h_'+'Scalar1'+'MassLxy', '', s12m_bins, s12m_range[0], s12m_range[1],s12lxy_bins, s12lxy_range[0], s12lxy_range[1]), 's1_mass','s1_lxy', 'weight')
+hists_2d_test['h_Scalar2MassLxy'] = df_higgs_precat.Histo2D(('h_'+'Scalar2'+'MassLxy', '', s12m_bins, s12m_range[0], s12m_range[1],s12lxy_bins, s12lxy_range[0], s12lxy_range[1]), 's2_mass','s2_lxy', 'weight')
 
 
 sys.stderr.write('\nhere3')
-hists_1d_test['h_'+'ChargedHadron1'+'relIso'+ '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'ChargedHadron1'+'relIso'+ '_Loose','', 100, 0, 10), 'ch1_reliso', 'weight')
-hists_1d_test['h_'+'ChargedHadron2'+'relIso'+ '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'ChargedHadron2'+'relIso'+ '_Loose','', 100, 0, 10), 'ch2_reliso', 'weight')
-hists_1d_test['h_'+'ChargedHadron3'+'relIso'+ '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'ChargedHadron3'+'relIso'+ '_Loose','', 100, 0, 10), 'ch3_reliso', 'weight')
-hists_1d_test['h_'+'ChargedHadron4'+'relIso'+ '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'ChargedHadron4'+'relIso'+ '_Loose','', 100, 0, 10), 'ch4_reliso', 'weight')
+hists_1d_test['h_'+'ChargedHadron1'+'relIso'+ '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'ChargedHadron1'+'relIso'+ '_Loose','', 100, 0, 5), 'ch1_reliso', 'weight')
+hists_1d_test['h_'+'ChargedHadron2'+'relIso'+ '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'ChargedHadron2'+'relIso'+ '_Loose','', 100, 0, 5), 'ch2_reliso', 'weight')
+hists_1d_test['h_'+'ChargedHadron3'+'relIso'+ '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'ChargedHadron3'+'relIso'+ '_Loose','', 100, 0, 5), 'ch3_reliso', 'weight')
+hists_1d_test['h_'+'ChargedHadron4'+'relIso'+ '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'ChargedHadron4'+'relIso'+ '_Loose','', 100, 0, 5), 'ch4_reliso', 'weight')
 
 sys.stderr.write('\nhere4')
 hists_1d_test['h_'+'HiggsBoson'+'Mass' + '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'HiggsBoson'+'Mass' + '_Loose', '', 300, 110, 140), 'higgs_mass','weight')
 hists_1d_test['h_'+'Scalar1'+'Mass' + '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'Scalar1'+'Mass' + '_Loose', '', s12m_bins, s12m_range[0], s12m_range[1]), 's1_mass','weight')
 hists_1d_test['h_'+'Scalar2'+'Mass' + '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'Scalar2'+'Mass' + '_Loose', '', s12m_bins, s12m_range[0], s12m_range[1]), 's2_mass','weight')
+hists_1d_test['h_'+'Scalar12'+'Mass' + '_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'Scalar12'+'Mass' + '_Loose', '', s12m_bins, s12m_range[0], s12m_range[1]), 's12_mass','weight')
 hists_1d_test['h_'+'Scalar1'+'Lxy'+'_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'Scalar1'+'Lxy'+'_Loose', '', s12lxy_bins, s12lxy_range[0], s12lxy_range[1]), 's1_lxy', 'weight')
 hists_1d_test['h_'+'Scalar1'+'LxySig'+'_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'Scalar1'+'LxySig'+'_Loose', '', s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1]), 's1_lxysign_tmp', 'weight')
 hists_1d_test['h_'+'Scalar2'+'Lxy'+'_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'Scalar2'+'Lxy'+'_Loose', '', s12lxy_bins, s12lxy_range[0], s12lxy_range[1]), 's2_lxy', 'weight')
 hists_1d_test['h_'+'Scalar2'+'LxySig'+'_Loose'] = df_higgs_precat_test.Histo1D(('h_'+'Scalar2'+'LxySig'+'_Loose', '', s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1]), 's2_lxysign_tmp', 'weight')
 
 sys.stderr.write('\nhere5')
+hists_2d_test['h_'+'Scalar'+'Mass'+'_Loose'] = df_higgs_precat_test.Histo2D(('h_'+'Scalar'+'Mass'+'_Loose', '', s12m_bins, s12m_range[0], s12m_range[1],s12m_bins, s12m_range[0], s12m_range[1]), 's1_mass','s2_mass', 'weight')
 hists_2d_test['h_'+'Scalar'+'Lxy'+'_Loose'] = df_higgs_precat_test.Histo2D(('h_'+'Scalar'+'Lxy'+'_Loose', '', s12lxy_bins, s12lxy_range[0], s12lxy_range[1], s12lxy_bins, s12lxy_range[0], s12lxy_range[1]), 's1_lxy', 's2_lxy', 'weight')
 hists_2d_test['h_'+'Scalar'+'LxySig'+'_Loose'] = df_higgs_precat_test.Histo2D(('h_'+'Scalar'+'LxySig'+'_Loose', '', s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1], s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1]), 's1_lxysign_tmp', 's2_lxysign_tmp', 'weight')
+hists_2d_test['h_Scalar1MassLxy_Loose'] = df_higgs_precat_test.Histo2D(('h_'+'Scalar1'+'MassLxy'+'_Loose', '', s12m_bins, s12m_range[0], s12m_range[1],s12lxy_bins, s12lxy_range[0], s12lxy_range[1]), 's1_mass','s1_lxy', 'weight')
+hists_2d_test['h_Scalar2MassLxy_Loose'] = df_higgs_precat_test.Histo2D(('h_'+'Scalar2'+'MassLxy'+'_Loose', '', s12m_bins, s12m_range[0], s12m_range[1],s12lxy_bins, s12lxy_range[0], s12lxy_range[1]), 's2_mass','s2_lxy', 'weight')
 
 
+############## Categorization ########################
+sys.stderr.write('\nSetting up categories...')
+reg_ = {}
+reg_test = {}
+#Tight
+df_higgs_prompt = df_higgs_precat.Filter('prompt_check', 'prompt region')
+df_higgs_displaceds1 = df_higgs_precat.Filter('displaceds1_check', 'displaced s1 region')
+df_higgs_displaceds2 = df_higgs_precat.Filter('displaceds2_check', 'displaced s2 region')
+df_higgs_displaced = df_higgs_precat.Filter('displaced_check', 'displaced region')
+#Loose
+df_higgs_loose_prompt = df_higgs_precat_test.Filter('prompt_check', 'prompt region')
+df_higgs_loose_displaceds1 = df_higgs_precat_test.Filter('displaceds1_check', 'displaced s1 region')
+df_higgs_loose_displaceds2 = df_higgs_precat_test.Filter('displaceds2_check', 'displaced s2 region')
+df_higgs_loose_displaced = df_higgs_precat_test.Filter('displaced_check', 'displaced region')
+
+reg_['prompt'] = { 'loose': df_higgs_loose_prompt, 'tight': df_higgs_prompt} 
+reg_['displaceds1'] = { 'loose': df_higgs_loose_displaceds1, 'tight': df_higgs_displaceds1} 
+reg_['displaceds2'] = { 'loose': df_higgs_loose_displaceds2, 'tight': df_higgs_displaceds2} 
+reg_['displaced'] = { 'loose': df_higgs_loose_displaced, 'tight': df_higgs_displaced} 
+#testing
+reg_test['prompt'] = { 'loose': df_higgs_loose_prompt, 'tight': df_higgs_prompt} 
+reg_test['displaceds1'] = { 'loose': df_higgs_loose_displaceds1, 'tight': df_higgs_displaceds1} 
+reg_test['displaceds2'] = { 'loose': df_higgs_loose_displaceds2, 'tight': df_higgs_displaceds2} 
+reg_test['displaced'] = { 'loose': df_higgs_loose_displaced, 'tight': df_higgs_displaced} 
+
+promptCatLoose = df_higgs_loose_prompt.Count().GetValue()
+promptCatTight = df_higgs_prompt.Count().GetValue()
+
+displaceds1CatLoose = df_higgs_loose_displaceds1.Count().GetValue()
+displaceds1CatTight = df_higgs_displaceds1.Count().GetValue()
+
+displaceds2CatLoose = df_higgs_loose_displaceds2.Count().GetValue()
+displaceds2CatTight = df_higgs_displaceds2.Count().GetValue()
+
+displacedCatLoose = df_higgs_loose_displaced.Count().GetValue()
+displacedCatTight = df_higgs_displaced.Count().GetValue()
+sys.stderr.write('\nPrompt:' + '(' + str(s1lxysign) + ', ' + str(s2lxysign) + ')')
+
+sys.stderr.write('\nPrecat Count:' +str(df_higgs_precat.Count().GetValue()))
+sys.stderr.write('\nPrompt Region Count:' +str(df_higgs_prompt.Count().GetValue()))
+
+sys.stderr.write('\nPrecat_Loose Count:' +str(df_higgs_precat_test.Count().GetValue()))
+sys.stderr.write('\nPrompt_Loose Region Count:' +str(df_higgs_loose_prompt.Count().GetValue()))
+
+
+############## Scramble s1 and s2 ########################
+
+sys.stderr.write('\nScrambling scalars...')
+gInterpreter_Scrambled()
+for regkey in reg_:
+    reg_[regkey]['loose'] = reg_[regkey]['loose'].Define('s12_scrambled', 'Scramble(s1_lv, s2_lv, 50)')\
+            .Define('s1_new', 's12_scrambled[0]')\
+            .Define('s2_new', 's12_scrambled[1]')\
+            .Define('s1_new_mass', 's1_new.M()')\
+            .Define('s2_new_mass', 's2_new.M()')
+
+    reg_[regkey]['tight'] = reg_[regkey]['tight'].Define('s12_scrambled', 'Scramble(s1_lv, s2_lv, 50)')\
+            .Define('s1_new', 's12_scrambled[0]')\
+            .Define('s2_new', 's12_scrambled[1]')\
+            .Define('s1_new_mass', 's1_new.M()')\
+            .Define('s2_new_mass', 's2_new.M()')
+
+#Set up the fit plots for the masswindow scalar cut determination
+hists_1d={}
+hists_2d={}
+
+for key in reg_:
+    hists_1d[key] = {}
+    hists_2d[key] = {}
+
+    hists_1d[key]['h_'+'Scalar1New'+'Mass_'+str(key)] = reg_[key]['tight'].Histo1D(('h_'+'Scalar1New'+'Mass_'+str(key), '', s12m_bins, s12m_range[0], s12m_range[1]), 's1_new_mass','weight')
+    hists_1d[key]['h_'+'Scalar2New'+'Mass_'+str(key)] = reg_[key]['tight'].Histo1D(('h_'+'Scalar2New'+'Mass_'+str(key), '', s12m_bins, s12m_range[0], s12m_range[1]), 's2_new_mass','weight')
+    if not isData:
+        hists_1d[key]['h_'+'Scalar1New'+'Mass_Fit_'+str(key)] = reg_[key]['tight'].Histo1D(('h_'+'Scalar1New'+'Mass_Fit_'+str(key), '', s12m_bins_fit, s12m_range[0], s12m_range[1]), 's1_new_mass','weight')
+        hists_1d[key]['h_'+'Scalar2New'+'Mass_Fit_'+str(key)] = reg_[key]['tight'].Histo1D(('h_'+'Scalar2New'+'Mass_Fit_'+str(key), '', s12m_bins_fit, s12m_range[0], s12m_range[1]), 's2_new_mass','weight')
+
+    if not isData:
+        hists_1d[key]['h_'+'Scalar1New'+'Mass_Fit_Loose_'+str(key)] = reg_[key]['loose'].Histo1D(('h_'+'Scalar1New'+'Mass_Fit_Loose_'+str(key), '', s12m_bins_fit, s12m_range[0], s12m_range[1]), 's1_new_mass','weight')
+        hists_1d[key]['h_'+'Scalar2New'+'Mass_Fit_Loose_'+str(key)] = reg_[key]['loose'].Histo1D(('h_'+'Scalar2New'+'Mass_Fit_Loose_'+str(key), '', s12m_bins_fit, s12m_range[0], s12m_range[1]), 's2_new_mass','weight')
+
+############## Scalar mass cuts ########################
+
+sys.stderr.write('\nApplying scalar mass cut on scrambled s1...')
+#Hardcoded most conservative window from scrambled s1
+scalarMassLower, scalarMassUpper = 1.1801, 1.2199
+
+#Apply same window on both scalar masses and average scalar mass for now:
+#First apply on the unscrambled s1
+scalarCutEffLoose_s1_scrambled = {'prompt': 0, 'displaceds1': 0, 'displaceds2': 0, 'displaced': 0}
+scalarCutEffTight_s1_scrambled = {'prompt': 0, 'displaceds1': 0, 'displaceds2': 0, 'displaced': 0}
+for regkey in reg_:
+    reg_[regkey]['loose'] = reg_[regkey]['loose'].Filter('s1_new_mass >= '  + str(scalarMassLower) + ' && s1_new_mass <= ' + str(scalarMassUpper))
+    scalarCutEffLoose_s1_scrambled[regkey] = reg_[regkey]['loose'].Count().GetValue()
+for regkey in reg_:
+    reg_[regkey]['tight'] = reg_[regkey]['tight'].Filter('s1_new_mass >= '  + str(scalarMassLower) + ' && s1_new_mass <= ' + str(scalarMassUpper))
+    scalarCutEffTight_s1_scrambled[regkey] = reg_[regkey]['tight'].Count().GetValue()
+sys.stderr.write('\n' + str(scalarCutEffLoose_s1_scrambled['displaceds1']))
+sys.stderr.write('\n' + str(reg_['displaceds1']['loose'].Count().GetValue()))
+
+####### TESTING #######
+## Scalar cut applied on unscrambled s1, s2, and avg mass
+#Loose
+scalarCutEffLoose = {'prompt': 0, 'displaceds1': 0, 'displaceds2': 0, 'displaced': 0}
+for regkey in reg_test:
+    scalarCutArr = []
+    reg_test[regkey]['loose'] = reg_test[regkey]['loose'].Filter('s1_mass >= '  + str(scalarMassLower) + ' && s1_mass <= ' + str(scalarMassUpper))
+    scalarCutArr.append(reg_test[regkey]['loose'].Count().GetValue())
+    reg_test[regkey]['loose'] = reg_test[regkey]['loose'].Filter('s2_mass >= '  + str(scalarMassLower) + ' && s2_mass <= ' + str(scalarMassUpper))
+    scalarCutArr.append(reg_test[regkey]['loose'].Count().GetValue())
+    reg_test[regkey]['loose'] = reg_test[regkey]['loose'].Filter('s12_mass >= '  + str(scalarMassLower) + ' && s12_mass <= ' + str(scalarMassUpper))
+    scalarCutArr.append(reg_test[regkey]['loose'].Count().GetValue())
+
+    scalarCutEffLoose[regkey] = scalarCutArr
 
 #Tight
-if precat_count != 0:
-    sys.stderr.write('\nhere6')
-    hists_1d_test['h_ChargedHadron1relIso'].Write()
-    hists_1d_test['h_ChargedHadron2relIso'].Write()
-    hists_1d_test['h_ChargedHadron3relIso'].Write()
-    hists_1d_test['h_ChargedHadron4relIso'].Write()
-    hists_1d_test['h_ZBosonMass'].Write()
-    hists_1d_test['h_Scalar1Mass'].Write()
-    hists_1d_test['h_Scalar2Mass'].Write()
-    hists_1d_test['h_Scalar1Lxy'].Write()
-    hists_1d_test['h_Scalar2Lxy'].Write()
-    hists_1d_test['h_Scalar1LxySig'].Write()
-    hists_1d_test['h_Scalar2LxySig'].Write()
-    #2D
-    hists_2d_test['h_ScalarLxy'].Write()
-    hists_2d_test['h_ScalarLxySig'].Write()
+scalarCutEffTight = {'prompt': 0, 'displaceds1': 0, 'displaceds2': 0, 'displaced': 0}
+for regkey in reg_test:
+    scalarCutArr = []
+    reg_test[regkey]['tight'] = reg_test[regkey]['tight'].Filter('s1_mass >= '  + str(scalarMassLower) + ' && s1_mass <= ' + str(scalarMassUpper))
+    scalarCutArr.append(reg_test[regkey]['tight'].Count().GetValue())
+    reg_test[regkey]['tight'] = reg_test[regkey]['tight'].Filter('s2_mass >= '  + str(scalarMassLower) + ' && s2_mass <= ' + str(scalarMassUpper))
+    scalarCutArr.append(reg_test[regkey]['tight'].Count().GetValue())
+    reg_test[regkey]['tight'] = reg_test[regkey]['tight'].Filter('s12_mass >= '  + str(scalarMassLower) + ' && s12_mass <= ' + str(scalarMassUpper))
+    scalarCutArr.append(reg_test[regkey]['tight'].Count().GetValue())
+
+    scalarCutEffTight[regkey] = scalarCutArr
+
+
+############## Histograms Categorization ########################
+
+sys.stderr.write('\n' + str(reg_['displaceds1']['loose'].Count().GetValue()))
+for key in reg_:
+    
+    #Tight
+    hists_1d[key]['h_HiggsBosonMass_' + str(key)] = reg_[key]['tight'].Histo1D(('h_'+'HiggsBoson'+'Mass_' + str(key), '', 300, 110, 140), 'higgs_mass','weight')
+    hists_1d[key]['h_'+'ChargedHadron1'+'relIso_'+str(key)] = reg_[key]['tight'].Histo1D(('h_'+'ChargedHadron1'+'relIso_'+str(key),'', 100, 0, 5), 'ch1_reliso', 'weight')
+    hists_1d[key]['h_'+'ChargedHadron2'+'relIso_'+str(key)] = reg_[key]['tight'].Histo1D(('h_'+'ChargedHadron2'+'relIso_'+str(key),'', 100, 0, 5), 'ch2_reliso', 'weight')
+    hists_1d[key]['h_'+'ChargedHadron3'+'relIso_'+str(key)] = reg_[key]['tight'].Histo1D(('h_'+'ChargedHadron3'+'relIso_'+str(key),'', 100, 0, 5), 'ch3_reliso', 'weight')
+    hists_1d[key]['h_'+'ChargedHadron4'+'relIso_'+str(key)] = reg_[key]['tight'].Histo1D(('h_'+'ChargedHadron4'+'relIso_'+str(key),'', 100, 0, 5), 'ch4_reliso', 'weight')
+
+    hists_1d[key]['h_'+'Scalar1'+'Mass_'+str(key)] = reg_[key]['tight'].Histo1D(('h_'+'Scalar1'+'Mass_'+str(key), '', s12m_bins, s12m_range[0], s12m_range[1]), 's1_mass','weight')
+    hists_1d[key]['h_'+'Scalar2'+'Mass_'+str(key)] = reg_[key]['tight'].Histo1D(('h_'+'Scalar2'+'Mass_'+str(key), '', s12m_bins, s12m_range[0], s12m_range[1]), 's2_mass','weight')
+    hists_1d[key]['h_'+'Scalar12'+'Mass_'+str(key)] = reg_[key]['tight'].Histo1D(('h_'+'Scalar12'+'Mass_'+str(key), '', s12m_bins, s12m_range[0], s12m_range[1]), 's12_mass','weight')
+    if not isData:
+        hists_1d[key]['h_'+'Scalar1'+'Mass_Fit_'+str(key)] = reg_[key]['tight'].Histo1D(('h_'+'Scalar1'+'Mass_Fit_'+str(key), '', s12m_bins_fit, s12m_range[0], s12m_range[1]), 's1_mass','weight')
+        hists_1d[key]['h_'+'Scalar2'+'Mass_Fit_'+str(key)] = reg_[key]['tight'].Histo1D(('h_'+'Scalar2'+'Mass_Fit_'+str(key), '', s12m_bins_fit, s12m_range[0], s12m_range[1]), 's2_mass','weight')
+        hists_1d[key]['h_'+'Scalar12'+'Mass_Fit_'+str(key)] = reg_[key]['tight'].Histo1D(('h_'+'Scalar12'+'Mass_Fit_'+str(key), '', s12m_bins_fit, s12m_range[0], s12m_range[1]), 's12_mass','weight')
+
+    hists_2d[key]['h_'+'Scalar'+'Mass_'+str(key)] = reg_[key]['tight'].Histo2D(('h_'+'Scalar'+'Mass_'+str(key), '', s12m_bins, s12m_range[0], s12m_range[1],s12m_bins, s12m_range[0], s12m_range[1]), 's1_mass','s2_mass', 'weight')
+    hists_2d[key]['h_'+'Scalar'+'LxySig_'+str(key)] = reg_[key]['tight'].Histo2D(('h_'+'Scalar'+'LxySig_'+str(key), '', s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1], s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1]), 's1_lxysign_tmp', 's2_lxysign_tmp', 'weight')
+ 
+    #Loose
+    hists_1d[key]['h_HiggsBosonMass_Loose_' + str(key)] = reg_[key]['loose'].Histo1D(('h_'+'HiggsBoson'+'Mass_Loose_' + str(key), '', 300, 110, 140), 'higgs_mass','weight')
+    hists_1d[key]['h_'+'ChargedHadron1'+'relIso_Loose_'+str(key)] = reg_[key]['loose'].Histo1D(('h_'+'ChargedHadron1'+'relIso_Loose_'+str(key),'', 100, 0, 5), 'ch1_reliso', 'weight')
+    hists_1d[key]['h_'+'ChargedHadron2'+'relIso_Loose_'+str(key)] = reg_[key]['loose'].Histo1D(('h_'+'ChargedHadron2'+'relIso_Loose_'+str(key),'', 100, 0, 5), 'ch2_reliso', 'weight')
+    hists_1d[key]['h_'+'ChargedHadron3'+'relIso_Loose_'+str(key)] = reg_[key]['loose'].Histo1D(('h_'+'ChargedHadron3'+'relIso_Loose_'+str(key),'', 100, 0, 5), 'ch3_reliso', 'weight')
+    hists_1d[key]['h_'+'ChargedHadron4'+'relIso_Loose_'+str(key)] = reg_[key]['loose'].Histo1D(('h_'+'ChargedHadron4'+'relIso_Loose_'+str(key),'', 100, 0, 5), 'ch4_reliso', 'weight')
+
+    hists_1d[key]['h_'+'Scalar1'+'Mass_Loose_'+str(key)] = reg_[key]['loose'].Histo1D(('h_'+'Scalar1'+'Mass_Loose_'+str(key), '', s12m_bins, s12m_range[0], s12m_range[1]), 's1_mass','weight')
+    hists_1d[key]['h_'+'Scalar2'+'Mass_Loose_'+str(key)] = reg_[key]['loose'].Histo1D(('h_'+'Scalar2'+'Mass_Loose_'+str(key), '', s12m_bins, s12m_range[0], s12m_range[1]), 's2_mass','weight')
+    hists_1d[key]['h_'+'Scalar12'+'Mass_Loose_'+str(key)] = reg_[key]['loose'].Histo1D(('h_'+'Scalar12'+'Mass_Loose_'+str(key), '', s12m_bins, s12m_range[0], s12m_range[1]), 's12_mass','weight')
+
+    if not isData:
+        hists_1d[key]['h_'+'Scalar1'+'Mass_Fit_Loose_'+str(key)] = reg_[key]['loose'].Histo1D(('h_'+'Scalar1'+'Mass_Fit_Loose_'+str(key), '', s12m_bins_fit, s12m_range[0], s12m_range[1]), 's1_mass','weight')
+        hists_1d[key]['h_'+'Scalar2'+'Mass_Fit_Loose_'+str(key)] = reg_[key]['loose'].Histo1D(('h_'+'Scalar2'+'Mass_Fit_Loose_'+str(key), '', s12m_bins_fit, s12m_range[0], s12m_range[1]), 's2_mass','weight')
+        hists_1d[key]['h_'+'Scalar12'+'Mass_Fit_Loose_'+str(key)] = reg_[key]['loose'].Histo1D(('h_'+'Scalar12'+'Mass_Fit_Loose_'+str(key), '', s12m_bins_fit, s12m_range[0], s12m_range[1]), 's12_mass','weight')
+
+    hists_2d[key]['h_'+'Scalar'+'Mass_Loose_'+str(key)] = reg_[key]['loose'].Histo2D(('h_'+'Scalar'+'Mass_Loose_'+str(key), '', s12m_bins, s12m_range[0], s12m_range[1],s12m_bins, s12m_range[0], s12m_range[1]), 's1_mass','s2_mass', 'weight')
+    hists_2d[key]['h_'+'Scalar'+'LxySig_Loose_'+str(key)] = reg_[key]['loose'].Histo2D(('h_'+'Scalar'+'LxySig_Loose_'+str(key), '', s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1], s12lxysig_bins, s12lxysig_range[0], s12lxysig_range[1]), 's1_lxysign_tmp', 's2_lxysign_tmp', 'weight')
+
+
+
+############## Histogram Writing ########################
+
+### Categories ###
+for reg in reg_:
+    for key in hists_1d[reg]:
+        hists_1d[reg][key].Write()
+    for key in hists_2d[reg]:
+        hists_2d[reg][key].Write()
+    
+### CatCut ###
+if isData:
+#NEW SCRAMBLED
+    hists_1d_test['h_CatCutNew_Loose'] = ROOT.TH1D("h_CatCut_newLoose", "CatCutNewLoose", 10, 0.5, 10.5)
+    hists_1d_test['h_CatCutNew_Loose'].GetXaxis().SetBinLabel(1, 'HiggsMassLoose')
+    hists_1d_test['h_CatCutNew_Loose'].GetXaxis().SetBinLabel(2, 'LooseBlinded')
+    hists_1d_test['h_CatCutNew_Loose'].GetXaxis().SetBinLabel(3, 'PromptCatLoose')
+    hists_1d_test['h_CatCutNew_Loose'].GetXaxis().SetBinLabel(4, 's1MassCutPrompt')
+    hists_1d_test['h_CatCutNew_Loose'].GetXaxis().SetBinLabel(5, 'displacedS1CatLoose')
+    hists_1d_test['h_CatCutNew_Loose'].GetXaxis().SetBinLabel(6, 's1MassCutDisplacedS1')
+    hists_1d_test['h_CatCutNew_Loose'].GetXaxis().SetBinLabel(7, 'displacedS2CatLoose')
+    hists_1d_test['h_CatCutNew_Loose'].GetXaxis().SetBinLabel(8, 's1MassCutDisplacedS2')
+    hists_1d_test['h_CatCutNew_Loose'].GetXaxis().SetBinLabel(9, 'displacedCatLoose')
+    hists_1d_test['h_CatCutNew_Loose'].GetXaxis().SetBinLabel(10, 's1MassCutDisplaced')
+
+    hists_1d_test['h_CatCutNew_Loose'].Fill(1, higgsLooseCut)
+    hists_1d_test['h_CatCutNew_Loose'].Fill(2, precattest_count)
+    hists_1d_test['h_CatCutNew_Loose'].Fill(3, promptCatLoose)
+    hists_1d_test['h_CatCutNew_Loose'].Fill(4, scalarCutEffLoose_s1_scrambled['prompt'])
+    hists_1d_test['h_CatCutNew_Loose'].Fill(5, displaceds1CatLoose)
+    hists_1d_test['h_CatCutNew_Loose'].Fill(6, scalarCutEffLoose_s1_scrambled['displaceds1'])
+    hists_1d_test['h_CatCutNew_Loose'].Fill(7, displaceds2CatLoose)
+    hists_1d_test['h_CatCutNew_Loose'].Fill(8, scalarCutEffLoose_s1_scrambled['displaceds2'])
+    hists_1d_test['h_CatCutNew_Loose'].Fill(9, displacedCatLoose)
+    hists_1d_test['h_CatCutNew_Loose'].Fill(10, scalarCutEffLoose_s1_scrambled['displaced'])
+
+    hists_1d_test['h_CatCutNew_Tight'] = ROOT.TH1D("h_CatCut_newTight", "CatCutNewTight", 10, 0.5, 10.5)
+    hists_1d_test['h_CatCutNew_Tight'].GetXaxis().SetBinLabel(1, 'HiggsMassLoose')
+    hists_1d_test['h_CatCutNew_Tight'].GetXaxis().SetBinLabel(2, 'TightBlinded')
+    hists_1d_test['h_CatCutNew_Tight'].GetXaxis().SetBinLabel(3, 'PromptCatTight')
+    hists_1d_test['h_CatCutNew_Tight'].GetXaxis().SetBinLabel(4, 's1MassCutPrompt')
+    hists_1d_test['h_CatCutNew_Tight'].GetXaxis().SetBinLabel(5, 'displacedS1CatTight')
+    hists_1d_test['h_CatCutNew_Tight'].GetXaxis().SetBinLabel(6, 's1MassCutDisplacedS1')
+    hists_1d_test['h_CatCutNew_Tight'].GetXaxis().SetBinLabel(7, 'displacedS2CatTight')
+    hists_1d_test['h_CatCutNew_Tight'].GetXaxis().SetBinLabel(8, 's1MassCutDisplacedS2')
+    hists_1d_test['h_CatCutNew_Tight'].GetXaxis().SetBinLabel(9, 'displacedCatTight')
+    hists_1d_test['h_CatCutNew_Tight'].GetXaxis().SetBinLabel(10, 's1MassCutDisplaced')
+
+    hists_1d_test['h_CatCutNew_Tight'].Fill(1, higgsLooseCut)
+    hists_1d_test['h_CatCutNew_Tight'].Fill(2, precat_count)
+    hists_1d_test['h_CatCutNew_Tight'].Fill(3, promptCatTight)
+    hists_1d_test['h_CatCutNew_Tight'].Fill(4, scalarCutEffTight_s1_scrambled['prompt'])
+    hists_1d_test['h_CatCutNew_Tight'].Fill(5, displaceds1CatTight)
+    hists_1d_test['h_CatCutNew_Tight'].Fill(6, scalarCutEffTight_s1_scrambled['displaceds1'])
+    hists_1d_test['h_CatCutNew_Tight'].Fill(7, displaceds2CatTight)
+    hists_1d_test['h_CatCutNew_Tight'].Fill(8, scalarCutEffTight_s1_scrambled['displaceds2'])
+    hists_1d_test['h_CatCutNew_Tight'].Fill(9, displacedCatTight)
+    hists_1d_test['h_CatCutNew_Tight'].Fill(10, scalarCutEffTight_s1_scrambled['displaced'])
+
+    hists_1d_test['h_CatCutNew_Loose'].Write()
+    hists_1d_test['h_CatCutNew_Tight'].Write()
+#OLD TESTING
+    hists_1d_test['h_CatCut_Loose'] = ROOT.TH1D("h_CatCut_Loose", "CatCutLoose", 18, 0.5, 18.5)
+    hists_1d_test['h_CatCut_Loose'].GetXaxis().SetBinLabel(1, 'HiggsMassLoose')
+    hists_1d_test['h_CatCut_Loose'].GetXaxis().SetBinLabel(2, 'LooseBlinded')
+    hists_1d_test['h_CatCut_Loose'].GetXaxis().SetBinLabel(3, 'PromptCatLoose')
+    hists_1d_test['h_CatCut_Loose'].GetXaxis().SetBinLabel(4, 's1MassCutPrompt')
+    hists_1d_test['h_CatCut_Loose'].GetXaxis().SetBinLabel(5, 's2MassCutPrompt')
+    hists_1d_test['h_CatCut_Loose'].GetXaxis().SetBinLabel(6, 's12MassCutPrompt')
+    hists_1d_test['h_CatCut_Loose'].GetXaxis().SetBinLabel(7, 'displacedS1CatLoose')
+    hists_1d_test['h_CatCut_Loose'].GetXaxis().SetBinLabel(8, 's1MassCutDisplacedS1')
+    hists_1d_test['h_CatCut_Loose'].GetXaxis().SetBinLabel(9, 's2MassCutDisplacedS1')
+    hists_1d_test['h_CatCut_Loose'].GetXaxis().SetBinLabel(10, 's12MassCutDisplacedS1')
+    hists_1d_test['h_CatCut_Loose'].GetXaxis().SetBinLabel(11, 'displacedS2CatLoose')
+    hists_1d_test['h_CatCut_Loose'].GetXaxis().SetBinLabel(12, 's1MassCutDisplacedS2')
+    hists_1d_test['h_CatCut_Loose'].GetXaxis().SetBinLabel(13, 's2MassCutDisplacedS2')
+    hists_1d_test['h_CatCut_Loose'].GetXaxis().SetBinLabel(14, 's12MassCutDisplacedS2')
+    hists_1d_test['h_CatCut_Loose'].GetXaxis().SetBinLabel(15, 'displacedCatLoose')
+    hists_1d_test['h_CatCut_Loose'].GetXaxis().SetBinLabel(16, 's1MassCutDisplaced')
+    hists_1d_test['h_CatCut_Loose'].GetXaxis().SetBinLabel(17, 's2MassCutDisplaced')
+    hists_1d_test['h_CatCut_Loose'].GetXaxis().SetBinLabel(18, 's12MassCutDisplaced')
+
+    hists_1d_test['h_CatCut_Loose'].Fill(1, higgsLooseCut)
+    hists_1d_test['h_CatCut_Loose'].Fill(2, precattest_count)
+    hists_1d_test['h_CatCut_Loose'].Fill(3, promptCatLoose)
+    hists_1d_test['h_CatCut_Loose'].Fill(4, scalarCutEffLoose['prompt'][0])
+    hists_1d_test['h_CatCut_Loose'].Fill(5, scalarCutEffLoose['prompt'][1])
+    hists_1d_test['h_CatCut_Loose'].Fill(6, scalarCutEffLoose['prompt'][2])
+    hists_1d_test['h_CatCut_Loose'].Fill(7, displaceds1CatLoose)
+    hists_1d_test['h_CatCut_Loose'].Fill(8, scalarCutEffLoose['displaceds1'][0])
+    hists_1d_test['h_CatCut_Loose'].Fill(9, scalarCutEffLoose['displaceds1'][1])
+    hists_1d_test['h_CatCut_Loose'].Fill(10, scalarCutEffLoose['displaceds1'][2])
+    hists_1d_test['h_CatCut_Loose'].Fill(11, displaceds2CatLoose)
+    hists_1d_test['h_CatCut_Loose'].Fill(12, scalarCutEffLoose['displaceds2'][0])
+    hists_1d_test['h_CatCut_Loose'].Fill(13, scalarCutEffLoose['displaceds2'][1])
+    hists_1d_test['h_CatCut_Loose'].Fill(14, scalarCutEffLoose['displaceds2'][2])
+    hists_1d_test['h_CatCut_Loose'].Fill(15, displacedCatLoose)
+    hists_1d_test['h_CatCut_Loose'].Fill(16, scalarCutEffLoose['displaced'][0])
+    hists_1d_test['h_CatCut_Loose'].Fill(17, scalarCutEffLoose['displaced'][1])
+    hists_1d_test['h_CatCut_Loose'].Fill(18, scalarCutEffLoose['displaced'][2])
+
+    hists_1d_test['h_CatCut_Tight'] = ROOT.TH1D("h_CatCut_Tight", "CatCutTight", 18, 0.5, 18.5)
+    hists_1d_test['h_CatCut_Tight'].GetXaxis().SetBinLabel(1, 'HiggsMassLoose')
+    hists_1d_test['h_CatCut_Tight'].GetXaxis().SetBinLabel(2, 'TightBlinded')
+    hists_1d_test['h_CatCut_Tight'].GetXaxis().SetBinLabel(3, 'PromptCatTight')
+    hists_1d_test['h_CatCut_Tight'].GetXaxis().SetBinLabel(4, 's1MassCutPrompt')
+    hists_1d_test['h_CatCut_Tight'].GetXaxis().SetBinLabel(5, 's2MassCutPrompt')
+    hists_1d_test['h_CatCut_Tight'].GetXaxis().SetBinLabel(6, 's12MassCutPrompt')
+    hists_1d_test['h_CatCut_Tight'].GetXaxis().SetBinLabel(7, 'displacedS1CatTight')
+    hists_1d_test['h_CatCut_Tight'].GetXaxis().SetBinLabel(8, 's1MassCutDisplacedS1')
+    hists_1d_test['h_CatCut_Tight'].GetXaxis().SetBinLabel(9, 's2MassCutDisplacedS1')
+    hists_1d_test['h_CatCut_Tight'].GetXaxis().SetBinLabel(10, 's12MassCutDisplacedS1')
+    hists_1d_test['h_CatCut_Tight'].GetXaxis().SetBinLabel(11, 'displacedS2CatTight')
+    hists_1d_test['h_CatCut_Tight'].GetXaxis().SetBinLabel(12, 's1MassCutDisplacedS2')
+    hists_1d_test['h_CatCut_Tight'].GetXaxis().SetBinLabel(13, 's2MassCutDisplacedS2')
+    hists_1d_test['h_CatCut_Tight'].GetXaxis().SetBinLabel(14, 's12MassCutDisplacedS2')
+    hists_1d_test['h_CatCut_Tight'].GetXaxis().SetBinLabel(15, 'displacedCatTight')
+    hists_1d_test['h_CatCut_Tight'].GetXaxis().SetBinLabel(16, 's1MassCutDisplaced')
+    hists_1d_test['h_CatCut_Tight'].GetXaxis().SetBinLabel(17, 's2MassCutDisplaced')
+    hists_1d_test['h_CatCut_Tight'].GetXaxis().SetBinLabel(18, 's12MassCutDisplaced')
+
+    hists_1d_test['h_CatCut_Tight'].Fill(1, higgsLooseCut)
+    hists_1d_test['h_CatCut_Tight'].Fill(2, precat_count)
+    hists_1d_test['h_CatCut_Tight'].Fill(3, promptCatTight)
+    hists_1d_test['h_CatCut_Tight'].Fill(4, scalarCutEffTight['prompt'][0])
+    hists_1d_test['h_CatCut_Tight'].Fill(5, scalarCutEffTight['prompt'][1])
+    hists_1d_test['h_CatCut_Tight'].Fill(6, scalarCutEffTight['prompt'][2])
+    hists_1d_test['h_CatCut_Tight'].Fill(7, displaceds1CatTight)
+    hists_1d_test['h_CatCut_Tight'].Fill(8, scalarCutEffTight['displaceds1'][0])
+    hists_1d_test['h_CatCut_Tight'].Fill(9, scalarCutEffTight['displaceds1'][1])
+    hists_1d_test['h_CatCut_Tight'].Fill(10, scalarCutEffTight['displaceds1'][2])
+    hists_1d_test['h_CatCut_Tight'].Fill(11, displaceds2CatTight)
+    hists_1d_test['h_CatCut_Tight'].Fill(12, scalarCutEffTight['displaceds2'][0])
+    hists_1d_test['h_CatCut_Tight'].Fill(13, scalarCutEffTight['displaceds2'][1])
+    hists_1d_test['h_CatCut_Tight'].Fill(14, scalarCutEffTight['displaceds2'][2])
+    hists_1d_test['h_CatCut_Tight'].Fill(15, displacedCatTight)
+    hists_1d_test['h_CatCut_Tight'].Fill(16, scalarCutEffTight['displaced'][0])
+    hists_1d_test['h_CatCut_Tight'].Fill(17, scalarCutEffTight['displaced'][1])
+    hists_1d_test['h_CatCut_Tight'].Fill(18, scalarCutEffTight['displaced'][2])
+
+    hists_1d_test['h_CatCut_Loose'].Write()
+    hists_1d_test['h_CatCut_Tight'].Write()
+else:
+#OLD TESTING
+    hists_1d_test['h_CatCut_Signal'] = ROOT.TH1D("h_CatCut_Signal", "CatCutSignal", 6, 0.5, 6.5)
+    hists_1d_test['h_CatCut_Signal'].GetXaxis().SetBinLabel(1, 'HiggsMassLoose')
+    hists_1d_test['h_CatCut_Signal'].GetXaxis().SetBinLabel(2, 'SignalPeak')
+    hists_1d_test['h_CatCut_Signal'].GetXaxis().SetBinLabel(3, 'PromptCat')
+    hists_1d_test['h_CatCut_Signal'].GetXaxis().SetBinLabel(4, 's1MassCutPrompt')
+    hists_1d_test['h_CatCut_Signal'].GetXaxis().SetBinLabel(5, 's2MassCutPrompt')
+    hists_1d_test['h_CatCut_Signal'].GetXaxis().SetBinLabel(6, 's12MassCutPrompt')
+
+    hists_1d_test['h_CatCut_Signal'].Fill(1, higgsLooseCut)
+    hists_1d_test['h_CatCut_Signal'].Fill(2, precat_count)
+    hists_1d_test['h_CatCut_Signal'].Fill(3, promptCatTight)
+    hists_1d_test['h_CatCut_Signal'].Fill(4, scalarCutEffTight['prompt'][0])
+    hists_1d_test['h_CatCut_Signal'].Fill(5, scalarCutEffTight['prompt'][1])
+    hists_1d_test['h_CatCut_Signal'].Fill(6, scalarCutEffTight['prompt'][2])
+
+    hists_1d_test['h_CatCut_Signal'].Write()
+
+### CutFlow ###
+if isData:
+    hists_1d_test['h_CutFlow'] = ROOT.TH1D("h_CutFlow", "CutFlow", 9, 0.5, 9.5)
+    hists_1d_test['h_CutFlow'].GetXaxis().SetBinLabel(1, 'TotalEvents')
+    hists_1d_test['h_CutFlow'].GetXaxis().SetBinLabel(2, 'MuonTriggerCut')
+    hists_1d_test['h_CutFlow'].GetXaxis().SetBinLabel(3, 'MuonQualCut')
+    hists_1d_test['h_CutFlow'].GetXaxis().SetBinLabel(4, 'MuonRecoCut')
+    hists_1d_test['h_CutFlow'].GetXaxis().SetBinLabel(5, 'ZMassCut')
+    hists_1d_test['h_CutFlow'].GetXaxis().SetBinLabel(6, 'HadronQualCut')
+    hists_1d_test['h_CutFlow'].GetXaxis().SetBinLabel(7, 'Hadron1stPair')
+    hists_1d_test['h_CutFlow'].GetXaxis().SetBinLabel(8, 'Hadron2ndPair')
+    hists_1d_test['h_CutFlow'].GetXaxis().SetBinLabel(9, 'HiggsMassLoose')
+
+    hists_1d_test['h_CutFlow'].Fill(1, totalEntries)
+    hists_1d_test['h_CutFlow'].Fill(2, muonTriggerCut)
+    hists_1d_test['h_CutFlow'].Fill(3, muonQualCut)
+    hists_1d_test['h_CutFlow'].Fill(4, muonRecoCut)
+    hists_1d_test['h_CutFlow'].Fill(5, ZmassCut)
+    hists_1d_test['h_CutFlow'].Fill(6, hadronQualCut)
+    hists_1d_test['h_CutFlow'].Fill(7, hadron1pair)
+    hists_1d_test['h_CutFlow'].Fill(8, hadron2pair)
+    hists_1d_test['h_CutFlow'].Fill(9, higgsLooseCut)
+else:
+    hists_1d_test['h_CutFlow'] = ROOT.TH1D("h_CutFlow", "CutFlow", 8, 0.5, 8.5)
+    hists_1d_test['h_CutFlow'].GetXaxis().SetBinLabel(1, 'TotalEvents')
+    hists_1d_test['h_CutFlow'].GetXaxis().SetBinLabel(2, 'MuonQualCut')
+    hists_1d_test['h_CutFlow'].GetXaxis().SetBinLabel(3, 'MuonRecoCut')
+    hists_1d_test['h_CutFlow'].GetXaxis().SetBinLabel(4, 'ZMassCut')
+    hists_1d_test['h_CutFlow'].GetXaxis().SetBinLabel(5, 'HadronQualCut')
+    hists_1d_test['h_CutFlow'].GetXaxis().SetBinLabel(6, 'Hadron1stPair')
+    hists_1d_test['h_CutFlow'].GetXaxis().SetBinLabel(7, 'Hadron2ndPair')
+    hists_1d_test['h_CutFlow'].GetXaxis().SetBinLabel(8, 'HiggsMassLoose')
+
+    hists_1d_test['h_CutFlow'].Fill(1, totalEntries)
+    hists_1d_test['h_CutFlow'].Fill(2, muonQualCut)
+    hists_1d_test['h_CutFlow'].Fill(3, muonRecoCut)
+    hists_1d_test['h_CutFlow'].Fill(4, ZmassCut)
+    hists_1d_test['h_CutFlow'].Fill(5, hadronQualCut)
+    hists_1d_test['h_CutFlow'].Fill(6, hadron1pair)
+    hists_1d_test['h_CutFlow'].Fill(7, hadron2pair)
+    hists_1d_test['h_CutFlow'].Fill(8, higgsLooseCut)
+
+hists_1d_test['h_CutFlow'].Write()
+
+### Precat ###
+precatWrite = False
+if precatWrite:
+#Tight
+    if precat_count != 0:
+        sys.stderr.write('\nhere6')
+        hists_1d_test['h_ChargedHadron1relIso'].Write()
+        hists_1d_test['h_ChargedHadron2relIso'].Write()
+        hists_1d_test['h_ChargedHadron3relIso'].Write()
+        hists_1d_test['h_ChargedHadron4relIso'].Write()
+        hists_1d_test['h_ZBosonMass'].Write()
+        hists_1d_test['h_Scalar1Mass'].Write()
+        hists_1d_test['h_Scalar2Mass'].Write()
+        hists_1d_test['h_Scalar12Mass'].Write()
+        hists_1d_test['h_Scalar1Lxy'].Write()
+        hists_1d_test['h_Scalar2Lxy'].Write()
+        hists_1d_test['h_Scalar1LxySig'].Write()
+        hists_1d_test['h_Scalar2LxySig'].Write()
+        #2D
+        hists_2d_test['h_ScalarLxy'].Write()
+        hists_2d_test['h_ScalarLxySig'].Write()
+        hists_2d_test['h_ScalarMass'].Write()
+        hists_2d_test['h_Scalar1MassLxy'].Write()
+        hists_2d_test['h_Scalar2MassLxy'].Write()
 
 #Loose
-if precattest_count != 0:
-    sys.stderr.write('\nhere7')
-    hists_1d_test['h_ChargedHadron1relIso_Loose'].Write()
-    hists_1d_test['h_ChargedHadron2relIso_Loose'].Write()
-    hists_1d_test['h_ChargedHadron3relIso_Loose'].Write()
-    hists_1d_test['h_ChargedHadron4relIso_Loose'].Write()
-    hists_1d_test['h_HiggsBosonMass_Loose'].Write()
-    hists_1d_test['h_Scalar1Mass_Loose'].Write()
-    hists_1d_test['h_Scalar2Mass_Loose'].Write()
-    hists_1d_test['h_Scalar1Lxy_Loose'].Write()
-    hists_1d_test['h_Scalar2Lxy_Loose'].Write()
-    hists_1d_test['h_Scalar1LxySig_Loose'].Write()
-    hists_1d_test['h_Scalar2LxySig_Loose'].Write()
-    #2D
-    hists_2d_test['h_ScalarLxy_Loose'].Write()
-    hists_2d_test['h_ScalarLxySig_Loose'].Write()
-############## Categorization ########################
-
-reg_={}
-#reg_['prompt'] = higgs_definitions_blinded_loose_iso.Filter('prompt_check','only prompt region')
-#reg_['displaceds1'] = higgs_definitions_blinded_loose_iso.Filter('displaceds1_check','only displaced s1 region')
-#reg_['displaceds2'] = higgs_definitions_blinded_loose_iso.Filter('displaceds2_check','only displaced s2 region')
-#reg_['displaced'] = higgs_definitions_blinded_loose_iso.Filter('displaced_check','both displaced region')
+    if precattest_count != 0:
+        sys.stderr.write('\nhere7')
+        hists_1d_test['h_ChargedHadron1relIso_Loose'].Write()
+        hists_1d_test['h_ChargedHadron2relIso_Loose'].Write()
+        hists_1d_test['h_ChargedHadron3relIso_Loose'].Write()
+        hists_1d_test['h_ChargedHadron4relIso_Loose'].Write()
+        hists_1d_test['h_HiggsBosonMass_Loose'].Write()
+        hists_1d_test['h_Scalar1Mass_Loose'].Write()
+        hists_1d_test['h_Scalar2Mass_Loose'].Write()
+        hists_1d_test['h_Scalar12Mass_Loose'].Write()
+        hists_1d_test['h_Scalar1Lxy_Loose'].Write()
+        hists_1d_test['h_Scalar2Lxy_Loose'].Write()
+        hists_1d_test['h_Scalar1LxySig_Loose'].Write()
+        hists_1d_test['h_Scalar2LxySig_Loose'].Write()
+        #2D
+        hists_2d_test['h_ScalarLxy_Loose'].Write()
+        hists_2d_test['h_ScalarLxySig_Loose'].Write()
+        hists_2d_test['h_ScalarMass_Loose'].Write()
+        hists_2d_test['h_Scalar1MassLxy_Loose'].Write()
+        hists_2d_test['h_Scalar2MassLxy_Loose'].Write()
 
 
-############## Histograms Postcat ########################
-
-hists_1d_={}
-hists_2d_={}
 
 outFile.Close()
 

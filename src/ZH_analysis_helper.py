@@ -1,5 +1,44 @@
 import ROOT
 
+def gInterpreter_Scrambled():
+    ROOT.gInterpreter.Declare("""
+    #include <random>
+
+    using FourVectorcPxPyPzM = ROOT::Math::PxPyPzMVector;
+    using namespace ROOT::VecOps;
+
+    RVec<FourVectorPxPyPzM> Scramble(FourVectorPxPyPzM s1, FourVectorPxPyPzM s2, int iterations_max){
+
+        //Define original order
+        RVec<FourVectorPxPyPzM> s12_new; 
+        
+        //Set up rndm number of iterations
+        std::random_device rd1;
+        std::mt19937 gen1(rd1());
+        std::uniform_int_distribution<> dist1(1,iterations_max);
+
+        int iterations = dist1(gen1);
+
+        //Set up seed for rndm flip
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> dist(0,1);
+
+        //Randomly flip or not flip s1 and s2, do this iterations times which is also random (currently fixed to iterations_max however)
+        bool flipped = false;
+        for(int i = 0; i < iterations_max; i++){
+            int randomIdx = dist(gen);
+
+            if (randomIdx == 1){ 
+                flipped = !flipped;
+            } 
+        }
+        return flipped ? RVec<FourVectorPxPyPzM>{s2, s1} : RVec<FourVectorPxPyPzM>{s1, s2};
+
+    }
+    """)
+
+
 def gInterpreter_std_map():
     ROOT.gInterpreter.Declare("""
     auto &GetTheMap() {

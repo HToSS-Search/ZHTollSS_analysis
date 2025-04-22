@@ -41,7 +41,7 @@ cuts:
     unblind: true
 hadronType: kaon
 regions:
-  s1lxysign: 30
-  s2lxysign: 30
+  s1lxysign: 15
+  s2lxysign: 15
 metfilters: true
 trig: single
